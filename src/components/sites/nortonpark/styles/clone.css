@@ -1,0 +1,7 @@
+/* Small additions for the React port. Everything else is the source CSS. */
+
+/* Icon sprite holder (inline style in the source markup). */
+.np-sprite{position:absolute}
+
+/* Source locks "Xem tat ca tin tuc" with inline pointer-events:none. */
+.news-all[aria-disabled="true"]{pointer-events:none}
