@@ -1,0 +1,105 @@
+[document].[]: html
+title.[]: CÔNG TY TNHH HUỲNH HOÀNG MINH
+li.['h-fn', 'fn']: CÔNG TY TNHH HUỲNH HOÀNG MINH
+li.['h-org', 'org']: CÔNG TY TNHH HUỲNH HOÀNG MINH
+li.['h-tel', 'tel']: 0964717686
+a.['u-url', 'ul']: https://huynhhoangminh.com/
+h1.['hidden-seo']: CÔNG TY TNHH HUỲNH HOÀNG MINH
+a.['active']: Trang chủ
+a.[]: Giới thiệu
+a.[]: Quy trình hoạt động
+a.[]: Sản phẩm
+a.['transition']: Đồng
+a.['transition']: Hợp Kim Đồng
+a.['transition']: Nhôm
+a.['transition']: Thép Không Gỉ
+a.['transition']: Cáp Điện
+a.['transition']: Chì
+a.['transition']: Kẽm
+a.['transition']: Khác
+a.[]: Giá Thị Trường
+a.[]: Tin tức
+span.[]: TEL:
+span.[]: 0964 717 686
+a.[]: English
+span.[]: Liên hệ
+li.['w-clear']: 213A/2, đường Nguyễn Văn Tiên, khu phố 11A, Phường Tân Triều, TP Đồng Nai
+li.['w-clear']: 0964 717 686
+li.['w-clear']: huynhhoangminh.corp@gmail.com
+li.['w-clear']: https://huynhhoangminh.com
+div.['sub']: Giới thiệu về
+h2.[]: HUỲNH HOÀNG MINH
+p.[]: Trong bối cảnh ngành công nghiệp ngày càng hướng đến phát triển bền vững, việc thu hồi và tái chế nguyên liệu đóng vai trò quan trọng trong việc tiết kiệm tài nguyên và giảm tác động đến môi trường. Công ty TNHH Huỳnh Hoàng Minh tự hào là doanh nghiệp chuyên thu mua, phân loại và tái chế phế liệu đồng, mang đến giải pháp tối ưu cho các nhà máy, xưởng sản xuất và doanh nghiệp trên toàn quốc.
+a.['about-viewmore', 'text-decoration-none']: Xem Chi Tiết
+div.['sub']: Huỳnh Hoàng Minh
+h2.[]: Quy trình hoạt động
+p.[]: Trong lĩnh vực thu mua, phân loại và tái chế phế liệu đồng, Công ty TNHH Huỳnh Hoàng Minh luôn xây dựng quy trình vận hành khoa học nhằm tối ưu hiệu quả thu hồi nguyên liệu, đảm bảo chất lượng sản phẩm và mang đến giá trị bền vững cho khách hàng cũng như môi trường. Với hệ thống máy móc hiện đại, đội ngũ chuyên môn giàu kinh nghiệm cùng quy trình kiểm soát nghiêm ngặt, Huỳnh Hoàng Minh tự tin đáp ứng nhu cầu thu mua và tái chế số lượng lớn từ các nhà máy, khu công nghiệp và doanh nghiệp trên toàn quốc.
+a.['about-viewmore', 'text-decoration-none']: Xem Chi Tiết
+div.['sub']: Huỳnh Hoàng Minh
+h2.[]: Sản phẩm thu mua
+h3.['proList-name', 'text-split']: Đồng
+h3.['proList-name', 'text-split']: Hợp Kim Đồng
+h3.['proList-name', 'text-split']: Nhôm
+h3.['proList-name', 'text-split']: Thép Không Gỉ
+h3.['proList-name', 'text-split']: Cáp Điện
+h3.['proList-name', 'text-split']: Chì
+h3.['proList-name', 'text-split']: Kẽm
+h3.['proList-name', 'text-split']: Khác
+a.['about-viewmore', 'text-decoration-none']: Xem Chi Tiết
+div.['sub']: Huỳnh Hoàng Minh
+h2.[]: Sản phẩm giá Thị Trường
+h3.['price-tit']: Kẽm
+span.['price-new', 'up']: 8.000.000đ
+span.['price-old']: 10.000.000đ
+span.['price-per']: -20%
+p.[]: (単位： ￥/トン)
+p.[]: (8月12日,
+a.[]: JX金属
+p.[]: )
+h3.['price-tit']: Bột đồng thau
+span.['price-new', 'up']: 8.000.000đ
+span.['price-old']: 10.000.000đ
+span.['price-per']: -20%
+p.[]: (単位： ￥/トン)
+p.[]: (8月12日,
+a.[]: JX金属
+p.[]: )
+h3.['price-tit']: Đồng
+span.['price-new', 'up']: 8.000.000đ
+span.['price-old']: 10.000.000đ
+span.['price-per']: -20%
+p.[]: (単位： ￥/トン)
+p.[]: (8月12日,
+a.[]: JX金属
+p.[]: )
+a.['about-viewmore', 'text-decoration-none']: Xem Chi Tiết
+h2.[]: Đăng ký nhận tin
+div.['desc-dk']: Để lại thông tin của bạn - Chúng tôi sẽ gửi bảng báo giá mới nhất
+div.['text']: Liên hệ với chúng tôi qua điện thoại
+div.['hotline-number']: 0964 717 686
+div.['dknt-btn']: Xem Chi Tiết
+div.['footer-title']: Thông tin liên hệ
+div.['footer-name']: Công ty TNHH Huỳnh Hoàng Minh
+span.[]: Địa Chỉ: 213A/2, đường Nguyễn Văn Tiên, khu phố 11A, Phường Tân Triều, TP Đồng Nai
+span.[]: Hotline: 0964 717 686
+span.[]: Email: huynhhoangminh.corp@gmail.com
+span.[]: Website:
+a.[]: huynhhoangminh.com
+div.['title-mxh']: Liên kết mạng xã hội
+div.['footer-title']: Liên kết
+a.[]: Giới thiệu
+a.[]: Quy trình hoạt động
+a.[]: Sản phẩm
+a.[]: Tin tức
+a.[]: Liên hệ
+div.['footer-copyright']: Copyright © 2026
+b.[]: Công ty TNHH Huỳnh Hoàng Minh
+div.['footer-copyright']: . Designed by
+b.[]: nasani.vn
+span.[]: Đang online: 1
+span.[]: Ngày: 16
+span.[]: Tuần: 32
+span.[]: Tháng: 81
+span.[]: Tổng: 1048
+h5.['modal-title']: Đăng ký nhận tin
+button.['form-btn--submit']: Gửi

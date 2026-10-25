@@ -7,7 +7,7 @@ import { useLang } from "../lib/i18n";
 const TRAMS = [
   { mod: "tram--nl", img: "assets/images/cgi/tram-nang-luong.jpg", alt: "Hồ bơi trung tâm giữa tầng cây xanh", h: 1264, n: "tram.n1", p: "tram.p1" },
   { mod: "tram--hs", img: "assets/images/cgi/tram-hieu-suat.jpg", alt: "Không gian Work Hub ngập ánh sáng tự nhiên", h: 1187, n: "tram.n2", p: "tram.p2" },
-  { mod: "tram--hk", img: "assets/images/cgi/tram-hung-khoi.jpg", alt: "Trẻ em khám phá Vườn Mưa trong khu dân cư", h: 1118, n: "tram.n3", p: "tram.p3" },
+  { mod: "tram--hk", img: "assets/images/drive/story-skatepark.webp", alt: "Trẻ em vui chơi trên sân trượt ván giữa khu vườn nội khu", h: 1118, n: "tram.n3", p: "tram.p3" },
 ];
 
 export function Story() {

@@ -1,0 +1,569 @@
+[
+  {
+    "url": "https://huynhhoangminh.com/upload/photo/2026/07/20/song-sai-gon-3-1784544094.jpg",
+    "file": "source-evidence\\assets\\song-sai-gon-3-1784544094.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/1920x475x1/upload/photo/2026/07/20/song-sai-gon-3-1784544094.jpg.webp",
+    "sha256": "20f2f22f6bd460b1464d08f64d7240c0fa0213163d9d3817061248e44f57860c"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/photo/2026/07/22/chua-co-ten-1920-x-425-px-1-1784737870.png",
+    "file": "source-evidence\\assets\\chua-co-ten-1920-x-425-px-1-1784737870.png",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/1920x475x1/upload/photo/2026/07/22/chua-co-ten-1920-x-425-px-1-1784737870.png.webp",
+    "sha256": "f8c40216b1b00f61850edf889304484d94ae8b8f2b63ef81b5dd4ac4faee699c"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/photo/2026/07/23/thiet-ke-chua-co-ten-63-1784771186.png",
+    "file": "source-evidence\\assets\\thiet-ke-chua-co-ten-63-1784771186.png",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/1920x475x1/upload/photo/2026/07/23/thiet-ke-chua-co-ten-63-1784771186.png.webp",
+    "sha256": "dd317636c141c1ea4e14737baf1c333bf3546bf852228b5147cc351e66b21d2d"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/photo/2026/07/23/thiet-ke-chua-co-ten-66-1784772191.png",
+    "file": "source-evidence\\assets\\thiet-ke-chua-co-ten-66-1784772191.png",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/1920x475x1/upload/photo/2026/07/23/thiet-ke-chua-co-ten-66-1784772191.png.webp",
+    "sha256": "d5dce68a5a540525ddd87dc9014d1e3a1649da03bfda0edf88017b202c9bc702"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/photo/2026/07/23/thiet-ke-chua-co-ten-69-1784772497.png",
+    "file": "source-evidence\\assets\\thiet-ke-chua-co-ten-69-1784772497.png",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/1920x475x1/upload/photo/2026/07/23/thiet-ke-chua-co-ten-69-1784772497.png.webp",
+    "sha256": "f0ce27b8aee08a3db85e978af374b67f04614d327a82ddd21f337c87d8de684a"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/photo/2026/08/11/thiet-ke-chua-co-ten-33-1786432058.png",
+    "file": "source-evidence\\assets\\thiet-ke-chua-co-ten-33-1786432058.png",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/1920x800x1/upload/photo/2026/08/11/thiet-ke-chua-co-ten-33-1786432058.png.webp",
+    "sha256": "c84c8508699b53a67987c0fc328135cb2bf5ca658bb89fb545545ee62fd8c3bf"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/photo/2026/09/04/photo20260828photo20260828chua-1787898763-1788488429.png",
+    "file": "source-evidence\\assets\\photo20260828photo20260828chua-1787898763-1788488429.png",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/320x125x2/upload/photo/2026/09/04/photo20260828photo20260828chua-1787898763-1788488429.png.webp",
+    "sha256": "84b7bd892232399ce8672f4e8f78c95a5223ac9b4bb051bc07afb7450be50f5f"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/news/2026/07/24/phe-lieu-dong-day-dien-585-1784871585.jpg",
+    "file": "source-evidence\\assets\\phe-lieu-dong-day-dien-585-1784871585.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/390x390x1/upload/news/2026/07/24/phe-lieu-dong-day-dien-585-1784871585.jpg.webp",
+    "sha256": "3d744c3382be527d900878efe52641ba2cf3dc4bc9876d83f0b5f3a62ccd4fd8"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/news/2026/07/27/op-1024x296-1-1785090208.jpg",
+    "file": "source-evidence\\assets\\op-1024x296-1-1785090208.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/390x390x1/upload/news/2026/07/27/op-1024x296-1-1785090208.jpg.webp",
+    "sha256": "42325f546a816c41e1429a89ae6c1bac6b0993bb309be35c33a2c5d1f072c4e4"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/22/11-1784716671.webp",
+    "file": "source-evidence\\assets\\11-1784716671.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/420x140x1/upload/product/2026/07/22/11-1784716671.webp.webp",
+    "sha256": "0eb5a6a8757cb8cd67c9ceb636091d491d1d830332b3850ef832b3f45264c741"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/22/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+    "file": "source-evidence\\assets\\5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/420x140x1/upload/product/2026/07/22/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg.webp",
+    "sha256": "4b52dd796d8b40808ef391ad4540561ac81e3a2d3ef3a18e9cd1c4e5c2baa9aa"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/22/bao-gia-dong-phe-lieu-1784704545.jpg",
+    "file": "source-evidence\\assets\\bao-gia-dong-phe-lieu-1784704545.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/420x140x1/upload/product/2026/07/22/bao-gia-dong-phe-lieu-1784704545.jpg.webp",
+    "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/22/gia-thep-phe-lieu-01-1784716067.jpg",
+    "file": "source-evidence\\assets\\gia-thep-phe-lieu-01-1784716067.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/420x140x1/upload/product/2026/07/22/gia-thep-phe-lieu-01-1784716067.jpg.webp",
+    "sha256": "68a05b7d119464aa5430afa158d9a9e48d555129cd335ab51b770ebb1cc07e45"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/22/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+    "file": "source-evidence\\assets\\product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/420x140x1/upload/product/2026/07/22/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png.webp",
+    "sha256": "25f4c439905ead31432b3e012c0ce6f9e81ed7b1925718f1c7eef3dd4efcd4d2"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/22/thu-mua-day-dien-cu-day-cap-dong-phe-lieu-quang-tuan-1965-1-1784716282.jpg",
+    "file": "source-evidence\\assets\\thu-mua-day-dien-cu-day-cap-dong-phe-lieu-quang-tuan-1965-1-1784716282.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/420x140x1/upload/product/2026/07/22/thu-mua-day-dien-cu-day-cap-dong-phe-lieu-quang-tuan-1965-1-1784716282.jpg.webp",
+    "sha256": "d70d11b63b2260138b431468389b0db49dd757a71913d6c190e77cbce20b4462"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/22/thu-mua-phe-lieu-chi-1-1784716390.jpg",
+    "file": "source-evidence\\assets\\thu-mua-phe-lieu-chi-1-1784716390.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/420x140x1/upload/product/2026/07/22/thu-mua-phe-lieu-chi-1-1784716390.jpg.webp",
+    "sha256": "afd77a338a39c0acafe43ef14f9c884836b50df1b02f833f43c3379487d48073"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/22/thu-mua-phe-lieu-kem-gia-cao-1784716475.jpg",
+    "file": "source-evidence\\assets\\thu-mua-phe-lieu-kem-gia-cao-1784716475.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/420x140x1/upload/product/2026/07/22/thu-mua-phe-lieu-kem-gia-cao-1784716475.jpg.webp",
+    "sha256": "680294ac6b8c50e66f99177062595251b063847a075e55e524a38fe59123e324"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/photo/2026/07/24/images-1784871957.jpg",
+    "file": "source-evidence\\assets\\images-1784871957.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/42x42x1/upload/photo/2026/07/24/images-1784871957.jpg.webp",
+    "sha256": "bfb19631bd9a5b9b1870aa08af1357dda07a36cd56777fdd03e9ad428acbfeeb"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/news/2026/07/24/phe-lieu-dong-day-dien-585-1784871585.jpg",
+    "file": "source-evidence\\assets\\phe-lieu-dong-day-dien-585-1784871585.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/500x350x1/upload/news/2026/07/24/phe-lieu-dong-day-dien-585-1784871585.jpg.webp",
+    "sha256": "3d744c3382be527d900878efe52641ba2cf3dc4bc9876d83f0b5f3a62ccd4fd8"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/news/2026/07/27/op-1024x296-1-1785090208.jpg",
+    "file": "source-evidence\\assets\\op-1024x296-1-1785090208.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/500x350x1/upload/news/2026/07/27/op-1024x296-1-1785090208.jpg.webp",
+    "sha256": "42325f546a816c41e1429a89ae6c1bac6b0993bb309be35c33a2c5d1f072c4e4"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/news/2026/07/29/1-3-1741832838-1785291276.jpg",
+    "file": "source-evidence\\assets\\1-3-1741832838-1785291276.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/500x350x1/upload/news/2026/07/29/1-3-1741832838-1785291276.jpg.webp",
+    "sha256": "ee90de79f0ce8232e6a2c482b6aff446d0fdf5e21e4bda5f1750e0f59e7054bd"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/photo/2026/09/04/photo20260828photo20260828chua-1787898763-1788488429.png",
+    "file": "source-evidence\\assets\\photo20260828photo20260828chua-1787898763-1788488429.png",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/625x250x2/upload/photo/2026/09/04/photo20260828photo20260828chua-1787898763-1788488429.png.webp",
+    "sha256": "84b7bd892232399ce8672f4e8f78c95a5223ac9b4bb051bc07afb7450be50f5f"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/23/barley-copper-scrap-99-740400-1784788784.jpg",
+    "file": "source-evidence\\assets\\barley-copper-scrap-99-740400-1784788784.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/23/barley-copper-scrap-99-740400-1784788784.jpg.webp",
+    "sha256": "04cbfe635ed55dd83da940a0c7401ea016afa6628fb63c2362f6f533e51731a7"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/copper-wire-granule-scrap-clove-5-1785088079.jpg",
+    "file": "source-evidence\\assets\\copper-wire-granule-scrap-clove-5-1785088079.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/copper-wire-granule-scrap-clove-5-1785088079.jpg.webp",
+    "sha256": "3a324ae848850481722eba16fd02eb612a767a2254a6711918eca46927dacfa8"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/images-1785088715.jpg",
+    "file": "source-evidence\\assets\\images-1785088715.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/images-1785088715.jpg.webp",
+    "sha256": "be7dca96fdec1ff99b32de12a23d11fe1ad3e7364028c426f41897596cb1ddc6"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/ki-product-055-1785088242.jpg",
+    "file": "source-evidence\\assets\\ki-product-055-1785088242.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/ki-product-055-1785088242.jpg.webp",
+    "sha256": "ddaa459065e7e77658b53af7c3ca8c33e34d66b6b5d9321ef90c70b973d63b52"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/millberry-copper-wire-scrap-500x500-1785085928.webp",
+    "file": "source-evidence\\assets\\millberry-copper-wire-scrap-500x500-1785085928.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/millberry-copper-wire-scrap-500x500-1785085928.webp.webp",
+    "sha256": "f057aa5be24fa62119b45e1d9fea2ffc7e259fdadc8cc8a006674de892bc3168"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/picture-1785088471.jpg",
+    "file": "source-evidence\\assets\\picture-1785088471.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/picture-1785088471.jpg.webp",
+    "sha256": "78f6d64a7a213e084feb7d4bc218fb077cecb3cf79e2afedd19a06df9d8cef3d"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/picture-1785088809.jpg",
+    "file": "source-evidence\\assets\\picture-1785088809.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/picture-1785088809.jpg.webp",
+    "sha256": "413b33734418a424eec7cefad58a9630cb3417ab117e39df1483ea301cebe670"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/picture-1785088917.jpg",
+    "file": "source-evidence\\assets\\picture-1785088917.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/picture-1785088917.jpg.webp",
+    "sha256": "37e7a4e4a63129a2077459a74455857851d40bf4ca597741d0baf824def29d0e"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/picture-1785089013.jpg",
+    "file": "source-evidence\\assets\\picture-1785089013.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/picture-1785089013.jpg.webp",
+    "sha256": "4d90d13c16b3eacbe13cef1f7f6792ace39ed9c797a1016ad68b102a3dabdb17"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/picture-1785089126.jpg",
+    "file": "source-evidence\\assets\\picture-1785089126.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/picture-1785089126.jpg.webp",
+    "sha256": "b68ce77cbe4b1a1adcce26f6bdc12dd89afa2d3264c37d4e5af445704b54920d"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/picture-1785089200.jpg",
+    "file": "source-evidence\\assets\\picture-1785089200.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/picture-1785089200.jpg.webp",
+    "sha256": "f465652ae83142da773c4be414defcf65912d7b8fbd9b10e8ee925afb96cfe67"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/picture-1785089277.jpg",
+    "file": "source-evidence\\assets\\picture-1785089277.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/picture-1785089277.jpg.webp",
+    "sha256": "691ed102485d74692e1a37fd27770d0f48e7bd9a373abe892f89ff14d7e59cbe"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/picture-1785089411.jpg",
+    "file": "source-evidence\\assets\\picture-1785089411.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/picture-1785089411.jpg.webp",
+    "sha256": "a3a353f82400b0fbb86142b0735d6bc4e964f878d7f1c0c03f16fd0419aa36b2"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/picture-1785089503.jpg",
+    "file": "source-evidence\\assets\\picture-1785089503.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/picture-1785089503.jpg.webp",
+    "sha256": "042a5eaabcbaec05d838bc4fa467b7d405a20fab25275808f6b7a946a0b0e93a"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/picture-1785089579.jpg",
+    "file": "source-evidence\\assets\\picture-1785089579.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/picture-1785089579.jpg.webp",
+    "sha256": "d05dc156ef9b0a68f2db1ed8799879d69c3ff11c0f161fce1948cf82878e71be"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/picture-1785089646.jpg",
+    "file": "source-evidence\\assets\\picture-1785089646.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/picture-1785089646.jpg.webp",
+    "sha256": "b57dad779d013c091bd7782943f816b00678f6aed94690c832df0798b955c10e"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/07/27/picture-1785089758.jpg",
+    "file": "source-evidence\\assets\\picture-1785089758.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/700x400x1/upload/product/2026/07/27/picture-1785089758.jpg.webp",
+    "sha256": "26f323ad3babf5b424831ecfd4f4b6d23bec8cd85e705562083ed89a17ec2c1b"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/08/14/price-ph-001-1786675587.jpg",
+    "file": "source-evidence\\assets\\price-ph-001-1786675587.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/710x150x1/upload/product/2026/08/14/price-ph-001-1786675587.jpg.webp",
+    "sha256": "6cc2157e2e0825ec54ee39bd3427f06063dc1af552dbdf2dee5d7e47673fd9e9"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/08/14/price-ph-002-1786675606.jpg",
+    "file": "source-evidence\\assets\\price-ph-002-1786675606.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/710x150x1/upload/product/2026/08/14/price-ph-002-1786675606.jpg.webp",
+    "sha256": "2d58d54d53f1cacf7c15aafdbd88bb1641342ddcef6ba165e6c3601b376eb843"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/product/2026/08/14/price-ph-003-1786675615.jpg",
+    "file": "source-evidence\\assets\\price-ph-003-1786675615.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/710x150x1/upload/product/2026/08/14/price-ph-003-1786675615.jpg.webp",
+    "sha256": "abb712d768ed1bcbc4116c1b640ca51f5b59e72f9269b4ef2cc10d0d6624cb29"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/news/2026/07/20/bg-phe-lieu-1784543808.jpg",
+    "file": "source-evidence\\assets\\bg-phe-lieu-1784543808.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/thumbs/842x555x1/upload/news/2026/07/20/bg-phe-lieu-1784543808.jpg.webp",
+    "sha256": "9c40d73beafda64ab807b5a45c7defec732948dc85393c4223fda44e86d6eb99"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/file/1784701383951_5002682703428391301_5002682703428391301_eef53c8b0a3edaf2c61886ff9ea30ea4.jpg",
+    "file": "source-evidence\\assets\\1784701383951_5002682703428391301_5002682703428391301_eef53c8b0a3edaf2c61886ff9ea30ea4.jpg",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/upload/file/1784701383951_5002682703428391301_5002682703428391301_eef53c8b0a3edaf2c61886ff9ea30ea4.jpg",
+    "sha256": "ea8e04f75d865cd63b61c4c6c821d31348b04e7a59b25ecccfad9e21301c50c0"
+  },
+  {
+    "url": "https://huynhhoangminh.com/upload/file/HU%E1%BB%B2NH%20HO%C3%80NG%20MINH.png",
+    "file": "source-evidence\\assets\\HU%E1%BB%B2NH%20HO%C3%80NG%20MINH.png",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/upload/file/HU%E1%BB%B2NH%20HO%C3%80NG%20MINH.png",
+    "sha256": "b61c7958a31623e036bdb5ed1fa28499f97c2da111af602e32ea464fada0d6fd"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/23/barley-copper-scrap-99-740400-1784788784.jpg.webp",
+    "file": "source-evidence\\assets\\barley-copper-scrap-99-740400-1784788784.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/23/barley-copper-scrap-99-740400-1784788784.jpg.webp",
+    "sha256": "b7391f7967ccf1b13bad4fbd093cba398e1c13afd5b23a7536424976ff11cd10"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/23/barley-wire-copper-scrap-1784788784.webp.webp",
+    "file": "source-evidence\\assets\\barley-wire-copper-scrap-1784788784.webp.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/23/barley-wire-copper-scrap-1784788784.webp.webp",
+    "sha256": "a44ce5b447ac7e0e4f6db08a8e77d271dcbd855492c030c7c38c0e79fb3c22b0"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/copper-wire-granule-scrap-clove-5-1785088079.jpg.webp",
+    "file": "source-evidence\\assets\\copper-wire-granule-scrap-clove-5-1785088079.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/copper-wire-granule-scrap-clove-5-1785088079.jpg.webp",
+    "sha256": "6d510194f454689de6d97d21ab131bd8fe80a45581c2627b104223d82d552336"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/images-1785088715.jpg.webp",
+    "file": "source-evidence\\assets\\images-1785088715.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/images-1785088715.jpg.webp",
+    "sha256": "08d1d4d0f6150372637b85c1eb943ce5efc0a8ceaeec873a76269fa76fc16821"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/ki-product-055-1785088242.jpg.webp",
+    "file": "source-evidence\\assets\\ki-product-055-1785088242.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/ki-product-055-1785088242.jpg.webp",
+    "sha256": "12116e25a5fe5e9839d2d921a579ae56aa8e32031287ddc2f947aeed4249bf9e"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/millberry-copper-wire-scrap-500x500-1785085928.webp.webp",
+    "file": "source-evidence\\assets\\millberry-copper-wire-scrap-500x500-1785085928.webp.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/millberry-copper-wire-scrap-500x500-1785085928.webp.webp",
+    "sha256": "b638581eb5fb18da439d8cd116d8f2c7672e70532280b5ebefbc60443c04aaa7"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785088471.jpg.webp",
+    "file": "source-evidence\\assets\\picture-1785088471.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785088471.jpg.webp",
+    "sha256": "229a96e8134dec67e409f8ae842d93a87d6d8b7e3bc3c5f56b84e7e313f7b123"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785088809.jpg.webp",
+    "file": "source-evidence\\assets\\picture-1785088809.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785088809.jpg.webp",
+    "sha256": "c342bd8b862a51a64f414619f41198b4fa35fee315c1038647d06d10837009fb"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785088917.jpg.webp",
+    "file": "source-evidence\\assets\\picture-1785088917.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785088917.jpg.webp",
+    "sha256": "b83d9b64d7289056492139f6fee7d0d069c331c0c2756eddc8fd0f11b2c52ce5"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089013.jpg.webp",
+    "file": "source-evidence\\assets\\picture-1785089013.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089013.jpg.webp",
+    "sha256": "3a2666f7f61d65fb303e5cb9cb3ecb00fe6febbd58e8e8dc6d7309999dfc8de4"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089126.jpg.webp",
+    "file": "source-evidence\\assets\\picture-1785089126.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089126.jpg.webp",
+    "sha256": "73e69857432d3583bc82ab7d907a8577323a5ada5eeeed505459b91447389479"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089200.jpg.webp",
+    "file": "source-evidence\\assets\\picture-1785089200.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089200.jpg.webp",
+    "sha256": "4aaca3ade97113fafc25a03f7b807a8b03b85ecd6d1aecbeca26d768342f0c1c"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089277.jpg.webp",
+    "file": "source-evidence\\assets\\picture-1785089277.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089277.jpg.webp",
+    "sha256": "0347368f2464c5e87b37d51c4afaa075b769d3bf53141abdfff53dab26408d79"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089411.jpg.webp",
+    "file": "source-evidence\\assets\\picture-1785089411.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089411.jpg.webp",
+    "sha256": "e454f85a3bef4ae6ce1e1dbba6618d582868d7ce24e57c10ff315b47542269b1"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089503.jpg.webp",
+    "file": "source-evidence\\assets\\picture-1785089503.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089503.jpg.webp",
+    "sha256": "c7a01fa8c4775bfcede403bac49f58002ffe259dfb94c0e8b05acb756811b68d"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089579.jpg.webp",
+    "file": "source-evidence\\assets\\picture-1785089579.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089579.jpg.webp",
+    "sha256": "d212a7263656856ee309b58e56396177406e4b9074cdf6952d109f0345c9e4a0"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089646.jpg.webp",
+    "file": "source-evidence\\assets\\picture-1785089646.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089646.jpg.webp",
+    "sha256": "ebb6dc93ebdee0e5266d4d165c214aaf3da160bda82933025a3576caa6d19d9d"
+  },
+  {
+    "url": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089758.jpg.webp",
+    "file": "source-evidence\\assets\\picture-1785089758.jpg.webp",
+    "code": "200",
+    "ok": true,
+    "error": "",
+    "source_image": "https://huynhhoangminh.com/watermarks/600x600x1/upload/product/2026/07/27/picture-1785089758.jpg.webp",
+    "sha256": "cd26687cfd519aa47c4f84ed4c5b32868adec5531a427597433893d9d440198b"
+  }
+]

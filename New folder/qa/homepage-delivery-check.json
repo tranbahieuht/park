@@ -1,0 +1,35 @@
+{
+  "a": {
+    "zip": "website-a-final.zip",
+    "bytes": 21395797,
+    "sha256": "c9dde262fb5c65d40bc0d37f020b5f6cb3530a5901fa8dc1fbcc68f2e1689ab9",
+    "crc": "PASS",
+    "html_pages": 1,
+    "original_js_unchanged": true,
+    "missing_references": [],
+    "entrypoint": "a/index.html",
+    "content_rechecked": true
+  },
+  "b": {
+    "zip": "website-b-final.zip",
+    "bytes": 12279376,
+    "sha256": "3f4322bb9d6170ce1de33a58293f9044578d16ac91247aa2ee618f52744ef80f",
+    "crc": "PASS",
+    "html_pages": 1,
+    "original_js_unchanged": true,
+    "missing_references": [],
+    "entrypoint": "b/index.html",
+    "content_rechecked": true
+  },
+  "c": {
+    "zip": "website-c-final.zip",
+    "bytes": 15388254,
+    "sha256": "2b68ef5228d00cce81d67e8e93f48c4d3b1bf95cfa855b2389142a8c830aa3bd",
+    "crc": "PASS",
+    "html_pages": 1,
+    "original_js_unchanged": true,
+    "missing_references": [],
+    "entrypoint": "c/index.html",
+    "content_rechecked": true
+  }
+}

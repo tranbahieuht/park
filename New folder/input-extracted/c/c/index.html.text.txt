@@ -1,0 +1,366 @@
+[document].[]: html
+title.[]: Greeninterior
+a.['nav-link', 'w-nav-link', 'w--current']: Home
+a.['nav-link', 'w-nav-link']: About
+a.['nav-link', 'w-nav-link']: Service
+a.['nav-link', 'w-nav-link']: Blog
+div.['dropdown-toggle-text-block']: Pages
+div.['dropdown-menu-title']: Main pages
+a.['dropdown-menu-text-link']: About
+a.['dropdown-menu-text-link']: Project
+a.['dropdown-menu-text-link']: Service
+a.['dropdown-menu-text-link']: Pricing
+a.['dropdown-menu-text-link']: Blog
+a.['dropdown-menu-text-link']: Shop
+div.['dropdown-menu-title']: Inner pages
+a.['dropdown-menu-text-link']: Project Details
+a.['dropdown-menu-text-link']: Blog Details
+a.['dropdown-menu-text-link']: Pricing Details
+a.['dropdown-menu-text-link']: Shop Details
+a.['dropdown-menu-text-link']: Contact Us
+div.['dropdown-menu-title']: Utility pages
+a.['dropdown-menu-text-link']: Style guide
+a.['dropdown-menu-text-link']: License
+a.['dropdown-menu-text-link']: 404
+a.['dropdown-menu-text-link']: Changelog
+a.['dropdown-menu-text-link']: Password
+div.['w-commerce-commercecartopenlinkcount', 'navabr-cart-quantity-button']: 0
+h4.['w-commerce-commercecartheading', 'cart-title']: Your Cart
+div.['cart-price']: $ 0.00 USD
+span.[]: :
+div.[]: Remove
+div.['cart-footer-subtotal-title']: Subtotal
+a.['w-commerce-commercecartcheckoutbutton', 'primary-button']: Continue to Checkout
+div.[]: No items found.
+div.['w-cart-error-msg']: Product is not available in this quantity.
+div.['primary-button-text']: Get in touch
+div.['primary-button-text', 'abs']: Get in touch
+h1.['banner-title']: Interior Design Agency
+p.['banner-description-text']: Tasteful artwork lined the walls, infusing the room with a
+                              quiet elegance and a warm, lived-in charm.
+div.['banner-form-rating-text']: Ratings Points 4.8
+div.[]: Thank you! Your submission has been received!
+div.[]: Oops! Something went wrong while submitting the form.
+div.['company-section-title']: Trusted Companies
+h2.['section-title']: THE HoME
+                     DESIGN YoU ALWAYS IMAGINE
+p.['section-description', 'large-text']: The room was accented with tasteful artwork adorning the
+                     walls, creating a harmonious blend of elegance and homeliness.
+h2.['section-title', 'color-change']: Our Featured Projects
+p.['section-description', 'large-text', 'color-change']: A glimpse into the spaces we’ve
+                           transformed — where creativity, craftsmanship, and comfort come together in perfect harmony.
+div.['featured-projects-card-button-text']: The Glass Atrium
+div.['featured-projects-card-button-text']: Oak & Ivory
+div.['featured-projects-card-button-text']: The Terra House
+div.['featured-projects-card-button-text']: The Framework Lab
+div.[]: See All Projects
+div.[]: See All Projects
+h2.['number-digit', 'white']: 0
+h2.['number-digit', 'white']: 1
+h2.['number-digit', 'white']: 2
+h2.['number-digit', 'white']: 3
+h2.['number-digit', 'white']: 4
+h2.['number-digit', 'white']: 5
+h2.['number-digit', 'white']: 6
+h2.['number-digit', 'white']: 3
+h2.['number-digit', 'white']: 8
+h2.['number-digit', 'white']: 9
+h2.['number-digit', 'white']: 0
+h2.['number-digit', 'white']: 1
+h2.['number-digit', 'white']: 2
+h2.['number-digit', 'white']: 0
+h2.['number-digit', 'white']: 4
+h2.['number-digit', 'white']: 5
+h2.['number-digit', 'white']: 6
+h2.['number-digit', 'white']: 7
+h2.['number-digit', 'white']: 8
+h2.['number-digit', 'white']: 9
+h2.['number-digit', 'white']: 0
+h2.['number-digit', 'white']: 1
+h2.['number-digit', 'white']: 2
+h2.['number-digit', 'white']: 3
+h2.['number-digit', 'white']: 4
+h2.['number-digit', 'white']: 5
+h2.['number-digit', 'white']: 6
+h2.['number-digit', 'white']: 0
+h2.['number-digit', 'white']: 8
+h2.['number-digit', 'white']: 9
+h2.['number-digit', 'white']: +
+div.['our-mission-counter-text', 'color-change']: Satisfied Client's
+h2.['number-digit', 'white']: 0
+h2.['number-digit', 'white']: 1
+h2.['number-digit', 'white']: 2
+h2.['number-digit', 'white']: 3
+h2.['number-digit', 'white']: 4
+h2.['number-digit', 'white']: 5
+h2.['number-digit', 'white']: 7
+h2.['number-digit', 'white']: 6
+h2.['number-digit', 'white']: 8
+h2.['number-digit', 'white']: 9
+h2.['number-digit', 'white']: 0
+h2.['number-digit', 'white']: 1
+h2.['number-digit', 'white']: 2
+h2.['number-digit', 'white']: 2
+h2.['number-digit', 'white']: 4
+h2.['number-digit', 'white']: 5
+h2.['number-digit', 'white']: 6
+h2.['number-digit', 'white']: 7
+h2.['number-digit', 'white']: 8
+h2.['number-digit', 'white']: 9
+h2.['number-digit', 'white']: 0
+h2.['number-digit', 'white']: 1
+h2.['number-digit', 'white']: 2
+h2.['number-digit', 'white']: 3
+h2.['number-digit', 'white']: 4
+h2.['number-digit', 'white']: 5
+h2.['number-digit', 'white']: 6
+h2.['number-digit', 'white']: 0
+h2.['number-digit', 'white']: 8
+h2.['number-digit', 'white']: 9
+h2.['number-digit', 'white']: +
+div.['our-mission-counter-text', 'color-change']: Project Completed
+h2.['number-digit', 'white']: 0
+h2.['number-digit', 'white']: 1
+h2.['number-digit', 'white']: 2
+h2.['number-digit', 'white']: 3
+h2.['number-digit', 'white']: 4
+h2.['number-digit', 'white']: 5
+h2.['number-digit', 'white']: 6
+h2.['number-digit', 'white']: 6
+h2.['number-digit', 'white']: 8
+h2.['number-digit', 'white']: 9
+h2.['number-digit', 'white']: 0
+h2.['number-digit', 'white']: 1
+h2.['number-digit', 'white']: 2
+h2.['number-digit', 'white']: 0
+h2.['number-digit', 'white']: 4
+h2.['number-digit', 'white']: 5
+h2.['number-digit', 'white']: 6
+h2.['number-digit', 'white']: 7
+h2.['number-digit', 'white']: 8
+h2.['number-digit', 'white']: 9
+h2.['number-digit', 'white']: +
+div.['our-mission-counter-text', 'color-change']: Expert Plumbers
+h2.['number-digit', 'white']: 0
+h2.['number-digit', 'white']: 1
+h2.['number-digit', 'white']: 2
+h2.['number-digit', 'white']: 3
+h2.['number-digit', 'white']: 4
+h2.['number-digit', 'white']: 5
+h2.['number-digit', 'white']: 6
+h2.['number-digit', 'white']: 4
+h2.['number-digit', 'white']: 8
+h2.['number-digit', 'white']: 9
+h2.['number-digit', 'white']: .
+h2.['number-digit', 'white']: 0
+h2.['number-digit', 'white']: 1
+h2.['number-digit', 'white']: 2
+h2.['number-digit', 'white']: 8
+h2.['number-digit', 'white']: 4
+h2.['number-digit', 'white']: 5
+h2.['number-digit', 'white']: 6
+h2.['number-digit', 'white']: 7
+h2.['number-digit', 'white']: 8
+h2.['number-digit', 'white']: 9
+h2.['number-digit', 'white']: %
+div.['our-mission-counter-text', 'color-change']: Reviews Rating
+h2.['section-title', 'mb20px', 'portfolio']: Take a look at our portfolio to get an best idea of the
+                     quality
+p.['section-description', 'large-text', 'portfolio']: With an emphasis on harmonizing functionality and
+                     aesthetics, Our portfolio showcases a diverse array of interior design projects that encapsulate
+                     unique visions and tailored solutions.
+a.['portfolio-name']: New in Rochester
+                                    Silverware
+a.['portfolio-name']: Cosy Layers
+a.['portfolio-name']: Creating stories Space
+h2.['section-title', 'core-values']: What we believe in
+p.['section-description', 'core-values']: We craft interiors that balance comfort, beauty, and
+                     purpose creating spaces that feel effortless and timeless.
+div.['core-values-card-title']: Craftsmanship
+p.['core-values-card-description']: Every detail reflects quality, precision, and
+                           creativity, shaping interiors built to last.
+div.['core-values-card-title']: Collaboration
+p.['core-values-card-description']: We design through dialogue, turning ideas into
+                           meaningful spatial experiences.
+div.['core-values-card-title']: Sustainability
+p.['core-values-card-description']: We design with care, using materials and methods that
+                           inspire longevity.
+h2.['section-title', 'services']: Transforming Spaces, Elevating Experiences
+p.['section-description', 'services']: From concept to completion, we create interiors that blend
+                     functionality, emotion, and artistry—tailored to reflect your lifestyle and story.
+a.['services-card-name', 'one']: Commercial
+                        cleaning
+p.['services-description']: We design refined, functional living spaces that blend
+                              comfort, light, and texture to create homes that truly reflect their owners.
+div.['services-features-name']: Apartment
+div.['services-features-name']: Villa
+div.['services-features-name']: Modern Homes
+div.['services-features-name']: Renovation
+div.['services-features-name']: Custom Furniture
+div.['services-features-name']: Minimal Design
+a.['services-card-name', 'one']: Commercial
+                        Spaces
+p.['services-description']: From workspaces to hospitality interiors, we build
+                              environments that inspire creativity, productivity, and connection through thoughtful
+                              spatial planning.
+div.['services-features-name']: Offices
+div.['services-features-name']: Cafés
+div.['services-features-name']: Restaurants
+div.['services-features-name']: Retail Stores
+div.['services-features-name']: Co-working
+div.['services-features-name']: Studios
+a.['services-card-name']: Renovation &
+                        Remodeling
+p.['services-description']: Transform your existing spaces with fresh concepts, curated
+                              materials, and modern craftsmanship that breathe new life into every corner.
+div.['services-features-name']: Remodeling
+div.['services-features-name']: Extensions
+div.['services-features-name']: Upgrades
+div.['services-features-name']: Material Selection
+div.['services-features-name']: Space Planning
+div.['services-features-name']: Lighting Design
+a.['services-card-name']: Furniture &
+                        Styling
+p.['services-description']: We curate bespoke furniture, decor, and finishes that bring
+                              cohesion, personality, and warmth to every project.
+div.['services-features-name']: Furniture Design
+div.['services-features-name']: Lighting
+div.['services-features-name']: Color Palette
+div.['services-features-name']: Decor
+div.['services-features-name']: Art
+div.['services-features-name']: Styling
+h2.['section-title', 'mb20px']: Our Pricing Packages
+p.['section-description', 'pricing']: Choose the design experience that fits your space, style, and
+                     budget. Each package is crafted to deliver value and clarity from quick updates to full-service
+                     transformations.
+h2.['pricing-name']: Starter Package
+p.['pricing-description']: Best for small updates or single-room refreshes
+div.['pricing-price']: $299
+div.['pricing-pack-name']: / room
+div.['pricing-features-list-item-text']: 1-hour virtual consultation
+div.['pricing-features-list-item-text']: Mood board & style direction
+div.['pricing-features-list-item-text']: Color palette and material ideas
+div.['pricing-features-list-item-text']: Shopping list with furniture
+                                             links
+div.['pricing-features-list-item-text']: One revision included
+div.['primary-button-text']: Starter Package
+div.['primary-button-text', 'abs']: Starter Package
+h2.['pricing-name', 'color-change']: Standard Package
+p.['pricing-description', 'color-change']: Ideal for full-room design and
+                                          planning
+div.['pricing-price', 'color-change']: $899
+div.['pricing-pack-name', 'color-change']: / room
+div.['pricing-features-list-item-text', 'color-change']: All Starter features
+div.['pricing-features-list-item-text', 'color-change']: Scaled floor plan
+                                             & layout
+div.['pricing-features-list-item-text', 'color-change']: Curated furniture
+                                             and décor list
+div.['pricing-features-list-item-text', 'color-change']: Product sourcing and
+                                             links
+div.['pricing-features-list-item-text', 'color-change']: Two revisions
+                                             included
+div.['primary-button-text']: Standard Package
+div.['primary-button-text', 'abs']: Standard Package
+h2.['pricing-name']: Premium Package
+p.['pricing-description']: Tailored, turnkey service from start to finish
+div.['pricing-price']: $1299
+div.['pricing-pack-name']: / room
+div.['pricing-features-list-item-text']: All Standard features
+div.['pricing-features-list-item-text']: On-site consultation and styling
+div.['pricing-features-list-item-text']: Contractor coordination &
+                                             oversight
+div.['pricing-features-list-item-text']: Custom design elements
+                                             (built-ins, etc.)
+div.['pricing-features-list-item-text']: Unlimited revisions included
+div.['primary-button-text']: Premium Package
+div.['primary-button-text', 'abs']: Premium Package
+h2.['testimonial-title']: WHat
+                     our customer says
+p.['testimonial-slider-description']: "I've been using Vertigo for the
+                                    past year, and I can honestly say it has transformed the way I run my
+                                    business."
+div.['testimonial-slider-card-author-name']: Theodore Reilly
+div.['testimonial-slider-card-author-bio']: Future Quality Agent
+div.['testimonial-slider-card-rating-text']: Ratings Points 4.8
+p.['testimonial-slider-description']: "The team's commitment to our
+                                    vision was impressive, and the final product reflects that."
+div.['testimonial-slider-card-author-name']: Alex Carter
+div.['testimonial-slider-card-author-bio']: Urban Planning Specialist
+div.['testimonial-slider-card-rating-text']: Ratings Points 4.8
+p.['testimonial-slider-description']: "I was hesitant about a virtual design
+                                    service, but Hinterland Homes exceeded my expectations."
+div.['testimonial-slider-card-author-name']: Eleanor Ernser
+div.['testimonial-slider-card-author-bio']: Creative Administrator
+div.['testimonial-slider-card-rating-text']: Ratings Points 4.8
+p.['testimonial-slider-description']: "Thanks to their expertise, what seemed
+                                    like an impossible task became a seamless and enjoyable journey."
+div.['testimonial-slider-card-author-name']: Theodore Reilly
+div.['testimonial-slider-card-author-bio']: Future Quality Agent
+div.['testimonial-slider-card-rating-text']: Ratings Points 4.8
+h2.['section-title']: Discover our premium property selection
+div.[]: See More
+div.[]: See More
+a.['blog-post-title']: The art of kitchen arrangement
+p.['blog-post-description']: Craft your dream kitchen environment with expert insights
+                                 and clever strategies for an effienct
+a.['blog-post-title']: Creating Bookish Sanctuaries
+p.['blog-post-description']: Discover how to blend clean lines with cozy elements for
+                                 a balanced minimalist design.
+a.['blog-post-title']: Fresh and inviting indoor space
+p.['blog-post-description']: Elevate your walls with curated artwork and strategic
+                                 placement ideas for a refined space.
+h2.['faq-section-title']: Frequently Asked Questions
+div.[]: See More
+div.[]: See More
+div.['faq-accordion-title']: Does index provide property portfolio services?
+p.['faq-accordion-ans']: Yes, we offer design management for multiple properties,
+                              ensuring consistency, quality, and timeless style across every project.
+div.['faq-accordion-title']: How do i initiate the buying or renting process through
+                              index?
+p.['faq-accordion-ans', 'two']: Start by filling out our Get a Quote form. Our team will
+                              review your details and contact you to discuss your vision and next steps.
+div.['faq-accordion-title']: Can I sell already made solutions?
+p.['faq-accordion-ans']: Absolutely. We design and craft bespoke furniture and decor
+                              pieces tailored to your space and aesthetic preferences.
+div.['faq-accordion-title']: What is the top rated program?
+p.['faq-accordion-ans']: Our Signature Package is the most requested — a full-service
+                              design solution covering concept, planning, and execution.
+div.['faq-accordion-title']: What is the top rated program?
+p.['faq-accordion-ans']: Yes, we provide online consultations for clients worldwide,
+                              offering expert guidance from concept to final styling.
+h2.['cta-title']: Get in touch
+label.['cta-form-text-block']: First
+                                    Name
+label.['cta-form-text-block']: Last
+                                    Name
+label.['cta-form-text-block']: Email
+label.['cta-form-text-block']: Message
+div.[]: Thank you! Your submission has been received!
+div.[]: Oops! Something went wrong while submitting the form.
+div.['cta-card-title']: Workspace Flow
+div.['cta-card-title']: Workspace Harmony
+div.['cta-card-title']: Eco Harmony
+div.['cta-card-title']: Luxe Minimalism
+p.['footer-information-text']: Discover the future of Interior production with
+                                 Zenvira. Effortlessly create, edit, and perfect your tracks.
+div.['footer-menu-title']: Main Pages
+a.['footer-menu-text-link']: About
+a.['footer-menu-text-link']: Services
+a.['footer-menu-text-link']: Blog
+a.['footer-menu-text-link']: Projects
+a.['footer-menu-text-link']: Pricing
+a.['footer-menu-text-link']: Shop
+div.['footer-menu-title']: Inner Pages
+a.['footer-menu-text-link']: Blog Details
+a.['footer-menu-text-link']: Project Details
+a.['footer-menu-text-link']: Pricing Details
+a.['footer-menu-text-link']: Contact Us
+a.['footer-menu-text-link']: Shop Details
+div.['footer-menu-title']: Utility Pages
+a.['footer-menu-text-link']: 404
+a.['footer-menu-text-link']: License
+a.['footer-menu-text-link']: Changelog
+a.['footer-menu-text-link']: Style Guide
+div.['footer-details-text']: Copyright © 2025
+a.['footer-details-text-link', 'w--current']: Zenvira
+div.['footer-details-text']: .

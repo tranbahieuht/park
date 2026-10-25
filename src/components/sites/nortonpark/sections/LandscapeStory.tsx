@@ -9,8 +9,8 @@ export function LandscapeStory() {
     <section className="lstory" id="landscape-story" data-nav="dark">
       <div className="lstory-media">
         <img
-          src={asset("assets/images/cgi/landscape-story.jpg")}
-          alt="Lối chạy bộ giữa rừng cây trong công viên nội khu Norton Park"
+          src={asset("assets/images/drive/landscape-garden.webp")}
+          alt="Khu vườn cảnh quan xanh với lối dạo giữa công viên nội khu Norton Park"
           loading="lazy"
           width={2400}
           height={1350}

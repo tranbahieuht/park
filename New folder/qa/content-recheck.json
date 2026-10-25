@@ -1,0 +1,720 @@
+{
+  "templates": {
+    "a": {
+      "changes": [],
+      "cards": [
+        {
+          "name": "Đồng",
+          "image": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Hợp Kim Đồng",
+          "image": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "image_matches_source": true
+        },
+        {
+          "name": "Nhôm",
+          "image": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Thép Không Gỉ",
+          "image": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Cáp Điện",
+          "image": "images/thu-mua-day-dien-cu-day-cap-dong-phe-lieu-quang-tuan-1965-1-1784716282.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Chì",
+          "image": "images/thu-mua-phe-lieu-chi-1-1784716390.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Đồng",
+          "image": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Hợp Kim Đồng",
+          "image": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "image_matches_source": true
+        }
+      ],
+      "image_references": [
+        {
+          "file": "images/photo20260828photo20260828chua-1787898763-1788488429.png",
+          "sha256": "84b7bd892232399ce8672f4e8f78c95a5223ac9b4bb051bc07afb7450be50f5f",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thiet-ke-chua-co-ten-33-1786432058.png",
+          "sha256": "c84c8508699b53a67987c0fc328135cb2bf5ca658bb89fb545545ee62fd8c3bf",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bg-phe-lieu-1784543808.jpg",
+          "sha256": "9c40d73beafda64ab807b5a45c7defec732948dc85393c4223fda44e86d6eb99",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bg-phe-lieu-1784543808.jpg",
+          "sha256": "9c40d73beafda64ab807b5a45c7defec732948dc85393c4223fda44e86d6eb99",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "sha256": "25f4c439905ead31432b3e012c0ce6f9e81ed7b1925718f1c7eef3dd4efcd4d2",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "sha256": "4b52dd796d8b40808ef391ad4540561ac81e3a2d3ef3a18e9cd1c4e5c2baa9aa",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "sha256": "68a05b7d119464aa5430afa158d9a9e48d555129cd335ab51b770ebb1cc07e45",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "sha256": "25f4c439905ead31432b3e012c0ce6f9e81ed7b1925718f1c7eef3dd4efcd4d2",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "sha256": "4b52dd796d8b40808ef391ad4540561ac81e3a2d3ef3a18e9cd1c4e5c2baa9aa",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "sha256": "68a05b7d119464aa5430afa158d9a9e48d555129cd335ab51b770ebb1cc07e45",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thu-mua-day-dien-cu-day-cap-dong-phe-lieu-quang-tuan-1965-1-1784716282.jpg",
+          "sha256": "d70d11b63b2260138b431468389b0db49dd757a71913d6c190e77cbce20b4462",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thu-mua-phe-lieu-chi-1-1784716390.jpg",
+          "sha256": "afd77a338a39c0acafe43ef14f9c884836b50df1b02f833f43c3379487d48073",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/11-1784716671.webp",
+          "sha256": "0eb5a6a8757cb8cd67c9ceb636091d491d1d830332b3850ef832b3f45264c741",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "sha256": "25f4c439905ead31432b3e012c0ce6f9e81ed7b1925718f1c7eef3dd4efcd4d2",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "sha256": "4b52dd796d8b40808ef391ad4540561ac81e3a2d3ef3a18e9cd1c4e5c2baa9aa",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "sha256": "25f4c439905ead31432b3e012c0ce6f9e81ed7b1925718f1c7eef3dd4efcd4d2",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/photo20260828photo20260828chua-1787898763-1788488429.png",
+          "sha256": "84b7bd892232399ce8672f4e8f78c95a5223ac9b4bb051bc07afb7450be50f5f",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/photo20260828photo20260828chua-1787898763-1788488429.png",
+          "sha256": "84b7bd892232399ce8672f4e8f78c95a5223ac9b4bb051bc07afb7450be50f5f",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/photo20260828photo20260828chua-1787898763-1788488429.png",
+          "sha256": "84b7bd892232399ce8672f4e8f78c95a5223ac9b4bb051bc07afb7450be50f5f",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/photo20260828photo20260828chua-1787898763-1788488429.png",
+          "sha256": "84b7bd892232399ce8672f4e8f78c95a5223ac9b4bb051bc07afb7450be50f5f",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thiet-ke-chua-co-ten-33-1786432058.png",
+          "sha256": "c84c8508699b53a67987c0fc328135cb2bf5ca658bb89fb545545ee62fd8c3bf",
+          "official_homepage_asset": true
+        }
+      ],
+      "unverified_visible_text": [],
+      "missing_references": [],
+      "original_javascript_unchanged": true
+    },
+    "b": {
+      "changes": [
+        "Bỏ các mục menu rỗng",
+        "Sửa tiêu đề khối sản phẩm cho đúng nội dung",
+        "Dùng ảnh giới thiệu chung tại khối nhiều nhóm sản phẩm"
+      ],
+      "cards": [
+        {
+          "name": "Đồng",
+          "image": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Hợp Kim Đồng",
+          "image": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "image_matches_source": true
+        },
+        {
+          "name": "Nhôm",
+          "image": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Thép Không Gỉ",
+          "image": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Cáp Điện",
+          "image": "images/thu-mua-day-dien-cu-day-cap-dong-phe-lieu-quang-tuan-1965-1-1784716282.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Chì",
+          "image": "images/thu-mua-phe-lieu-chi-1-1784716390.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Đồng",
+          "image": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Hợp Kim Đồng",
+          "image": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "image_matches_source": true
+        },
+        {
+          "name": "Nhôm",
+          "image": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Thép Không Gỉ",
+          "image": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Cáp Điện",
+          "image": "images/thu-mua-day-dien-cu-day-cap-dong-phe-lieu-quang-tuan-1965-1-1784716282.jpg",
+          "image_matches_source": true
+        }
+      ],
+      "image_references": [
+        {
+          "file": "images/photo20260828photo20260828chua-1787898763-1788488429.png",
+          "sha256": "84b7bd892232399ce8672f4e8f78c95a5223ac9b4bb051bc07afb7450be50f5f",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/photo20260828photo20260828chua-1787898763-1788488429.png",
+          "sha256": "84b7bd892232399ce8672f4e8f78c95a5223ac9b4bb051bc07afb7450be50f5f",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thiet-ke-chua-co-ten-33-1786432058.png",
+          "sha256": "c84c8508699b53a67987c0fc328135cb2bf5ca658bb89fb545545ee62fd8c3bf",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bg-phe-lieu-1784543808.jpg",
+          "sha256": "9c40d73beafda64ab807b5a45c7defec732948dc85393c4223fda44e86d6eb99",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bg-phe-lieu-1784543808.jpg",
+          "sha256": "9c40d73beafda64ab807b5a45c7defec732948dc85393c4223fda44e86d6eb99",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bg-phe-lieu-1784543808.jpg",
+          "sha256": "9c40d73beafda64ab807b5a45c7defec732948dc85393c4223fda44e86d6eb99",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "sha256": "25f4c439905ead31432b3e012c0ce6f9e81ed7b1925718f1c7eef3dd4efcd4d2",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "sha256": "4b52dd796d8b40808ef391ad4540561ac81e3a2d3ef3a18e9cd1c4e5c2baa9aa",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "sha256": "68a05b7d119464aa5430afa158d9a9e48d555129cd335ab51b770ebb1cc07e45",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thu-mua-day-dien-cu-day-cap-dong-phe-lieu-quang-tuan-1965-1-1784716282.jpg",
+          "sha256": "d70d11b63b2260138b431468389b0db49dd757a71913d6c190e77cbce20b4462",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thu-mua-phe-lieu-chi-1-1784716390.jpg",
+          "sha256": "afd77a338a39c0acafe43ef14f9c884836b50df1b02f833f43c3379487d48073",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bg-phe-lieu-1784543808.jpg",
+          "sha256": "9c40d73beafda64ab807b5a45c7defec732948dc85393c4223fda44e86d6eb99",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/11-1784716671.webp",
+          "sha256": "0eb5a6a8757cb8cd67c9ceb636091d491d1d830332b3850ef832b3f45264c741",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "sha256": "25f4c439905ead31432b3e012c0ce6f9e81ed7b1925718f1c7eef3dd4efcd4d2",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "sha256": "4b52dd796d8b40808ef391ad4540561ac81e3a2d3ef3a18e9cd1c4e5c2baa9aa",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "sha256": "68a05b7d119464aa5430afa158d9a9e48d555129cd335ab51b770ebb1cc07e45",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thu-mua-day-dien-cu-day-cap-dong-phe-lieu-quang-tuan-1965-1-1784716282.jpg",
+          "sha256": "d70d11b63b2260138b431468389b0db49dd757a71913d6c190e77cbce20b4462",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thu-mua-phe-lieu-chi-1-1784716390.jpg",
+          "sha256": "afd77a338a39c0acafe43ef14f9c884836b50df1b02f833f43c3379487d48073",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "sha256": "25f4c439905ead31432b3e012c0ce6f9e81ed7b1925718f1c7eef3dd4efcd4d2",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "sha256": "4b52dd796d8b40808ef391ad4540561ac81e3a2d3ef3a18e9cd1c4e5c2baa9aa",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "sha256": "68a05b7d119464aa5430afa158d9a9e48d555129cd335ab51b770ebb1cc07e45",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thu-mua-day-dien-cu-day-cap-dong-phe-lieu-quang-tuan-1965-1-1784716282.jpg",
+          "sha256": "d70d11b63b2260138b431468389b0db49dd757a71913d6c190e77cbce20b4462",
+          "official_homepage_asset": true
+        }
+      ],
+      "unverified_visible_text": [],
+      "missing_references": [],
+      "original_javascript_unchanged": true
+    },
+    "c": {
+      "changes": [
+        "Sửa nút xem thêm tại khối sản phẩm về đúng danh mục",
+        "Đồng bộ ảnh desktop/mobile trong cùng thẻ",
+        "Khôi phục nét/shape trang trí gốc, không dùng ảnh sản phẩm làm nét trang trí",
+        "Thêm liên kết gọi điện và email tại footer"
+      ],
+      "cards": [
+        {
+          "name": "Đồng",
+          "image": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Hợp Kim Đồng",
+          "image": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "image_matches_source": true
+        },
+        {
+          "name": "Nhôm",
+          "image": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Thép Không Gỉ",
+          "image": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Đồng",
+          "image": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Hợp Kim Đồng",
+          "image": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "image_matches_source": true
+        },
+        {
+          "name": "Nhôm",
+          "image": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Đồng",
+          "image": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Hợp Kim Đồng",
+          "image": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "image_matches_source": true
+        },
+        {
+          "name": "Nhôm",
+          "image": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Thép Không Gỉ",
+          "image": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Đồng",
+          "image": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Hợp Kim Đồng",
+          "image": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "image_matches_source": true
+        },
+        {
+          "name": "Nhôm",
+          "image": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Cáp Điện",
+          "image": "images/thu-mua-day-dien-cu-day-cap-dong-phe-lieu-quang-tuan-1965-1-1784716282.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Chì",
+          "image": "images/thu-mua-phe-lieu-chi-1-1784716390.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Kẽm",
+          "image": "images/thu-mua-phe-lieu-kem-gia-cao-1784716475.jpg",
+          "image_matches_source": true
+        },
+        {
+          "name": "Khác",
+          "image": "images/11-1784716671.webp",
+          "image_matches_source": true
+        }
+      ],
+      "image_references": [
+        {
+          "file": "images/photo20260828photo20260828chua-1787898763-1788488429.png",
+          "sha256": "84b7bd892232399ce8672f4e8f78c95a5223ac9b4bb051bc07afb7450be50f5f",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "sha256": "4b52dd796d8b40808ef391ad4540561ac81e3a2d3ef3a18e9cd1c4e5c2baa9aa",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "sha256": "68a05b7d119464aa5430afa158d9a9e48d555129cd335ab51b770ebb1cc07e45",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "sha256": "68a05b7d119464aa5430afa158d9a9e48d555129cd335ab51b770ebb1cc07e45",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thu-mua-phe-lieu-chi-1-1784716390.jpg",
+          "sha256": "afd77a338a39c0acafe43ef14f9c884836b50df1b02f833f43c3379487d48073",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thu-mua-phe-lieu-chi-1-1784716390.jpg",
+          "sha256": "afd77a338a39c0acafe43ef14f9c884836b50df1b02f833f43c3379487d48073",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/11-1784716671.webp",
+          "sha256": "0eb5a6a8757cb8cd67c9ceb636091d491d1d830332b3850ef832b3f45264c741",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "sha256": "25f4c439905ead31432b3e012c0ce6f9e81ed7b1925718f1c7eef3dd4efcd4d2",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "sha256": "25f4c439905ead31432b3e012c0ce6f9e81ed7b1925718f1c7eef3dd4efcd4d2",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "sha256": "4b52dd796d8b40808ef391ad4540561ac81e3a2d3ef3a18e9cd1c4e5c2baa9aa",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "sha256": "68a05b7d119464aa5430afa158d9a9e48d555129cd335ab51b770ebb1cc07e45",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "sha256": "68a05b7d119464aa5430afa158d9a9e48d555129cd335ab51b770ebb1cc07e45",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "sha256": "25f4c439905ead31432b3e012c0ce6f9e81ed7b1925718f1c7eef3dd4efcd4d2",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "sha256": "4b52dd796d8b40808ef391ad4540561ac81e3a2d3ef3a18e9cd1c4e5c2baa9aa",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "sha256": "68a05b7d119464aa5430afa158d9a9e48d555129cd335ab51b770ebb1cc07e45",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "sha256": "25f4c439905ead31432b3e012c0ce6f9e81ed7b1925718f1c7eef3dd4efcd4d2",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "sha256": "4b52dd796d8b40808ef391ad4540561ac81e3a2d3ef3a18e9cd1c4e5c2baa9aa",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "sha256": "25f4c439905ead31432b3e012c0ce6f9e81ed7b1925718f1c7eef3dd4efcd4d2",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "sha256": "4b52dd796d8b40808ef391ad4540561ac81e3a2d3ef3a18e9cd1c4e5c2baa9aa",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/gia-thep-phe-lieu-01-1784716067.jpg",
+          "sha256": "68a05b7d119464aa5430afa158d9a9e48d555129cd335ab51b770ebb1cc07e45",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/bao-gia-dong-phe-lieu-1784704545.jpg",
+          "sha256": "c6ff5ea47c3610bf91d4792ba8b09832a960faccffda1be3cb5d368639026036",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/product-ph-002upscayl3xupscayl-standard-4x-1784705786.png",
+          "sha256": "25f4c439905ead31432b3e012c0ce6f9e81ed7b1925718f1c7eef3dd4efcd4d2",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/5719d931c7f945e1b35b9583c9d596f41-8140-1784715547.jpg",
+          "sha256": "4b52dd796d8b40808ef391ad4540561ac81e3a2d3ef3a18e9cd1c4e5c2baa9aa",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thu-mua-day-dien-cu-day-cap-dong-phe-lieu-quang-tuan-1965-1-1784716282.jpg",
+          "sha256": "d70d11b63b2260138b431468389b0db49dd757a71913d6c190e77cbce20b4462",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thu-mua-phe-lieu-chi-1-1784716390.jpg",
+          "sha256": "afd77a338a39c0acafe43ef14f9c884836b50df1b02f833f43c3379487d48073",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/thu-mua-phe-lieu-kem-gia-cao-1784716475.jpg",
+          "sha256": "680294ac6b8c50e66f99177062595251b063847a075e55e524a38fe59123e324",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/11-1784716671.webp",
+          "sha256": "0eb5a6a8757cb8cd67c9ceb636091d491d1d830332b3850ef832b3f45264c741",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/photo20260828photo20260828chua-1787898763-1788488429.png",
+          "sha256": "84b7bd892232399ce8672f4e8f78c95a5223ac9b4bb051bc07afb7450be50f5f",
+          "official_homepage_asset": true
+        },
+        {
+          "file": "images/photo20260828photo20260828chua-1787898763-1788488429.png",
+          "sha256": "84b7bd892232399ce8672f4e8f78c95a5223ac9b4bb051bc07afb7450be50f5f",
+          "official_homepage_asset": true
+        }
+      ],
+      "unverified_visible_text": [],
+      "missing_references": [],
+      "original_javascript_unchanged": true
+    }
+  },
+  "source_links": [
+    {
+      "url": "https://huynhhoangminh.com/cap-dien",
+      "status": "200",
+      "ok": true
+    },
+    {
+      "url": "https://huynhhoangminh.com/chi",
+      "status": "200",
+      "ok": true
+    },
+    {
+      "url": "https://huynhhoangminh.com/dong",
+      "status": "200",
+      "ok": true
+    },
+    {
+      "url": "https://huynhhoangminh.com/gioi-thieu",
+      "status": "200",
+      "ok": true
+    },
+    {
+      "url": "https://huynhhoangminh.com/hoat-dong",
+      "status": "200",
+      "ok": true
+    },
+    {
+      "url": "https://huynhhoangminh.com/hop-kim-dong",
+      "status": "200",
+      "ok": true
+    },
+    {
+      "url": "https://huynhhoangminh.com/lien-he",
+      "status": "200",
+      "ok": true
+    },
+    {
+      "url": "https://huynhhoangminh.com/nhom",
+      "status": "200",
+      "ok": true
+    },
+    {
+      "url": "https://huynhhoangminh.com/san-pham",
+      "status": "200",
+      "ok": true
+    },
+    {
+      "url": "https://huynhhoangminh.com/thep-khong-gi",
+      "status": "200",
+      "ok": true
+    },
+    {
+      "url": "https://huynhhoangminh.com/tin-tuc",
+      "status": "200",
+      "ok": true
+    }
+  ]
+}
