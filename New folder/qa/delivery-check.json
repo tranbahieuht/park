@@ -1,0 +1,26 @@
+{
+  "a": {
+    "zip_integrity": "PASS",
+    "all_packaged_bytes_equal_final_directory": true,
+    "missing_packaged_references": [],
+    "html_pages": 35,
+    "official_image_files": 61,
+    "archive_sha256": "8153ddf6ca1e3c2ada45cf69927af8a2a7893e541dbe082f64b155669dc42106"
+  },
+  "b": {
+    "zip_integrity": "PASS",
+    "all_packaged_bytes_equal_final_directory": true,
+    "missing_packaged_references": [],
+    "html_pages": 35,
+    "official_image_files": 61,
+    "archive_sha256": "9d366a3610b115d5b0818240684bf29e087dc6349f119324045651324e80dfbf"
+  },
+  "c": {
+    "zip_integrity": "PASS",
+    "all_packaged_bytes_equal_final_directory": true,
+    "missing_packaged_references": [],
+    "html_pages": 35,
+    "official_image_files": 61,
+    "archive_sha256": "2d9e58b45e672ff50bb5c93c0d55f2939e9a5dda72c3a00fafcdd36d496efdd8"
+  }
+}

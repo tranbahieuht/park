@@ -28,6 +28,7 @@ import { News } from "./sections/News";
 import { Position } from "./sections/Position";
 import { Register } from "./sections/Register";
 import { Residences } from "./sections/Residences";
+import { Savills } from "./sections/Savills";
 import { Story } from "./sections/Story";
 
 /* Source content-protection.js: no context menu, image drag, text selection
@@ -112,6 +113,7 @@ function PageBody() {
         <Register />
         <Developer />
         <Calc />
+        <Savills />
       </main>
       <Footer />
       <Fab />

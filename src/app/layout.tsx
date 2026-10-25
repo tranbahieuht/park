@@ -9,6 +9,9 @@ import "@/components/sites/nortonpark/styles/decor.css";
 import "@/components/sites/nortonpark/styles/chat-widget.css";
 import "@/components/sites/nortonpark/styles/content-protection.css";
 import "@/components/sites/nortonpark/styles/clone.css";
+import "@/components/sites/nortonpark/styles/savills.css";
+import "../../public/sites/nortonpark/interaction-colors.css";
+import "@/components/sites/nortonpark/styles/interactions.css";
 import { InlineScript } from "@/components/sites/nortonpark/InlineScript";
 
 export const metadata: Metadata = {

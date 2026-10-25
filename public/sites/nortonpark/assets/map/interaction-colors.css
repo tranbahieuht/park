@@ -1,0 +1,45 @@
+/* The map is an isolated iframe: mirror only the interactive brand tokens.
+   Preserve the map artwork and category colors so its legend stays accurate. */
+:root {
+  --brand-navy: #2527A3;
+  --brand-yellow: #FFDF00;
+  --brand-on-navy: #FFFFFF;
+  --brand-on-yellow: #2527A3;
+  --brand-soft: rgb(37 39 163 / 8%);
+}
+button, a, .band li.go {
+  transition-property: background-color, color, border-color, opacity, box-shadow;
+  transition-duration: .25s;
+}
+button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--brand-navy); outline-offset: 3px;
+  box-shadow: 0 0 0 5px #fff;
+}
+.bd-tabs { background: var(--brand-navy); }
+.bd-tabs button { color: var(--brand-on-navy); opacity: 1; }
+.bd-tabs button.on, .bd-tabs button:hover {
+  background: var(--brand-yellow); color: var(--brand-on-yellow); opacity: 1;
+}
+.presets button, #ctl button, #bdOpen, .icon-btn, #card .x {
+  background: var(--brand-navy); color: var(--brand-on-navy); border-color: var(--brand-navy);
+}
+.presets button:hover, .presets button.on, #ctl button:hover,
+#bdOpen:hover, .icon-btn:hover, #card .x:hover {
+  background: var(--brand-yellow); color: var(--brand-on-yellow); border-color: var(--brand-navy);
+}
+.hi .k, .hi b, .hi span, .band .num b, .band .num i { color: var(--brand-navy); }
+.hi:hover, .hi.on, .band:hover, .band.on, .lg:hover { background: var(--brand-soft); }
+.hi.on, .band.on { box-shadow: inset 3px 0 var(--brand-yellow); }
+.band .num { border-color: var(--brand-navy); }
+.band li.go:hover { color: var(--brand-navy); text-decoration-color: var(--brand-navy); }
+.lg .tick { border-color: var(--brand-navy); }
+.lg.on .tick { background: var(--brand-yellow); border-color: var(--brand-navy); }
+.lg.on .tick svg { stroke: var(--brand-on-yellow); }
+.lg:not(.on), .cats button:not(.on) { opacity: .75; }
+.cats button { color: var(--brand-navy); border-color: var(--brand-navy); }
+.cats button.on, .cats button:hover { background: var(--brand-yellow); border-color: var(--brand-navy); }
+button:active { box-shadow: inset 0 0 0 2px var(--brand-yellow); }
+button:disabled, [aria-disabled="true"] { opacity: .55; cursor: not-allowed; filter: grayscale(1); }
+@media (prefers-reduced-motion: reduce) {
+  button, a, .band li.go { transition-duration: 0s; }
+}

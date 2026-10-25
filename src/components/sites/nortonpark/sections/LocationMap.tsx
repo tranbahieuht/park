@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
+import { LOCATION_MAP_VI } from "../data/location-map-i18n";
 import { asset, push } from "../lib/dom";
 import { useLang } from "../lib/i18n";
 
@@ -10,9 +11,19 @@ import { useLang } from "../lib/i18n";
    interactions via postMessage and is told to "sleep" (release the wheel)
    once the section scrolls out of view. */
 export function LocationMap() {
-  const { html } = useLang();
+  const { lang, html, t } = useLang();
   const frameRef = useRef<HTMLIFrameElement>(null);
   const secRef = useRef<HTMLElement>(null);
+
+  // Keep the same iframe/window alive: changing its URL would reset map state.
+  const syncLocale = useCallback(() => {
+    const copy = Object.fromEntries(Object.keys(LOCATION_MAP_VI).map((key) => [key, t(key)]));
+    frameRef.current?.contentWindow?.postMessage(
+      { np: "locmap-cmd", cmd: "locale", lang, copy }, window.location.origin,
+    );
+  }, [lang, t]);
+
+  useEffect(() => { syncLocale(); }, [syncLocale]);
 
   useEffect(() => {
     const fr = frameRef.current;
@@ -20,7 +31,8 @@ export function LocationMap() {
     if (!fr || !sec) return;
     const onMsg = (e: MessageEvent) => {
       const d = e.data as { np?: string; ev?: string; label?: string } | null;
-      if (e.source !== fr.contentWindow || !d || d.np !== "locmap") return;
+      if (e.origin !== window.location.origin || e.source !== fr.contentWindow || !d || d.np !== "locmap") return;
+      if (d.ev === "ready") { syncLocale(); return; }
       push("map_interact", { action: d.ev, item: d.label });
     };
     window.addEventListener("message", onMsg);
@@ -38,7 +50,7 @@ export function LocationMap() {
       window.removeEventListener("message", onMsg);
       o.disconnect();
     };
-  }, []);
+  }, [syncLocale]);
 
   return (
     <section className="map bay" id="location" ref={secRef}>
@@ -50,7 +62,8 @@ export function LocationMap() {
             ref={frameRef}
             id="locMap"
             src={asset("assets/map/location-map.html")}
-            title="Bản đồ vị trí và kết nối Norton Park"
+            title={t("map.ui.frame")}
+            onLoad={syncLocale}
             loading="lazy"
             allow="fullscreen"
           ></iframe>
