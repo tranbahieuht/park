@@ -31,10 +31,10 @@ export const LIFE: LifeItem[] = [
       "vi": "Hồ bơi trung tâm rộng mở giữa những tầng cây xanh mướt. Những nhịp bơi dài buổi sớm để cơ thể dần thức giấc, một ngày bắt đầu đẹp như thế.",
       "en": "A central pool opens up among layers of lush green. Long morning laps let the body gently wake, and the day begins just as beautifully."
     },
-    "img": "assets/images/cgi/life-wellness.jpg",
+    "img": "assets/images/drive/wellness-pool.webp",
     "shot": {
-      "vi": "Hồ bơi trung tâm bên khối tiện ích kính",
-      "en": "The central pool beside the glass amenity pavilion"
+      "vi": "Hồ bơi nội khu giữa không gian cảnh quan xanh",
+      "en": "The landscaped residential swimming pool"
     }
   },
   {
@@ -51,10 +51,10 @@ export const LIFE: LifeItem[] = [
       "vi": "Lối dạo rợp bóng cây, thảm cỏ mềm và những khoảng xanh tĩnh tại, nơi cả nhà cùng chậm lại giữa nhịp sống thường ngày.",
       "en": "Tree-shaded walks, soft lawns and quiet green spaces where the whole family can slow down amid everyday life."
     },
-    "img": "assets/images/cgi/life-green.jpg",
+    "img": "assets/images/cgi/life-green-yoga.webp",
     "shot": {
-      "vi": "Thảm cỏ và lối dạo nội khu",
-      "en": "The lawn and internal walkways"
+      "vi": "Cư dân tập yoga giữa khu vườn xanh nội khu",
+      "en": "Residents practising yoga in the landscaped garden"
     }
   },
   {
@@ -91,10 +91,10 @@ export const LIFE: LifeItem[] = [
       "vi": "Quảng trường, BBQ giữa rừng và những cuộc hẹn cuối tuần, nơi cư dân đa thế hệ, đa quốc gia gặp gỡ và gắn bó.",
       "en": "A plaza, barbecues in the forest and weekend gatherings where residents of every generation and nationality meet and belong."
     },
-    "img": "assets/images/cgi/life-community.jpg",
+    "img": "assets/images/drive/community-garden.webp",
     "shot": {
-      "vi": "Góc BBQ giữa vườn cây nội khu",
-      "en": "A barbecue corner in the internal garden"
+      "vi": "Không gian sinh hoạt cộng đồng giữa vườn sinh thái",
+      "en": "Shared community space within the ecological garden"
     }
   },
   {
@@ -111,10 +111,10 @@ export const LIFE: LifeItem[] = [
       "vi": "Ly cà phê thơm lừng nơi góc phố, dãy Podium Shop nối tiếp khối cửa hàng độc lập, mọi trải nghiệm nối tiếp trong một dòng chảy sống động.",
       "en": "Fragrant coffee on the corner, Podium Shops flowing into standalone stores, every experience carrying on in one lively stream."
     },
-    "img": "assets/images/cgi/life-retail.jpg",
+    "img": "assets/images/drive/retail-shophouse.webp",
     "shot": {
-      "vi": "Phố thương mại và cà phê tại khối đế",
-      "en": "The podium retail street and café"
+      "vi": "Dãy cửa hàng thương mại tại khối đế",
+      "en": "Retail shops along the residential podium"
     }
   }
 ];

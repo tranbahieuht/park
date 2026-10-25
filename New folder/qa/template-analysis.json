@@ -1,0 +1,308 @@
+{
+  "a": {
+    "technology": "Static HTML / CSS / JavaScript (Webflow export)",
+    "original_code_inventory": [
+      {
+        "file": "css\\fonts.css",
+        "bytes": 3346,
+        "sha256": "0de6712b6e6c4439cd2ba5c9da03a2626752b908502bfaf17cec6de7e6c0fb0e"
+      },
+      {
+        "file": "css\\manufex.css",
+        "bytes": 160419,
+        "sha256": "654bb8ab797ded98074d308428739a696295a9398c878777f0de2469da61a0a3"
+      },
+      {
+        "file": "index.html",
+        "bytes": 69809,
+        "sha256": "decbca5a5e26314fd4dd96a6e55d44b6338d12692339ba5350ea7c6ad825fbff"
+      },
+      {
+        "file": "js\\counter.js",
+        "bytes": 1805,
+        "sha256": "bd30bb27a61d0439f200fc789be442499e56232b17a49b29fdda93b3bb186801"
+      },
+      {
+        "file": "js\\gsap.min.js",
+        "bytes": 72927,
+        "sha256": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+      },
+      {
+        "file": "js\\jquery-3.5.1.min.js",
+        "bytes": 89476,
+        "sha256": "f7f6a5894f1d19ddad6fa392b2ece2c5e578cbf7da4ea805b6885eb6985b6e3d"
+      },
+      {
+        "file": "js\\lenis.js",
+        "bytes": 13321,
+        "sha256": "88290ef83dbf49b81a6d24e3535e726ad34a8c3d4033d2b00fd2fa9c7e9b9ce8"
+      },
+      {
+        "file": "js\\ScrollTrigger.min.js",
+        "bytes": 44575,
+        "sha256": "b0b14d67b55b0c43c756ac0b106cfcb09d0879945f6ead64451065b0672916a2"
+      },
+      {
+        "file": "js\\site-chunk-1.js",
+        "bytes": 346962,
+        "sha256": "c7c20b5206ccf5d71b1788d0a1843f2cff9967dc458a5c8f2fa4354c3c756671"
+      },
+      {
+        "file": "js\\site-chunk-2.js",
+        "bytes": 306763,
+        "sha256": "7f5e1453d2f6e7895df14524fa84f0f9793a0017969ab6db011c66462e1424ee"
+      },
+      {
+        "file": "js\\site-chunk-3.js",
+        "bytes": 11907,
+        "sha256": "01fff348edc06172a7c0a9620095f217328e8c6b1c3934dd21930719c51da0a8"
+      },
+      {
+        "file": "js\\site.js",
+        "bytes": 101116,
+        "sha256": "a01854c6784c7f44828b3518c971d5023025535ba5c09e16feaddc5a50013e32"
+      },
+      {
+        "file": "js\\SplitText.min.js",
+        "bytes": 7732,
+        "sha256": "419f7027a5f086a12cb7988736d8fdd3a6ed2200229661de25b6628ca7ced344"
+      },
+      {
+        "file": "lottie\\menu-nav-09-000000-easey.json",
+        "bytes": 6554,
+        "sha256": "e8106675d0ac73f3816d3923e909a6aad9edbf246c40db5e5db675d8016fd0da"
+      }
+    ],
+    "all_original_javascript_unchanged": true,
+    "packaged_ui_assets": [
+      "website-a/images/arrow-narrow-right-1.svg",
+      "website-a/images/arrow-narrow-right-2.svg",
+      "website-a/images/arrow-right-13.svg",
+      "website-a/images/arrow-right-14.svg",
+      "website-a/images/background-1.svg",
+      "website-a/images/background-2.svg",
+      "website-a/images/chevron-down-3.svg",
+      "website-a/images/chevron-down-4.svg",
+      "website-a/images/custom-checkbox-checkmark.svg",
+      "website-a/images/frame-344-1.svg",
+      "website-a/images/frame-344.svg",
+      "website-a/images/icon-2.svg",
+      "website-a/images/social-icons-23.svg",
+      "website-a/images/social-icons-24.svg",
+      "website-a/images/social-icons-25.svg",
+      "website-a/images/social-icons-26.svg",
+      "website-a/images/social-icons-27.svg",
+      "website-a/images/social-icons-28.svg",
+      "website-a/images/social-icons-29.svg",
+      "website-a/images/social-icons-30.svg"
+    ]
+  },
+  "b": {
+    "technology": "Static HTML / CSS / JavaScript (Webflow export)",
+    "original_code_inventory": [
+      {
+        "file": "css\\fonts.css",
+        "bytes": 2158,
+        "sha256": "300d343e725d08b39294fc681e51ca96629b52385b26ef834d3751e6354d8dc0"
+      },
+      {
+        "file": "css\\rewaste.home.min.css",
+        "bytes": 122459,
+        "sha256": "083ce775498ecb503f3b6406f05b7e4609b79ad8fac9d62b723d45448e3090ea"
+      },
+      {
+        "file": "css\\rewaste.shared.min.css",
+        "bytes": 29671,
+        "sha256": "ac67cccb7d7933401eae853a06e52ab1d7d91962b897da797420ea10f1237991"
+      },
+      {
+        "file": "index.html",
+        "bytes": 155040,
+        "sha256": "63cf1f6f149abf02e5bf7ab03f7a5d8eb5d9ff6cd0e1f2a35c6136b0fd5f5486"
+      },
+      {
+        "file": "js\\gsap.min.js",
+        "bytes": 72927,
+        "sha256": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+      },
+      {
+        "file": "js\\jquery-3.5.1.min.js",
+        "bytes": 89476,
+        "sha256": "f7f6a5894f1d19ddad6fa392b2ece2c5e578cbf7da4ea805b6885eb6985b6e3d"
+      },
+      {
+        "file": "js\\site.chunk.0868fafb17db0d2c.js",
+        "bytes": 6016,
+        "sha256": "549898a2e88980fa5df969b39dfe1e2730917ac154ad79333fd387ab01bb6535"
+      },
+      {
+        "file": "js\\site.chunk.22334281779bccd5.js",
+        "bytes": 1589,
+        "sha256": "2f31e7b0f786514495456d5a6b23363e3cdd749a54f02ff303cdee1e7fa7eebc"
+      },
+      {
+        "file": "js\\site.chunk.2ae5c99899eb12db.js",
+        "bytes": 2675,
+        "sha256": "e6fb3817a79c72d52426baeb919959b547da11f57d8c9b609114c1238b83e699"
+      },
+      {
+        "file": "js\\site.chunk.314e5987d11f5d30.js",
+        "bytes": 1008,
+        "sha256": "856269fb7208d49cef60ff1bc7bd05bcce5940c88a80c025791de0e93eac50d9"
+      },
+      {
+        "file": "js\\site.chunk.31892025c378522b.js",
+        "bytes": 953786,
+        "sha256": "7a00cf9db39a75a380422d8ab44b2cfff6333c5bd798a669c812050a719e64ad"
+      },
+      {
+        "file": "js\\site.chunk.38bc406f53041501.js",
+        "bytes": 236513,
+        "sha256": "3af7e43fc762668132edd3aa6802877744c3f1fb46278bedbe4aacb628648ca7"
+      },
+      {
+        "file": "js\\site.chunk.3933a16f79187ee7.js",
+        "bytes": 2376,
+        "sha256": "43d5ee60a9eb8714eff6ec7d8abd42a1cd5a977d60c7bce0d9fcfcf1acfc5159"
+      },
+      {
+        "file": "js\\site.chunk.3a1435b3e7bf0a4b.js",
+        "bytes": 1218,
+        "sha256": "a0eece032177fa5e8a141d3499f102b111a23e83a2f5659b26e1a5be6395877a"
+      },
+      {
+        "file": "js\\site.chunk.576b8a98db5a86f0.js",
+        "bytes": 77508,
+        "sha256": "292151811cf5be8d5981cdb5b16aef630a8b57187b09407b44694b53d6d21a33"
+      },
+      {
+        "file": "js\\site.chunk.79739faedcff2c31.js",
+        "bytes": 9688,
+        "sha256": "92c242293dc1f1fb8e698df8e2c7900823139b763a0b48799f51e27fcb3d187a"
+      },
+      {
+        "file": "js\\site.chunk.80677ea19e4284e5.js",
+        "bytes": 23977,
+        "sha256": "306b804626165c80fffbae3534631d6e587f2483829fa8dd93e06ac4f27f154f"
+      },
+      {
+        "file": "js\\site.chunk.81e84d375e916845.js",
+        "bytes": 16451,
+        "sha256": "6a16e3d4cb038832d28e4964d893ebf8cd196a5e8bc83d41f24d48c02ee6a952"
+      },
+      {
+        "file": "js\\site.chunk.8474fe68f45609d4.js",
+        "bytes": 1118,
+        "sha256": "20a18a925027b43d7003a2af8e1758a5a8a3da9f6468c185eb73b9d358606e06"
+      },
+      {
+        "file": "js\\site.chunk.b5720b45a5ea39e6.js",
+        "bytes": 2418,
+        "sha256": "864f3df0c965ac18288acef4d516b58cee042696aed238edfef50bf1f604d976"
+      },
+      {
+        "file": "js\\site.chunk.b8534fd20dd64675.js",
+        "bytes": 25579,
+        "sha256": "b2525fd0bea153d477a5e20f311792a3c29c633a387b0d403166aa932e18ef1f"
+      },
+      {
+        "file": "js\\site.chunk.d52a2ac917aba52f.js",
+        "bytes": 7468,
+        "sha256": "5f17f6fad9ce37d050f015ad4982a096a0df9b6cdd76d51416ac0103417322c3"
+      },
+      {
+        "file": "js\\site.chunk.da20f6c92df52099.js",
+        "bytes": 429070,
+        "sha256": "9305aa38ea76f34da7d99f742e6580423ff26aba69ba05040463521b52b5aec2"
+      },
+      {
+        "file": "js\\site.chunk.e5d49a3e24933c45.js",
+        "bytes": 237,
+        "sha256": "e75ced01369dd761341ede1245a5a7c9a543ae69a5074e945568b3a2cc9c8744"
+      },
+      {
+        "file": "js\\site.chunk.ffd953334ce057bc.js",
+        "bytes": 9076,
+        "sha256": "62b014ed02aa016cf3aa189734ee30c21eabbf316dc6dfc7acc2e322e11054e8"
+      },
+      {
+        "file": "js\\site.js",
+        "bytes": 4816,
+        "sha256": "d7bb3c8b5dd6be28a9fba595350f8780b1ef6d64ea8cce233cbe6565a59d7c0f"
+      }
+    ],
+    "all_original_javascript_unchanged": true,
+    "packaged_ui_assets": [
+      "website-b/images/68a6f5734b65b547292b339e_arrow-2.svg",
+      "website-b/images/68b5206292d2b3414cf9b97c_arrow-2-white.svg",
+      "website-b/images/68b81ebb878ec05cd2072d49_Arrow-Dark.svg",
+      "website-b/images/68b81f7c0d8ea58d7e8f583c_menu-2.svg",
+      "website-b/images/68b81fa02357050ed9edb1f3_menu-1.svg",
+      "website-b/images/68b924b713c98fc0bb62811c_recycle-1.svg",
+      "website-b/images/68bfb09b3ebd1618e9bf9c36_premium-badge-1.svg",
+      "website-b/images/68bfb09bb784d9516d94d56a_notification.svg",
+      "website-b/images/68bfb0a55cebb5ac32e13444_location-1.svg",
+      "website-b/images/68bfb0b57ec533e2d4d6aac0_robot-1.svg",
+      "website-b/images/690d932164945ffbf70c55ca_phone-1.svg",
+      "website-b/images/69116446e60d7dc8af81ecc2_arrow-dark.svg"
+    ]
+  },
+  "c": {
+    "technology": "Static HTML / CSS / JavaScript (Webflow export)",
+    "original_code_inventory": [
+      {
+        "file": "css\\style.css",
+        "bytes": 236564,
+        "sha256": "affef9a1eff4e6c53ad1c9ce185685b7449c52f8ab39adce8a84da02f6b06a2f"
+      },
+      {
+        "file": "fonts\\fonts.css",
+        "bytes": 5945,
+        "sha256": "fc02f40c33d33b36f1e07733f02d154b61da512e1cdffeba54a2930894cf79fc"
+      },
+      {
+        "file": "index.html",
+        "bytes": 146493,
+        "sha256": "631acfa9bec55cbe24e6010a707df0cd699ee2e38f4ae2775eed293ae9cde4b3"
+      },
+      {
+        "file": "js\\app.js",
+        "bytes": 10589,
+        "sha256": "a50a763e60e119cb63527fdd18205b6cbcdac163da93b24a043a7ed5ee74d1b4"
+      },
+      {
+        "file": "js\\jquery-3.5.1.min.js",
+        "bytes": 89476,
+        "sha256": "f7f6a5894f1d19ddad6fa392b2ece2c5e578cbf7da4ea805b6885eb6985b6e3d"
+      },
+      {
+        "file": "js\\modules.js",
+        "bytes": 625142,
+        "sha256": "6eadd028c274689a8d808c5f4b366ef414b6caf589a7b46d9affb62c77768422"
+      },
+      {
+        "file": "js\\vendor.js",
+        "bytes": 1909840,
+        "sha256": "05e7d4fdc77027384accfadaf046485b13ea27f43d805505b27a7030221c6fc4"
+      }
+    ],
+    "all_original_javascript_unchanged": true,
+    "packaged_ui_assets": [
+      "website-c/images/Arrow.svg",
+      "website-c/images/Core-Values-Card-Icon1.svg",
+      "website-c/images/Core-Values-Card-Icon2.svg",
+      "website-c/images/Core-Values-Card-Icon3.svg",
+      "website-c/images/CTA-Card-Icon1.svg",
+      "website-c/images/CTA-Card-Icon2.svg",
+      "website-c/images/CTA-Card-Icon3.svg",
+      "website-c/images/CTA-Card-Icon4.svg",
+      "website-c/images/Design-Stories-Card-Link-Block-Arrow.svg",
+      "website-c/images/Design-Stories-Slider-Arrow-Icon1.svg",
+      "website-c/images/Design-Stories-Slider-Arrow-Icon2.svg",
+      "website-c/images/Hamburger-menu.lottie",
+      "website-c/images/Portfolio-Arrow-Icon.svg",
+      "website-c/images/Secondary-Button-Icon.svg",
+      "website-c/images/Secondary-Button-White-Icon.svg"
+    ]
+  }
+}

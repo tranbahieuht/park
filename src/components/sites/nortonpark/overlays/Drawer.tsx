@@ -1,5 +1,7 @@
 "use client";
 
+import { SAVILLS_CONTACT } from "../data/contact";
+
 import { useEffect, useRef } from "react";
 import { Icon } from "../Icons";
 import { asset, calcHref, lockScroll, push, trapTab } from "../lib/dom";
@@ -80,7 +82,7 @@ export function Drawer() {
             <Icon name="360" small />
             <span {...html("nav.vr")} />
           </a>
-          <a className="drawer-act" href="tel:+84938609023" data-cta="call_drawer">
+          <a className="drawer-act" href={SAVILLS_CONTACT.phoneHref} data-cta="call_drawer">
             <Icon name="phone" small />
             <span {...html("dr.call")} />
           </a>

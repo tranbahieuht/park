@@ -1,5 +1,7 @@
 "use client";
 
+import { SAVILLS_CONTACT } from "../data/contact";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import { CHAT_COPY } from "../data/chat-copy";
 import { trapTab } from "../lib/dom";
@@ -8,7 +10,6 @@ import { useUI } from "../lib/ui";
 
 const MAX_INPUT_CHARS = 500;
 const OA_URL = "https://zalo.me/2522093664370221137";
-const HOTLINE = "+84938609023";
 
 /* Greeting served by the source's /api/public-config. */
 const GREETING = {
@@ -169,7 +170,7 @@ export function ChatWidget() {
                   <a className="np-quick-act-btn np-quick-act-btn--zalo" href={OA_URL} target="_blank" rel="noopener">
                     {copy.oa}
                   </a>
-                  <a className="np-quick-act-btn" href={"tel:" + HOTLINE}>
+                  <a className="np-quick-act-btn" href={SAVILLS_CONTACT.phoneHref}>
                     {copy.hotline}
                   </a>
                 </div>

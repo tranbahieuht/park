@@ -1,5 +1,7 @@
 "use client";
 
+import { SAVILLS_CONTACT } from "../data/contact";
+
 import { useRef, useState } from "react";
 import { Icon } from "../Icons";
 import { ERR } from "../data/i18n";
@@ -211,8 +213,8 @@ export function Register() {
               <Icon name="phone" />
               <div>
                 <span className="info-k" {...html("ct.hot")} />
-                <a className="info-v" href="tel:+84938609023" data-cta="call_contact">
-                  093 860 90 23
+                <a className="info-v" href={SAVILLS_CONTACT.phoneHref} data-cta="call_contact">
+                  {SAVILLS_CONTACT.phone}
                 </a>
               </div>
             </div>
@@ -220,8 +222,8 @@ export function Register() {
               <Icon name="mail" />
               <div>
                 <span className="info-k" {...html("ct.mail")} />
-                <a className="info-v" href="mailto:info@nortonpark.com.vn" data-cta="mail_contact">
-                  info@nortonpark.com.vn
+                <a className="info-v" href={SAVILLS_CONTACT.emailHref} data-cta="mail_contact">
+                  {SAVILLS_CONTACT.email}
                 </a>
               </div>
             </div>

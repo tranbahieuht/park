@@ -10,16 +10,16 @@ export function Hero() {
     <section className="hero" data-nav="dark">
       <div className="hero-media">
         <picture>
-          {/* Portrait screens get a crop centred on the right-hand tower cluster. */}
+          {/* Portrait screens receive a dedicated crop from the same entrance rendering. */}
           <source
             media="(max-width:640px), (max-width:1040px) and (orientation:portrait)"
-            srcSet={asset("assets/images/cgi/hero-facade-plot-portrait.jpg")}
+            srcSet={asset("assets/images/drive/hero-main-gate-portrait.webp")}
             width={1053}
             height={1350}
           />
           <img
-            src={asset("assets/images/cgi/design-story-facade.jpg")}
-            alt="Hai cụm tháp Norton Park nhìn trực diện từ trục đường nội khu"
+            src={asset("assets/images/drive/hero-main-gate.webp")}
+            alt="Lối vào chính Norton Park với hai cụm tháp và cảnh quan nội khu"
             fetchPriority="high"
             width={2400}
             height={1350}

@@ -1,0 +1,269 @@
+[document].[]: html
+title.[]: Rewaste - Ecommerce website template
+a.['nav-link', 'w-nav-link', 'w--current']: Home
+a.['nav-link', 'w-nav-link']: About
+a.['nav-link', 'w-nav-link']: Recycling
+                                    Guide
+a.['nav-link', 'w-nav-link']: Blog
+a.['nav-link', 'w-nav-link']: Contact
+a.['nav-link', 'w-nav-link']: +1 (212) 555-8811
+div.['w-commerce-commercecartopenlinkcount', 'header-cart-quantity-2']: 0
+h4.['w-commerce-commercecartheading', 'cart-heading']: Your cart
+div.['cart-item-text']: $ 0.00 USD
+span.[]: :
+div.['cart-remove-btn']: Remove
+div.['cart-pricing-text']: Subtotal
+div.[]: Pay with browser.
+a.['w-commerce-commercecartcheckoutbutton', 'login-submit-button']: Continue to
+                                                            checkout
+div.['cart-empty-title']: Oops! It seems like your cart is empty.
+div.[]: Add this best
+                                                   value plan
+a.['button', 'bg-skin', 'w-button']: Add to cart
+div.['w-cart-error-msg']: Product is not available in this quantity.
+div.['nav-menu-2-text']: Menu
+div.['nav-link-2-text']: Home
+div.['nav-link-3-text']: Home 1
+div.['nav-link-3-text']: Home 2
+div.['nav-link-2-text']: About us
+div.['nav-link-2-text']: Pages
+div.['nav-link-3-text']: About us
+div.['nav-link-3-text']: Case studies
+div.['nav-link-3-text']: Case study details
+div.['nav-link-3-text']: Blog
+div.['nav-link-3-text']: Blog details
+div.['nav-link-3-text']: Pricing plan
+div.['nav-link-3-text']: Pricing details
+div.['nav-link-3-text']: Team
+div.['nav-link-3-text']: Team details
+div.['nav-link-3-text']: Get direction
+div.['nav-link-2-text']: Recycling guide
+div.['nav-link-2-text']: Contact
+a.['nav-contact-link']: +(510) 895-6500
+a.['nav-email-link']: example@gmail.com
+div.['social-list-text', 'top-text']: Facebook
+div.['social-list-text', 'bottom-text']: Facebook
+div.['social-list-text', 'top-text']: Twitter
+div.['social-list-text', 'bottom-text']: Twitter
+div.['social-list-text', 'top-text']: Instagram
+div.['social-list-text', 'bottom-text']: Instagram
+div.['btn-text-static']: Contact us
+div.['btn-text-move', 'text-dark']: Contact us
+div.['hero-pretitle']: Sustainable systems for a cleaner tomorrow
+h1.['hero-title']: Solutions for a CleanerTomorrow
+p.['hero-desc']: Empowering cities, homes, and industries with eco-efficient waste solutions
+                        that reduce pollution, cut emissions, and promote a greener tomorrow.
+div.['btn-text-static']: Explore Services
+div.['btn-text-move', 'text-dark']: Explore Services
+div.['btn-text-static', 'white-border-button-3']: Get a Quote
+div.['btn-text-move', 'text-dark', 'white-border-button-6']: Get a Quote
+div.['hero-counter-title']: Waste processed annually
+h2.['hero-counter-text']: 250
+div.['hero-counter-icon']: K+
+div.['hero-counter-title']: Client satisfaction
+h2.['hero-counter-text']: 98
+div.['hero-counter-icon']: %
+div.['pretitle-text']: About ReWaste
+h2.['about-title-text', 'item-1']: At ReWaste, we go beyond garbage collection. We're on a
+h2.['about-title-text', 'item-2']: mission to revolutionize the way communities and businesses
+h2.['about-title-text', 'item-3']: manage waste—reducing landfill, improving recycling rates,
+                           and
+h2.['about-title-text', 'item-4']: contributing to a cleaner planet.
+h2.['about-title-2']: At ReWaste, we go beyond garbage collection. We're on a mission to
+                        revolutionize the way communities and businesses manage waste—reducing landfill, improving
+                        recycling rates, and contributing to a cleaner planet.
+h2.['counter-big-title-text']: 1.2M
+div.['counter-big-title-desc']: Tons of waste managed. cleaner cities, every single day
+h3.['counter-title-text']: 20
+div.['counter-title-text']: +
+div.['counter-title-desc']: Years of sustainable waste management excellence
+h3.['counter-title-text']: 95
+div.['counter-title-text']: +
+div.['counter-title-desc']: Waste diverted from landfills through recycling initiatives
+h3.['counter-title-text']: 1000
+div.['counter-title-text']: +
+div.['counter-title-desc']: Dedicated experts ensuring eco-friendly operations
+div.['pretitle-text']: Our Services
+h2.['section-title']: Our Waste Management Services
+h3.['service-3-title']: Recycling solutions
+div.['service-3-text']: Turning waste into value
+h3.['service-3-title']: Waste collection
+div.['service-3-text']: Nature’s way of renewal
+h3.['service-3-title']: Residential waste pickup
+div.['service-3-text']: Cleaner homes, greener streets
+h3.['service-3-title']: Bulk waste & e-Waste disposal
+div.['service-3-text']: Responsible disposal for a digital world
+h3.['service-3-title']: Commercial waste solutions
+div.['service-3-text']: Safe, compliant & responsible
+h3.['service-3-title']: Smart waste tracker dashboard
+div.['service-3-text']: Sustainable solutions for every business
+div.['marquee-text']: Sustainable pickup services
+div.['marquee-text']: Eco bin rentals available
+div.['marquee-text']: Smart waste tracker dashboard
+div.['marquee-text']: Sustainable pickup services
+div.['marquee-text']: Eco bin rentals available
+div.['marquee-text']: Smart waste tracker dashboard
+div.['marquee-text']: Sustainable pickup services
+div.['marquee-text']: Eco bin rentals available
+div.['marquee-text']: Smart waste tracker dashboard
+h2.['section-title', 'text-white']: Smarter features for a cleaner future
+div.['value-text']: Smart waste tracker
+div.['value-premium-text', 'item-1']: Monitor your waste collection in
+                              real-time with GPS-enabled tracking.
+div.['value-text']: Eco rewards program
+div.['value-premium-text', 'item-2']: Monitor your waste
+                              collection in real-time with GPS-enabled tracking.
+div.['value-text']: AI sorting assistant
+div.['value-premium-text', 'item-3']: Monitor your waste
+                              collection in real-time with GPS-enabled tracking.
+div.['value-text']: Zero-waste alerts
+div.['value-premium-text', 'item-4']: Monitor your waste
+                              collection in real-time with GPS-enabled tracking.
+div.['pretitle-text']: Case Studies
+h2.['section-title', 'text-white']: Real Results With Rewaste
+h3.['case-study-title']: Greener streets: Mumbai housing project landscape
+                                             with living solutions
+p.['case-study-desc']: Rewaste partnered with a 3,000-home community in
+                                             Andheri, Mumbai, to implement smart waste sorting and bi-weekly pickups.
+h4.['case-counter-title']: 95 tons
+div.['case-counter-text']: Of compost produced
+h4.['case-counter-title']: 88%
+div.['case-counter-text']: Waste diversion in 6 months
+h4.['case-counter-title']: 55%
+div.['case-counter-text']: Increase in resident recycling
+                                                   participation
+div.['btn-text-static']: Read more
+div.['btn-text-move']: Read more
+h3.['case-study-title']: Smart waste tracking in singapore’s residential
+                                             districts
+p.['case-study-desc']: Rewaste partnered with a 3,000-home community in
+                                             Andheri, Mumbai, to implement smart waste sorting and bi-weekly pickups.
+h4.['case-counter-title']: 30%
+div.['case-counter-text']: Waste diversion in 6 months
+h4.['case-counter-title']: 60%
+div.['case-counter-text']: Increase in resident recycling
+                                                   participation
+h4.['case-counter-title']: 55%
+div.['case-counter-text']: Increase in resident recycling
+                                                   participation
+div.['btn-text-static']: Read more
+div.['btn-text-move']: Read more
+h3.['case-study-title']: Corporate offices embrace zero-waste with
+                                             ecowaste
+p.['case-study-desc']: Rewaste partnered with a 3,000-home community in
+                                             Andheri, Mumbai, to implement smart waste sorting and bi-weekly pickups.
+h4.['case-counter-title']: 50%
+div.['case-counter-text']: Waste diversion in 6 months
+h4.['case-counter-title']: 90%
+div.['case-counter-text']: Increase in resident recycling
+                                                   participation
+h4.['case-counter-title']: 55%
+div.['case-counter-text']: Increase in resident recycling
+                                                   participation
+div.['btn-text-static']: Read more
+div.['btn-text-move']: Read more
+h3.['case-study-title']: Waste management implemented sustainable waste
+                                             solutions
+p.['case-study-desc']: Rewaste partnered with a 3,000-home community in
+                                             Andheri, Mumbai, to implement smart waste sorting and bi-weekly pickups.
+h4.['case-counter-title']: 80%
+div.['case-counter-text']: Waste diversion in 6 months
+h4.['case-counter-title']: 40%
+div.['case-counter-text']: Increase in resident recycling
+                                                   participation
+h4.['case-counter-title']: 55%
+div.['case-counter-text']: Increase in resident recycling
+                                                   participation
+div.['btn-text-static']: Read more
+div.['btn-text-move']: Read more
+h2.['cta-title']: Ready to Make Waste
+span.['cta-span-text']: Management
+h2.['cta-title']: ?
+div.['btn-text-static']: Schedule a Pickup
+div.['btn-text-move', 'text-dark']: Schedule a Pickup
+div.['pretitle-text']: TESTIMONIALS
+h2.['section-title']: What our clients are saying
+p.['section-desc']: Rewaste is trusted by communities, businesses, and local leaders
+                              across the globe.
+blockquote.['testimonial-quote-2']: “Rewaste made our apartment’s waste
+                                          pickup smooth and reliable. Their team is professional, and we love tracking
+                                          how much we recycle each month.”
+h3.['testimonial-author-name-3']: Theo Vale
+div.['testimonial-author-position-2']: Resident Association, Mumbai
+blockquote.['testimonial-quote-2']: “We’ve reduced over 50% of our office
+                                          waste in six months thanks to Rewaste’s smart solutions. Transparent reporting
+                                          and excellent service!”
+h3.['testimonial-author-name-3']: Rhea Wander
+div.['testimonial-author-position-2']: Facilities Manager, Sydney
+blockquote.['testimonial-quote-2']: “What sets Rewaste apart is their
+                                          commitment to educating the community. Their Smart Waste Tracker and regular
+                                          updates keep us aware and involved.”
+h3.['testimonial-author-name-3']: Claire Robinson
+div.['testimonial-author-position-2']: Sustainability Officer, London
+blockquote.['testimonial-quote-2']: “From quick pickups to detailed impact
+                                          reports, Rewaste delivers what they promise. We’ve never worked with a more
+                                          responsive team.”
+h3.['testimonial-author-name-3']: Rakesh Mehta
+div.['testimonial-author-position-2']: Commercial Client, Bangalore
+blockquote.['testimonial-quote-2']: “Rewaste transformed how we manage bulk
+                                          waste at our construction sites. Timely pickups, eco-friendly disposal, and
+                                          excellent customer support.”
+h3.['testimonial-author-name-3']: Daniel Oliveira
+div.['testimonial-author-position-2']: PureStay Hotels, London
+blockquote.['testimonial-quote-2']: “Working with Rewaste has been a
+                                          game-changer for our hotel chain. Their recycling solutions are seamless, and
+                                          the monthly sustainability reports help us.”
+h3.['testimonial-author-name-3']: Lisa Grant
+div.['testimonial-author-position-2']: GreenBuild Constructions, New York
+h2.['client-title']: Trusted by creative partners worldwide
+div.['pretitle-text']: Latest News
+h2.['section-title']: Insights on sustainable living
+div.['blog-date']: July 12, 2025
+div.['blog-text']: Recycling tips
+h3.['blog-title']: 10 Everyday items you didn’t know were recyclable
+div.['blog-date']: June 20, 2025
+div.['blog-text']: Organic waste
+h3.['blog-title']: E-waste 101: Safe disposal for a digital world
+div.['blog-date']: November 10, 2025
+div.['blog-text']: Organic waste
+h3.['blog-title']: Eco-efficient operations: A look inside west
+                                                   management’s impact
+div.['blog-date']: June 27, 2025
+div.['blog-text']: Recycling tips
+h3.['blog-title']: The future of waste management: technology,
+                                                   trends, and impact
+div.['blog-date']: May 23, 2025
+div.['blog-text']: Success stories
+h3.['blog-title']: How technology is revolutionizing the waste
+                                                   management industry
+h3.['widget-title']: Stay informed, stay green
+p.['widget-desc']: Subscribe to get recycling tips, sustainability news, and Rewaste
+                              updates — straight to your inbox.
+div.[]: Thank you! Your submission has been received!
+div.[]: Oops! Something went wrong while submitting the form.
+div.['social-list-text', 'top-text', 'text-white']: Facebook
+div.['social-list-text', 'bottom-text', 'text-white']: Facebook
+div.['social-list-text', 'top-text', 'text-white']: Twitter
+div.['social-list-text', 'bottom-text', 'text-white']: Twitter
+div.['social-list-text', 'top-text', 'text-white']: Instagram
+div.['social-list-text', 'bottom-text', 'text-white']: Instagram
+div.['social-list-text', 'top-text', 'text-white']: LinkedIn
+div.['social-list-text', 'bottom-text', 'text-white']: LinkedIn
+h3.['widget-title-1']: Contact info
+div.['footer-address']: 2912 Meadowbrook Road, Los Angeles, CA 90017
+a.['footer-email-link']: support@rewaste.com
+a.['footer-contact-link']: +1 (212) 555-8811
+h3.['widget-title-1']: Quick links
+a.['footer-link']: About us
+a.['footer-link']: Services
+a.['footer-link']: Case Studies
+a.['footer-link']: Blog
+a.['footer-link']: Contact us
+h3.['widget-title-1']: Utility pages
+a.['footer-link']: Style
+                                    guide
+a.['footer-link']: Licenses
+a.['footer-link']: Changelog
+a.['footer-link']: 404
+div.['copyright-text']: Copyright @ 2025 Rewaste designed by
+a.['copyright-link']: ThemetechMount

@@ -1,5 +1,7 @@
 "use client";
 
+import { SAVILLS_CONTACT } from "../data/contact";
+
 import { useEffect, useState } from "react";
 import { Icon } from "../Icons";
 import { CHAT_COPY } from "../data/chat-copy";
@@ -24,7 +26,7 @@ export function Fab() {
 
   return (
     <div className="fab">
-      <a className="fab-call" href="tel:+84938609023" data-cta="call" aria-label="Gọi tư vấn">
+      <a className="fab-call" href={SAVILLS_CONTACT.phoneHref} data-cta="call" aria-label="Gọi tư vấn">
         <Icon name="phone" />
       </a>
       <a className="fab-zl" href="https://zalo.me/2522093664370221137" target="_blank" rel="noopener" data-cta="zalo" aria-label="Chat Zalo Norton Park" title="Chat Zalo">

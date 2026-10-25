@@ -1,0 +1,203 @@
+/* Savills uses the site's native snap flow. Its height can grow with the copy:
+   a viewport is a minimum on desktop, never a clipping constraint. */
+main > section.savills:not(.reg):not(.hero) {
+  /* Derive the section's tones from the existing ivory, olive and bronze.
+     These tokens are local; the brand palette and adjacent sections stay intact. */
+  --sv-olive-wash: color-mix(in srgb, var(--bg-1) 94%, var(--sage-green));
+  --sv-champagne-wash: color-mix(in srgb, var(--bg-1) 90%, var(--champagne-bronze));
+  --sv-body: color-mix(in srgb, var(--tx-3) 50%, var(--tx-1));
+  --sv-rule: color-mix(in srgb, var(--dark-pine) 26%, transparent);
+  --sv-edge-depth: clamp(36px, 4.8vh, 56px);
+  display: block;
+  position: relative;
+  isolation: isolate;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  padding-top: calc(var(--nav-h) + clamp(16px, 2.3vh, 28px));
+  padding-bottom: var(--sv-edge-depth);
+  scroll-margin-top: 0;
+  background:
+    radial-gradient(ellipse at 100% 36%, var(--accent-soft), transparent 48%),
+    linear-gradient(180deg, var(--bg-0), var(--bg-1) 16%, var(--sv-olive-wash) 62%, var(--sv-champagne-wash));
+}
+main > section.savills:not(.reg):not(.hero) > .wrap {
+  position: relative;
+  z-index: 1;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+.savills-heading { max-width: 100%; }
+.savills-heading-rule {
+  display: block;
+  width: clamp(72px, 9vw, 144px);
+  height: 1px;
+  margin-bottom: clamp(10px, 1.5vh, 18px);
+  background: linear-gradient(90deg, var(--accent-deep) 0 32%, var(--sv-rule) 32%);
+  transform-origin: left;
+}
+.savills h2 {
+  max-width: 48ch;
+  color: var(--tx-1);
+  font-size: clamp(28px, 2.35vw, 46px);
+  line-height: 1.12;
+  text-wrap: balance;
+}
+.savills-copy {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 56px);
+  margin-top: clamp(20px, 2.8vh, 32px);
+}
+.savills-intro { min-width: 0; }
+.savills-intro--global, .savills-intro--residential { max-width: none; }
+.savills h3 {
+  color: var(--moss-green);
+  font-size: clamp(20px, 1.5vw, 28px);
+  line-height: 1.25;
+  margin-bottom: .65rem;
+  text-wrap: balance;
+}
+.savills-intro p { font-size: clamp(16px, .94rem, 20px); line-height: 1.6; color: var(--sv-body); }
+.savills-promises {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(10px, 1.4vh, 16px);
+  margin-top: clamp(20px, 2.8vh, 32px);
+  padding-top: clamp(12px, 1.8vh, 22px);
+  border-top: 1px solid var(--sv-rule);
+}
+.savills-promises > h3 { max-width: none; margin-bottom: 0; }
+.savills-commitments {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 2.4vw, 40px);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.savills-commitments li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: clamp(10px, 1vw, 18px);
+  align-content: start;
+  padding: 0 0 1rem;
+}
+.savills-commitments li:first-child { padding-top: 0; }
+.savills-commitments li::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: var(--sv-rule);
+  transform-origin: left;
+  transition: transform .8s var(--mo-ease), opacity .8s var(--mo-ease);
+}
+.savills-number {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 2vw, 34px);
+  font-variant-numeric: lining-nums;
+  line-height: 1.1;
+  color: var(--accent-deep);
+  transition: transform .4s var(--ease);
+}
+.savills-promise-copy { font-size: clamp(16px, .9rem, 20px); line-height: 1.55; max-width: 62ch; color: var(--sv-body); }
+.savills-promise-copy strong { display: block; color: var(--tx-1); margin-bottom: .35rem; }
+@media (hover: hover) and (pointer: fine) {
+  .savills-commitments li:hover .savills-number { transform: translateX(3px); }
+  .savills-commitments li:hover::after { background: var(--accent-deep); }
+}
+
+/* Architectural silhouettes stay in the margins, beneath the reading layer.
+   A clipped decoration wrapper prevents floating paths creating overflow. */
+.savills-decoration { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.savills-art { position: absolute; width: clamp(160px, 21vw, 360px); color: var(--accent-deep); opacity: .18; }
+.savills-art svg { display: block; width: 100%; height: auto; }
+.savills-art--right {
+  right: -2%; top: 1%;
+  mask-image: linear-gradient(180deg, #000 35%, transparent 75%);
+}
+.savills-art--left {
+  left: -9%; bottom: -3%; opacity: .12;
+  color: var(--dark-pine);
+  mask-image: linear-gradient(90deg, #000, transparent 75%);
+}
+.savills-art--left svg { transform: scaleX(-1); }
+
+/* Progressive enhancement: without JS/IntersectionObserver all copy is visible.
+   Each target is unobserved after reveal; only the decorative drift repeats. */
+.savills[data-sv-motion] [data-sv-reveal] {
+  transition: opacity .8s var(--mo-ease), transform .8s var(--mo-ease);
+}
+.savills[data-sv-motion] [data-sv-reveal]:not(.sv-revealed) {
+  opacity: 0; transform: translateY(28px); transition-property: none;
+}
+.savills[data-sv-motion] [data-sv-reveal].sv-revealed { opacity: 1; transform: none; }
+.savills[data-sv-motion] .savills-intro--global { transition-delay: 120ms; }
+.savills[data-sv-motion] .savills-intro--residential { transition-delay: 240ms; }
+.savills[data-sv-motion] .savills-commitments li:nth-child(2) { transition-delay: 120ms; }
+.savills[data-sv-motion] .savills-commitments li:nth-child(3) { transition-delay: 240ms; }
+.savills[data-sv-motion] .savills-commitments li:not(.sv-revealed)::after { transform: scaleX(.75); opacity: 0; }
+.savills[data-sv-motion] .savills-art {
+  opacity: 0;
+  transition: opacity 1.6s var(--mo-ease);
+  animation: savills-drift 24s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+.savills[data-sv-motion].sv-entered .savills-art--right { opacity: .18; }
+.savills[data-sv-motion].sv-entered .savills-art--left { opacity: .12; }
+.savills[data-sv-motion][data-sv-inview] .savills-art { animation-play-state: running; }
+.savills[data-sv-motion] .savills-art-outline { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.4s var(--mo-ease); }
+.savills[data-sv-motion].sv-entered .savills-art-outline { stroke-dashoffset: 0; }
+@keyframes savills-drift { from { transform: translateY(0); } to { transform: translateY(-14px); } }
+
+/* Leave the existing contact controls clear of the reading column. */
+@media (min-width:1041px) and (min-height:600px) {
+  main > section.savills:not(.reg):not(.hero) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100dvh;
+    /* Use the existing document snap container, not an inner scroll region.
+       Oversized native snap areas can be panned through before leaving. */
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+@media (max-width: 1040px) {
+  .savills > .wrap { padding-right: calc(var(--gutter) + 3.25rem); }
+  .savills-copy { gap: 2rem; }
+  .savills-art { width: 180px; }
+  .savills-art--left { display: none; }
+  .savills[data-sv-motion].sv-entered .savills-art--right, .savills-art--right { opacity: .1; }
+}
+@media (max-width: 820px) {
+  .savills-heading { max-width: 100%; }
+  .savills-copy, .savills-promises { grid-template-columns: minmax(0, 1fr); }
+  .savills-commitments { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+  .savills-copy { gap: 2.25rem; }
+  .savills-promises { gap: 1rem; margin-top: 2rem; }
+  .savills-promises > h3 { max-width: none; }
+}
+@media (max-width: 640px) {
+  main > section.savills:not(.reg):not(.hero) { --sv-edge-depth: 64px; padding-top: calc(var(--nav-h) + 32px); padding-bottom: 64px; }
+  .savills h2 { font-size: clamp(1.7rem, 6.5vw, 2.15rem); }
+  .savills h3 { font-size: 1.35rem; }
+  .savills-intro p { font-size: max(16px, .93rem); line-height: 1.7; }
+  .savills-copy { margin-top: 2rem; }
+  .savills-commitments li { grid-template-columns: 1.8rem minmax(0, 1fr); gap: .75rem; padding-bottom: 1.25rem; }
+  .savills-number { font-size: 1.65rem; }
+  .savills-promise-copy { font-size: max(16px, .88rem); }
+  .savills-art--right { right: -100px; width: 160px; }
+  .savills[data-sv-motion] .savills-art { animation: none; }
+  .savills[data-sv-motion] [data-sv-reveal] { transition-duration: .55s; transition-delay: 0s; }
+  .savills[data-sv-motion] [data-sv-reveal]:not(.sv-revealed) { transform: translateY(16px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .savills *, .savills *::after { animation: none !important; transition: none !important; }
+  .savills [data-sv-reveal] { opacity: 1 !important; transform: none !important; }
+  .savills .savills-art-outline { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; }
+  .savills .savills-commitments li::after { opacity: 1 !important; transform: none !important; }
+}

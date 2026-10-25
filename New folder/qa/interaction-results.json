@@ -1,0 +1,117 @@
+[
+  {
+    "letter": "a",
+    "menuVisible": true,
+    "links": [
+      {
+        "text": "Giới thiệu",
+        "href": "gioi-thieu.html"
+      },
+      {
+        "text": "Quy trình hoạt động",
+        "href": "hoat-dong.html"
+      },
+      {
+        "text": "Sản phẩm thu mua",
+        "href": "san-pham.html"
+      },
+      {
+        "text": "Liên Hệ\n\nLiên Hệ",
+        "href": "lien-he.html"
+      }
+    ]
+  },
+  {
+    "letter": "a",
+    "formDestination": "https://huynhhoangminh.com/lien-he"
+  },
+  {
+    "letter": "a",
+    "marketAccordionOpen": true,
+    "marketHorizontalOverflow": false
+  },
+  {
+    "letter": "a",
+    "contactTitle": "Liên hệ",
+    "phone": "tel:0964717686",
+    "email": "mailto:huynhhoangminh.corp@gmail.com"
+  },
+  {
+    "letter": "b",
+    "menuVisible": true,
+    "links": [
+      {
+        "text": "Giới thiệu",
+        "href": "gioi-thieu.html"
+      },
+      {
+        "text": "Quy trình hoạt động",
+        "href": "hoat-dong.html"
+      },
+      {
+        "text": "Liên hệ",
+        "href": "lien-he.html"
+      },
+      {
+        "text": "0964 717 686",
+        "href": "tel:0964717686"
+      },
+      {
+        "text": "huynhhoangminh.corp@gmail.com",
+        "href": "mailto:huynhhoangminh.corp@gmail.com"
+      }
+    ]
+  },
+  {
+    "letter": "b",
+    "formDestination": "https://huynhhoangminh.com/lien-he"
+  },
+  {
+    "letter": "b",
+    "marketAccordionOpen": true,
+    "marketHorizontalOverflow": false
+  },
+  {
+    "letter": "b",
+    "contactTitle": "Liên hệ",
+    "phone": "tel:0964717686",
+    "email": "mailto:huynhhoangminh.corp@gmail.com"
+  },
+  {
+    "letter": "c",
+    "menuVisible": true,
+    "links": [
+      {
+        "text": "Trang chủ",
+        "href": "index.html"
+      },
+      {
+        "text": "Giới thiệu",
+        "href": "gioi-thieu.html"
+      },
+      {
+        "text": "Quy trình hoạt động",
+        "href": "hoat-dong.html"
+      },
+      {
+        "text": "Tin tức",
+        "href": "tin-tuc.html"
+      }
+    ]
+  },
+  {
+    "letter": "c",
+    "formDestination": "https://huynhhoangminh.com/lien-he"
+  },
+  {
+    "letter": "c",
+    "marketAccordionOpen": true,
+    "marketHorizontalOverflow": false
+  },
+  {
+    "letter": "c",
+    "contactTitle": "Liên hệ",
+    "phone": "tel:0964717686",
+    "email": "mailto:huynhhoangminh.corp@gmail.com"
+  }
+]

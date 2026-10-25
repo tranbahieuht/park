@@ -1,0 +1,17 @@
+HTTP/1.1 200 OK
+Date: Fri, 16 Oct 2026 13:02:52 GMT
+Server: Apache/2
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate
+Pragma: no-cache
+Set-Cookie: PHPSESSID=8p6qkoarql5d4egmbasilagahn; path=/
+Set-Cookie: CSRF-TOKEN=4b851b91193fabf3260e167438e092d39762361ed3c518209eab513784507f65; expires=Fri, 16 Oct 2026 15:02:52 GMT; Max-Age=7200; path=/
+Upgrade: h2,h2c
+Connection: Upgrade
+Vary: Accept-Encoding,User-Agent
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Referrer-Policy: strict-origin-when-cross-origin
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=UTF-8
+

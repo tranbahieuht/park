@@ -1,5 +1,7 @@
 "use client";
 
+import { SAVILLS_CONTACT } from "../data/contact";
+
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "../Icons";
 import { ERR } from "../data/i18n";
@@ -202,14 +204,14 @@ export function Popup() {
             <h3 className="d3" {...html("ct.title")} />
             <div>
               <span className="info-k" {...html("ct.hot")} />
-              <a className="info-v" href="tel:+84938609023" data-cta="call_popup">
-                093 860 90 23
+              <a className="info-v" href={SAVILLS_CONTACT.phoneHref} data-cta="call_popup">
+                {SAVILLS_CONTACT.phone}
               </a>
             </div>
             <div>
               <span className="info-k" {...html("ct.mail")} />
-              <a className="info-v" href="mailto:info@nortonpark.com.vn">
-                info@nortonpark.com.vn
+              <a className="info-v" href={SAVILLS_CONTACT.emailHref}>
+                {SAVILLS_CONTACT.email}
               </a>
             </div>
             <div>
@@ -217,6 +219,10 @@ export function Popup() {
               <a className="info-v" href="https://www.facebook.com/NortonParkbyGLVN" target="_blank" rel="noopener" data-cta="fanpage_popup">
                 Norton Park by Gamuda{" "}Land
               </a>
+            </div>
+            <div>
+              <span className="info-k">{t("ct.office")}</span>
+              <p className="info-v">{SAVILLS_CONTACT.office[lang]}</p>
             </div>
             <div>
               <span className="info-k" {...html("ct.addr")} />
