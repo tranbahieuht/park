@@ -32,7 +32,7 @@ Ngày kiểm tra: 24/10/2026 (Asia/Saigon).
 ## Tài liệu còn thiếu và thông tin cần khách hàng xác nhận
 
 - Chưa tìm thấy ảnh chứng nhận Savills gốc trong tệp đính kèm, tài nguyên công khai hoặc tài liệu dự án. Chưa thêm ảnh chứng nhận hay ảnh thay thế; cần khách hàng cung cấp ảnh gốc để hoàn tất phần này.
-- Giữ nguyên cụm “Chủ đầu tư Hương Việt Properties” theo tài liệu khách hàng. Cụm này chưa thống nhất với nội dung hiện có về Gamuda Land và thông tin pháp nhân Skybridge; cần khách hàng xác nhận, không tự thay thế.
+- Theo xác nhận cập nhật của khách hàng, pháp nhân chủ đầu tư/phát triển dự án là Công ty TNHH Skybridge (Skybridge Company Limited, MSDN: 3700755234), thuộc tập đoàn Gamuda Land Việt Nam. Thương hiệu phát triển là Gamuda Land; đơn vị phân phối là Công ty TNHH Savills Việt Nam - Chi nhánh Thành phố Hồ Chí Minh. Cam kết Savills được đồng bộ theo thông tin này ở cả VI và EN.
 - Những cam kết về giỏ hàng, căn view sông, chiết khấu và toàn bộ thông tin pháp lý/liên hệ Savills được nhập theo tài liệu bàn giao; chưa được xác minh độc lập qua website dự án.
 
 ## Kiểm tra
