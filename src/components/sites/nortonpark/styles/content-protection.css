@@ -1,0 +1,3 @@
+.np-protected{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.np-protected img{-webkit-user-drag:none}
+input,textarea,select,button,a,[contenteditable],form,#npChatContainer,.np-image-dialog,.ldoc,#register,#quote,.info-row,.f-ct,.pop-info,[data-legal],[data-protection-exempt]{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}

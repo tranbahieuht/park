@@ -1,0 +1,72 @@
+/* ==========================================================================
+   NORTON PARK - WEB FONTS
+   Nguon: Brand kit/Font (SVN-TheSeasons, SFUFutura, SVN-Gotham)
+   Da convert sang WOFF2, subset Latin + Latin Extended + Vietnamese.
+   Da kiem tra: du 134 ky tu co dau tieng Viet tren ca 7 face.
+   Tong dung luong 7 face: 102 KB.
+
+   Vai tro theo brand guideline muc 1.9:
+     The Seasons  -> Headline, display
+     Futura       -> Sub-heading, eyebrow, nav, label, UI
+     Gotham       -> Body copy, caption, form
+   ========================================================================== */
+
+/* --- The Seasons. Headline --------------------------------------------- */
+@font-face{
+  font-family:"Norton Seasons";
+  src:url("/sites/nortonpark/fonts/seasons-300.woff2") format("woff2");
+  font-weight:300; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Norton Seasons";
+  src:url("/sites/nortonpark/fonts/seasons-400.woff2") format("woff2");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Norton Seasons";
+  src:url("/sites/nortonpark/fonts/seasons-700.woff2") format("woff2");
+  font-weight:700; font-style:normal; font-display:swap;
+}
+
+/* --- Futura. Sub-heading, label ---------------------------------------- */
+/* Luu y: bo SFUFutura khong co weight Bold upright.
+   Face 700 duoi day dung SFUFuturaExtraBold. */
+@font-face{
+  font-family:"Norton Futura";
+  src:url("/sites/nortonpark/fonts/futura-400.woff2") format("woff2");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Norton Futura";
+  src:url("/sites/nortonpark/fonts/futura-700.woff2") format("woff2");
+  font-weight:700; font-style:normal; font-display:swap;
+}
+
+/* --- Gotham. Body copy -------------------------------------------------- */
+@font-face{
+  font-family:"Norton Gotham";
+  src:url("/sites/nortonpark/fonts/gotham-400.woff2") format("woff2");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Norton Gotham";
+  src:url("/sites/nortonpark/fonts/gotham-700.woff2") format("woff2");
+  font-weight:700; font-style:normal; font-display:swap;
+}
+
+/* --- Font stacks -------------------------------------------------------- */
+:root{
+  --font-display:"Norton Seasons", Georgia, "Times New Roman", serif;
+  --font-sub:"Norton Futura", "Futura", "Century Gothic", -apple-system, sans-serif;
+  --font-body:"Norton Gotham", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ==========================================================================
+   PRELOAD. Dan 2 dong nay vao <head> cua trang, trong the <link>:
+
+   <link rel="preload" href="fonts/seasons-400.woff2" as="font" type="font/woff2" crossorigin>
+   <link rel="preload" href="fonts/gotham-400.woff2"  as="font" type="font/woff2" crossorigin>
+
+   Chi preload 2 face xuat hien tren man hinh dau. Preload nhieu hon se
+   canh tranh bang thong voi anh hero va lam cham first paint.
+   ========================================================================== */

@@ -1,0 +1,46 @@
+/* Small additions for the React port. Everything else is the source CSS. */
+
+/* Icon sprite holder (inline style in the source markup). */
+.np-sprite{position:absolute}
+
+/* Source locks "Xem tat ca tin tuc" with inline pointer-events:none. */
+.news-all[aria-disabled="true"]{pointer-events:none}
+
+/* Contrast corrections using existing brand tokens. Deep bronze keeps small
+   white button labels legible; champagne remains the decorative accent. */
+.cta:not(.cta--onimg),
+.np-lead-btn-submit,
+.np-chat-send-btn,
+.np-msg--user .np-msg-bubble{
+  background:var(--accent-deep);color:#FFF;
+}
+.cta:not(.cta--onimg){border-color:var(--accent-deep)}
+.cta:not(.cta--onimg):hover,
+.np-lead-btn-submit:hover,
+.np-chat-send-btn:hover:not(:disabled){background:var(--hoadau-brown)}
+.cta:not(.cta--onimg):hover{border-color:var(--hoadau-brown)}
+.nav.is-solid .btn-vr:hover,.drawer-act:hover,.np-chip:hover{
+  background:var(--accent-deep);color:#FFF;
+}
+.nav.is-solid .lang button{opacity:1;color:var(--tx-1)}
+
+/* Preserve the footer's original olive surface, structure and typography.
+   Its former translucent labels and bronze icons were too faint on olive. */
+.foot{
+  --footer-text:var(--tx-on-dark);
+  --footer-secondary:color-mix(in srgb,var(--tx-on-dark) 94%,var(--bg-dark-alt));
+  --footer-rule:color-mix(in srgb,var(--tx-on-dark) 26%,transparent);
+  color:var(--footer-text);
+}
+.foot :is(.f-h,.f-by-k,.f-by-name,.f-faq-sum,.f-faq-item h3,.f-v,.f-faq-item a){color:var(--footer-text)}
+.foot :is(.f-k,.f-disc,.f-cr,.f-by-disc,.f-by-line,.f-faq-item p){color:var(--footer-secondary)}
+.foot :is(.f-ct,.f-by-row,.f-faq-sum) .ic{color:var(--beige-sand)}
+.foot :is(.f-faq,.f-by,.f-by-legal){border-color:var(--footer-rule)}
+.foot a:hover,.foot .f-faq-sum:hover{color:var(--bg-0)}
+.foot :focus-visible{outline-color:var(--tx-on-dark)}
+
+/* The distributor's longer details need the same mobile clearance as the
+   footer's existing legal copy, beside the unchanged floating controls. */
+@media (max-width:820px){
+  .foot .f-by-co{padding-right:3.4rem}
+}

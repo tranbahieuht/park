@@ -1,0 +1,81 @@
+/* ==========================================================================
+   NORTON PARK, POPUP PHAP LY (R6, 03/10/2026)
+   Dung chung cho trang chinh va trang con Bang tinh gia (copy nguyen file).
+   5 muc o cot Phap ly cua Footer deu mo dang popup: Chinh sach bao mat,
+   Dieu khoan su dung, Cong bo phap ly (placeholder), Canh bao gia mao,
+   Thong tin phap nhan. Noi dung nam trong js/legal.js (VI + EN).
+   Panel nen sang de doc van ban dai; dau trang co dinh, than cuon noi bo.
+   z-index 122: tren popup form (120) va popup cu (121).
+   ========================================================================== */
+.ldoc{position:fixed;inset:0;z-index:122;display:none;place-items:center;padding:clamp(12px,3vw,40px)}
+.ldoc.is-open{display:grid}
+.ldoc-backdrop{position:absolute;inset:0;background:rgba(30,24,20,.62);
+  -webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.ldoc-panel{position:relative;width:min(50rem,100%);max-height:min(88dvh,100%);display:flex;flex-direction:column;
+  background:var(--bg-0,#FBFAF6);color:var(--tx-2,#5A4E47);border-radius:var(--r-card,14px);
+  box-shadow:0 30px 70px rgba(30,24,20,.4);overflow:hidden;animation:ldocIn .5s cubic-bezier(.22,.61,.36,1)}
+@keyframes ldocIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.ldoc-head{position:relative;flex:0 0 auto;padding:clamp(22px,3vw,36px) clamp(22px,3.4vw,48px) clamp(16px,2vw,22px);
+  border-bottom:1px solid var(--line-1,rgba(89,74,66,.16));background:var(--bg-1,#F4F0E7)}
+.ldoc-head::after{content:"";position:absolute;right:clamp(64px,7vw,96px);top:50%;width:34px;height:38px;transform:translateY(-50%);
+  -webkit-mask:var(--quacho) no-repeat center/contain;mask:var(--quacho) no-repeat center/contain;
+  background:linear-gradient(100deg,#9C7C5E 0%,#CDB493 47%,#A3835F 53%,#C9AE8C 100%);opacity:.55;pointer-events:none}
+.ldoc-k{display:block;font-family:var(--font-sub);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent-deep,#8E6A4E);margin-bottom:8px}
+.ldoc-title{margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(1.6rem,2.6vw,2.3rem);line-height:1.15;
+  color:var(--tx-1,#3E332D);padding-right:clamp(80px,9vw,120px)}
+.ldoc-upd{display:block;margin-top:8px;font-size:.74rem;color:var(--tx-4,#8A7E76)}
+.ldoc-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;
+  padding:clamp(20px,2.6vw,32px) clamp(22px,3.4vw,48px) clamp(26px,3.4vw,44px);
+  font-size:.9rem;line-height:1.75;scrollbar-width:thin;scrollbar-color:rgba(89,74,66,.35) transparent}
+.ldoc-body h3{margin:1.7em 0 .55em;font-family:var(--font-sub);font-size:.66rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--tx-1,#3E332D)}
+.ldoc-body h3:first-child{margin-top:0}
+.ldoc-body p{margin:0 0 .9em}
+.ldoc-body ul{margin:0 0 1em;padding-left:1.15em;list-style:disc}
+.ldoc-body li{margin:.25em 0}
+.ldoc-body li::marker{color:var(--champagne-bronze,#A78061)}
+.ldoc-body a{color:var(--accent-deep,#8E6A4E);text-underline-offset:3px;overflow-wrap:anywhere}
+.ldoc-body strong{color:var(--tx-1,#3E332D);font-weight:700}
+.ldoc-body code{font-family:inherit;font-size:.92em;background:rgba(167,128,97,.12);padding:0 .3em;border-radius:4px}
+.ldoc-contact{margin:.4em 0 1em;padding:14px 18px;border-left:2px solid var(--champagne-bronze,#A78061);background:var(--bg-1,#F4F0E7);border-radius:0 8px 8px 0}
+.ldoc-contact p{margin:0 0 .35em}
+.ldoc-contact p:last-child{margin:0}
+/* Thong tin phap nhan: bang 2 cot */
+.ldoc-ent{display:grid;grid-template-columns:minmax(10rem,.42fr) 1fr;margin:0}
+.ldoc-ent dt,.ldoc-ent dd{margin:0;padding:12px 0;border-bottom:1px solid var(--line-1,rgba(89,74,66,.14))}
+.ldoc-ent dt{font-family:var(--font-sub);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tx-4,#8A7E76);padding-right:18px;padding-top:15px}
+.ldoc-ent dd{color:var(--tx-1,#3E332D);font-size:.92rem}
+.ldoc-note{margin-top:1.2em;font-size:.76rem;color:var(--tx-4,#8A7E76)}
+/* Placeholder Cong bo phap ly */
+.ldoc-pend{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:clamp(28px,5vh,56px) 12px;
+  border:1px dashed rgba(167,128,97,.55);border-radius:12px;
+  background:repeating-linear-gradient(135deg,rgba(167,128,97,.06) 0 10px,transparent 10px 20px)}
+.ldoc-pend b{font-family:var(--font-display);font-weight:400;font-size:1.25rem;color:var(--tx-1,#3E332D)}
+.ldoc-pend span{font-size:.84rem;color:var(--tx-3,#6E625A);max-width:40ch}
+.ldoc-close{position:absolute;top:clamp(14px,1.8vw,22px);right:clamp(14px,1.8vw,22px);z-index:3;width:2.38rem;height:2.38rem;
+  border-radius:50%;border:1px solid var(--line-1,rgba(89,74,66,.25));background:var(--bg-0,#FBFAF6);
+  color:var(--tx-1,#3E332D);display:grid;place-items:center;cursor:pointer;transition:background .3s,color .3s}
+.ldoc-close:hover{background:var(--hoadau-brown,#594A42);color:#F4F0E7}
+.ldoc-close svg{width:16px;height:16px}
+@media (max-width:640px){
+  .ldoc{padding:0;place-items:end stretch}
+  .ldoc-panel{width:100%;max-height:92dvh;border-radius:16px 16px 0 0}
+  .ldoc-head::after{display:none}
+  .ldoc-title{padding-right:52px}
+  .ldoc-ent{grid-template-columns:1fr}
+  .ldoc-ent dt{border-bottom:0;padding-bottom:2px}
+  .ldoc-ent dd{padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){.ldoc-panel{animation:none}}
+/* Link "chinh sach bao mat" trong dong dong y va dong bao mat cua form */
+.consent label a,.privacy a{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.consent label a:hover,.privacy a:hover{color:var(--champagne-bronze,#A78061)}
+
+/* R10 (06/10/2026): Cong bo phap ly - khoi link thu muc ho so phap ly (Google Drive) */
+.ldoc-files{margin-top:clamp(18px,3vh,28px);padding-top:clamp(18px,3vh,26px);border-top:1px solid rgba(89,74,66,.14)}
+.ldoc-body .ldoc-link{display:inline-flex;align-items:center;gap:.55em;margin-top:.4em;padding:.8em 1.25em;border-radius:999px;
+  background:var(--accent-deep,#8E6A4E);color:#FFF;text-decoration:none;font-family:var(--font-sub);font-size:.68rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;overflow-wrap:normal;transition:background .3s}
+.ldoc-body .ldoc-link:hover,.ldoc-body .ldoc-link:focus-visible{background:var(--hoadau-brown,#594A42)}
+.ldoc-link svg{width:1.15em;height:1.15em;flex:0 0 auto}

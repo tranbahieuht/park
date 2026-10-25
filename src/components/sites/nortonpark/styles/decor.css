@@ -1,0 +1,361 @@
+/* ==========================================================================
+   NORTON PARK - LOP TRANG TRI QUA CHO
+   Ap dung DECOR_RULES.md. File nay CHI them lop trang tri, tuyet doi khong
+   doi bo cuc, khong doi chieu cao, khong doi mot pixel nao cua noi dung.
+
+   BA THANH PHAN (theo rule)
+     A. Bong qua cho lon   -> section::before   40-60% chieu cao section
+     B. Khoi hoa van       -> section::after    motif >= 60-80px
+     C. Icon qua cho nho   -> phan tu rieng     20-120px
+
+   NHIP DIEU, dieu ran #7, khong lap kieu o hai section lien ke:
+     01 Hero      A        07 Blocks      B
+     02 Story     B        08 Residences  C
+     03 Facts     A        09 News        khong decor
+     04 Position  B        10 Register    B
+     05 Map       C        11 Developer   A
+     06 Lifestyle khong    12 Footer      khong decor
+
+   Client yeu cau go decor o ba section Lifestyle, News va Footer. Da kiem lai
+   dieu ran #7 sau khi go: khong con cap section lien ke nao cung kieu, vi Map
+   va Residences nam xen giua lam dem. Khong phai bu them gi.
+
+   KY THUAT
+   Bong qua cho dung mask-image cong background-color chu KHONG dung <img>.
+   Mot file SVG duy nhat phuc vu ca 4 mau thuong hieu, doi mau bang token,
+   khong bao gio dung filter de nhuom. Vector nen sac net o moi kich thuoc.
+
+   MOTIF HOA VAN, DA DUNG LAI THANH VECTOR
+   File goc quacho-tile.png co ba nhuoc diem:
+     1. Raster, phong to la vo hat.
+     2. KHONG lien mach theo chieu ngang. Do duoc: cac cot cach nhau 242,87px
+        nhung khoang cuoi cung chi 236,9px, tuc lech 6px o duong noi.
+     3. Mau nam chet trong file, khong doi duoc.
+   Da dung lai thanh `assets/decor/quacho-pattern-tile.svg`:
+     mot o lap 242,87 x 180 don vi, chua dung 2 motif, lien mach tuyet doi,
+     to mau bang currentColor nen doi duoc ca 4 mau thuong hieu.
+   Do trung khop voi ban goc: 92,52%. Phan chenh lech chinh la loi noi 6px
+   cua file goc ma ban vector da sua.
+   ========================================================================== */
+
+:root{
+  /* MOT O LAP cua hoa tiet vector = 242,87 x 180 don vi, chua dung 2 motif.
+     Doi --pat-h la doi co ca hoa van, ti le tu giu. Rule doi motif 60-80px;
+     mot motif cao 141 don vi tren tong 180 cua o lap, nen:
+        motif hien thi = --pat-h * 141 / 180 = --pat-h * 0,783
+     Chon --pat-h = 92px  ->  motif 72px. Nam giua dai 60-80 cua rule. */
+  --pat-h:92px;
+  --pat-w:124.13px;            /* 92 * 242,87/180 */
+  --tile:var(--pat-w) var(--pat-h);
+  /* VI SAO NHUNG THANG VAO DAY THAY VI TRO TOI FILE
+     Trinh duyet CHAN moi SVG dung lam `mask-image` khi trang mo bang `file://`.
+     Day la chinh sach same-origin: mask co the lam lo noi dung anh, ma `file://`
+     co origin la `null` nen khong bao gio thoa. Do duoc tren Chromium:
+         Access to image at '.../quacho-symbol.svg' from origin 'null'
+         has been blocked by CORS policy
+     Hau qua: nhap dup mo file HTML thi KHONG mot lop decor nao hien ra, du CSS
+     hoan toan dung. Dua len server thi lai chay binh thuong. Vi ban giao khach
+     la mot thu muc de khach tu mo, phai chay duoc ca hai truong hop.
+     `data:` URI khong bi CORS chan. Doi lai decor.css nang them khoang 10 KB.
+     Muon sua hinh thi sua file trong `assets/decor/` roi sinh lai hai dong duoi;
+     hai file SVG van duoc giu nguyen trong thu muc lam ban goc. */
+  --quacho:url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20858%20964'%20width='858'%20height='964'%20fill='%23000'><path%20fill-rule='evenodd'%20d='M418.88,962.55C418.54,962.21%20415.39,961.49%20411.88,960.95C392.43,957.94%20374.18,948.56%20360.37,934.47C351.92,925.86%20348.61,921.19%20343.54,910.71C337.39,898%20335.6,888.43%20336.38,872.5C337.16,856.65%20340.55,846.85%20350.41,832C355,825.09%20368.08,811%20369.91,811C370.34,811%20371.78,810.06%20373.1,808.9C378.47,804.21%20392.18,798.13%20404.78,794.84C417.36,791.56%20440.64,791.56%20453.22,794.84C465.82,798.13%20479.53,804.21%20484.9,808.9C486.22,810.06%20487.66,811%20488.09,811C489.92,811%20503,825.09%20507.59,832C517.45,846.85%20520.84,856.65%20521.62,872.5C522.4,888.43%20520.61,898%20514.46,910.71C509.39,921.19%20506.08,925.86%20497.63,934.47C484.14,948.24%20468.25,956.64%20448,960.73C440.06,962.33%20419.92,963.59%20418.88,962.55ZM427.06,765.25C426.37,763.74%20423.11,755.75%20419.81,747.5C413.55,731.83%20413.28,731.19%20404.26,711C396.51,693.63%20376.99,655.35%20367.04,638C325.54,565.61%20278.24,501.4%20220.05,438.5C206.65,424.02%20162.94,381.01%20148.99,368.59C113.88,337.32%2079.95,309.82%2049.95,288.32C30.8,274.6%204.02,257%202.29,257C1.24,257%201,232.67%201,129C1,44.33%201.34,1%202,1C2.55,1%203,1.41%203,1.91C3,2.41%2011.66,7.43%2022.25,13.06C109.63,59.56%20182.3,108.69%20239,159.59C254.62,173.61%20284.69,204.12%20296.59,218C347.53,277.46%20383.21,342.13%20401.97,409C402.66,411.48%20403.59,414.62%20404.04,416C404.75,418.21%20407.29,428.59%20410.03,440.5C415.01,462.13%20419.72,493.31%20421.96,519.5C424.87,553.56%20425.25,566.79%20425.59,644C425.94,722.42%20426.8,759.13%20428.31,760.65C428.69,761.02%20429.31,761.02%20429.69,760.65C431.2,759.13%20432.06,722.42%20432.41,644C432.75,566.79%20433.13,553.56%20436.04,519.5C438.28,493.31%20442.99,462.13%20447.97,440.5C450.71,428.59%20453.25,418.21%20453.96,416C454.41,414.62%20455.34,411.48%20456.03,409C470.37,357.91%20496.35,304.74%20529.71,258.26C548.31,232.35%20563.21,214.82%20588.45,189.16C616.84,160.3%20639.58,140.43%20671.5,116.57C725.35,76.33%20771.46,47.27%20835.75,13.06C846.34,7.43%20855,2.41%20855,1.91C855,1.41%20855.45,1%20856,1C856.66,1%20857,44.33%20857,129C857,232.67%20856.76,257%20855.71,257C853.98,257%20827.2,274.6%20808.05,288.32C778.05,309.82%20744.12,337.32%20709.01,368.59C695.06,381.01%20651.35,424.02%20637.95,438.5C579.76,501.4%20532.46,565.61%20490.96,638C481.01,655.35%20461.49,693.63%20453.74,711C444.72,731.19%20444.45,731.83%20438.19,747.5C430.98,765.55%20429.88,768%20429,768C428.63,768%20427.75,766.76%20427.06,765.25Z'/></svg>");
+  --pattern:url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20242.87%20180'%20width='242.87'%20height='180'%20fill='%23000'%20preserveAspectRatio='none'><defs><g%20id='mo'><circle%20cx='0'%20cy='0'%20r='16'/><path%20transform='translate(-72.37,-157.00)'%20d='M0.44,139.63C0.03,139.07%20-0,137.57%20-0,116.67L-0,94.32L2.1,92.16C3.49,90.73%204.39,90%204.75,90C5.1,90%205.84,89.44%206.75,88.5C7.64,87.57%208.4,87%208.74,87C9.1,87%2010.27,86%2012.25,84C14.14,82.09%2015.41,81%2015.74,81C16.45,81%2031.75,65.7%2031.75,64.99C31.75,64.66%2032.84,63.39%2034.75,61.5C36.73,59.54%2037.75,58.35%2037.75,57.99C37.75,57.65%2038.48,56.74%2039.75,55.5C41.03,54.24%2041.75,53.35%2041.75,53C41.75,52.65%2042.47,51.76%2043.75,50.5C45.14,49.14%2045.75,48.36%2045.75,47.95C45.75,47.58%2046.12,47.01%2046.75,46.43C47.35,45.88%2047.75,45.29%2047.75,44.95C47.75,44.6%2048.19,43.96%2048.88,43.3C49.51,42.69%2050,42%2050,41.7C50,41.41%2050.45,40.73%2051,40.19C51.55,39.65%2052,38.98%2052,38.69C52,38.41%2052.45,37.73%2053,37.19C53.55,36.65%2054,35.98%2054,35.69C54,35.41%2054.45,34.73%2055,34.19C55.84,33.37%2056,33.05%2056,32.19C56,31.33%2056.16,31.02%2057,30.19C57.55,29.65%2058,28.98%2058,28.69C58,28.41%2058.45,27.73%2059,27.19C59.84,26.37%2060,26.05%2060,25.19C60,24.33%2060.16,24.02%2061,23.19C61.85,22.35%2062,22.06%2062,21.16C62,20.26%2062.15,19.96%2063,19.12C63.84,18.3%2064,17.99%2064,17.12C64,16.26%2064.16,15.95%2065,15.12C65.85,14.3%2066,13.99%2066,13.11C66,12.39%2066.15,11.94%2066.5,11.62C66.77,11.38%2067,10.93%2067,10.63C67,10.32%2067.22,9.87%2067.5,9.63C67.85,9.31%2068,8.86%2068,8.13C68,7.39%2068.15,6.94%2068.5,6.63C68.77,6.38%2069,5.93%2069,5.63C69,5.32%2069.22,4.87%2069.5,4.63C69.84,4.31%2070,3.86%2070,3.16C70,2.3%2070.16,1.98%2071.05,1.07C71.63,0.48%2072.29,0%2072.51,0C73.25,0%2074,1.08%2074,2.15C74,2.99%2074.16,3.31%2075,4.13C75.95,5.05%2076,5.17%2076,6.64C76,7.86%2076.1,8.27%2076.5,8.62C76.77,8.87%2077,9.32%2077,9.62C77,9.93%2077.22,10.38%2077.5,10.63C77.77,10.87%2078,11.32%2078,11.63C78,11.93%2078.22,12.38%2078.5,12.63C78.77,12.87%2079,13.32%2079,13.62C79,13.93%2079.22,14.38%2079.5,14.62C79.85,14.94%2080,15.39%2080,16.11C80,16.99%2080.15,17.3%2081,18.13C81.85,18.96%2082,19.26%2082,20.16C82,21.06%2082.15,21.35%2083,22.19C83.84,23.02%2084,23.33%2084,24.19C84,25.05%2084.16,25.37%2085,26.19C85.56,26.74%2086,27.41%2086,27.71C86,28.01%2086.22,28.45%2086.5,28.68C86.77,28.92%2087,29.42%2087,29.8C87,30.23%2087.19,30.58%2087.5,30.75C87.81,30.92%2088,31.28%2088.01,31.7C88.01,32.17%2088.31,32.63%2089.01,33.24C89.68,33.81%2090,34.3%2090.01,34.74C90.01,35.17%2090.34,35.66%2091.01,36.24C91.61,36.76%2092,37.31%2092,37.65C92,37.97%2092.42,38.63%2093,39.19C93.55,39.73%2094,40.41%2094,40.69C94,40.98%2094.45,41.65%2095,42.19C95.55,42.73%2096,43.41%2096,43.7C96,44%2096.49,44.69%2097.12,45.3C97.8,45.95%2098.25,46.6%2098.25,46.94C98.25,47.27%2098.67,47.91%2099.25,48.47C99.82,49.02%20100.25,49.68%20100.25,49.99C100.25,50.35%20100.95,51.23%20102.25,52.5C103.53,53.76%20104.25,54.65%20104.25,55C104.25,55.35%20104.96,56.24%20106.23,57.48C107.65,58.87%20108.23,59.62%20108.29,60.15C108.36,60.77%20108.5,60.89%20109.25,61C109.99,61.11%20110.14,61.24%20110.21,61.83C110.31,62.76%20130.45,83%20131.27,83C131.59,83%20132.7,83.93%20134.25,85.5C135.87,87.15%20136.9,88%20137.26,88C137.6,88%20138.35,88.57%20139.25,89.5C140.14,90.42%20140.9,91%20141.23,91C141.55,91%20142.29,91.52%20143.01,92.24L144.25,93.48L144.25,116.86L144.25,140.25L143.44,140.25C142.81,140.25%20142.43,140.02%20141.75,139.25C141.14,138.55%20140.67,138.25%20140.2,138.25C139.78,138.25%20139.42,138.06%20139.25,137.75C139.08,137.42%20138.73,137.25%20138.25,137.25C137.77,137.25%20137.42,137.08%20137.25,136.75C137.08,136.44%20136.72,136.25%20136.3,136.25C135.83,136.25%20135.36,135.95%20134.75,135.25C134.17,134.59%20133.66,134.25%20133.25,134.25C132.84,134.25%20132.33,133.91%20131.75,133.25C131.17,132.59%20130.66,132.25%20130.25,132.25C129.84,132.25%20129.33,131.91%20128.75,131.25C128.2,130.62%20127.66,130.25%20127.29,130.25C126.89,130.25%20126.21,129.75%20125.25,128.75C124.34,127.8%20123.6,127.25%20123.25,127.25C122.9,127.25%20122.16,126.7%20121.25,125.75C120.35,124.81%20119.6,124.25%20119.26,124.25C118.9,124.25%20118.02,123.55%20116.75,122.25C115.52,120.99%20114.6,120.25%20114.26,120.25C113.52,120.25%2096,102.79%2096,102.06C96,101.73%2095.24,100.79%2094,99.56C92.69,98.28%2092,97.4%2092,97.04C92,96.71%2091.59,96.11%2091,95.57C90.38,95%2090,94.42%2090,94.07C90,93.71%2089.62,93.13%2089,92.57C88.34,91.95%2088,91.43%2088,91.01C88,90.64%2087.79,90.24%2087.5,90.06C87.18,89.86%2087,89.48%2087,89.01C87,88.52%2086.83,88.17%2086.5,88C86.19,87.83%2086,87.47%2086,87.05C86,86.58%2085.7,86.11%2085,85.5C84.11,84.71%2084,84.51%2084,83.45C84,82.52%2083.89,82.21%2083.5,82C83.17,81.83%2083,81.48%2083,81C83,80.52%2082.83,80.17%2082.5,80C82.17,79.83%2082,79.48%2082,79C82,78.52%2081.83,78.17%2081.5,78C81.17,77.83%2081,77.48%2081,77C81,76.52%2080.83,76.17%2080.5,76C80.07,75.77%2080,75.48%2080,74C80,72.52%2079.93,72.23%2079.5,72C79.17,71.83%2079,71.48%2079,71C79,70.52%2078.83,70.17%2078.5,70C78.07,69.77%2078,69.48%2078,68C78,66.52%2077.93,66.23%2077.5,66C77.1,65.79%2077,65.48%2077,64.49C77,63.52%2076.89,63.19%2076.5,62.94C76.05,62.66%2076,62.36%2076,59.98C76,57.64%2075.94,57.27%2075.5,56.88C75.1,56.52%2075,56.11%2075,54.88C75,53.64%2074.9,53.23%2074.5,52.88C74.02,52.44%2074,52.11%2074,45.27C74,38.43%2073.98,38.11%2073.51,37.81C73.06,37.54%2073.01,37.18%2072.94,34.19C72.89,31.44%2072.81,30.88%2072.5,30.88C72.19,30.88%2072.11,31.5%2072.06,34.69C71.99,38.17%2071.94,38.53%2071.49,38.81C71.04,39.1%2071,39.41%2071,42.77C71,46.11%2070.96,46.46%2070.5,46.88C70.03,47.3%2070,47.64%2070,51.88C70,56.11%2069.97,56.45%2069.5,56.88C69.15,57.19%2069,57.64%2069,58.38C69,59.11%2068.85,59.56%2068.5,59.88C68.07,60.26%2068,60.64%2068,62.53C68,64.48%2067.94,64.76%2067.5,65C67.1,65.21%2067,65.52%2067,66.5C67,67.48%2066.9,67.79%2066.5,68C66.07,68.23%2066,68.52%2066,70C66,71.48%2065.93,71.77%2065.5,72C65.17,72.17%2065,72.52%2065,73C65,73.48%2064.83,73.83%2064.5,74C64.1,74.21%2064,74.52%2064,75.5C64,76.48%2063.9,76.79%2063.5,77C63.17,77.17%2063,77.52%2063,78C63,78.48%2062.83,78.83%2062.5,79C62.11,79.21%2062,79.52%2062,80.45C62,81.51%2061.89,81.71%2061,82.5C60.12,83.27%2060,83.5%2060,84.5C60,85.5%2059.88,85.73%2059,86.5C58.3,87.11%2058,87.58%2058,88.05C58,88.47%2057.81,88.83%2057.5,89C57.17,89.17%2057,89.52%2057,90.01C57,90.48%2056.82,90.86%2056.5,91.06C56.21,91.24%2056,91.64%2056,92.01C56,92.43%2055.66,92.95%2055,93.57C54.41,94.11%2054,94.71%2054,95.04C54,95.4%2053.31,96.28%2052,97.56C50.75,98.79%2050,99.73%2050,100.06C50,100.39%2049.2,101.37%2047.88,102.69C46.58,103.97%2045.75,105%2045.75,105.31C45.75,106.04%2033.48,118.25%2032.75,118.25C32.4,118.25%2031.35,119.13%2029.75,120.75C28.13,122.4%2027.1,123.25%2026.74,123.25C26.4,123.25%2025.65,123.82%2024.75,124.75C23.84,125.7%2023.1,126.25%2022.75,126.25C22.4,126.25%2021.66,126.8%2020.75,127.75C19.79,128.75%2019.11,129.25%2018.71,129.25C18.34,129.25%2017.8,129.62%2017.25,130.25C16.67,130.91%2016.16,131.25%2015.75,131.25C15.34,131.25%2014.83,131.59%2014.25,132.25C13.67,132.91%2013.16,133.25%2012.75,133.25C12.34,133.25%2011.83,133.59%2011.25,134.25C10.64,134.95%2010.17,135.25%209.7,135.25C9.28,135.25%208.92,135.44%208.75,135.75C8.58,136.06%208.22,136.25%207.8,136.25C7.33,136.25%206.86,136.55%206.25,137.25C5.67,137.91%205.16,138.25%204.75,138.25C4.34,138.25%203.83,138.59%203.25,139.25C2.19,140.45%201.14,140.59%200.44,139.63Z'/></g></defs><use%20href='%23mo'%20transform='translate(-169.37,-164.00)'/><use%20href='%23mo'%20transform='translate(-169.37,16.00)'/><use%20href='%23mo'%20transform='translate(-169.37,196.00)'/><use%20href='%23mo'%20transform='translate(73.50,-164.00)'/><use%20href='%23mo'%20transform='translate(73.50,16.00)'/><use%20href='%23mo'%20transform='translate(73.50,196.00)'/><use%20href='%23mo'%20transform='translate(316.37,-164.00)'/><use%20href='%23mo'%20transform='translate(316.37,16.00)'/><use%20href='%23mo'%20transform='translate(316.37,196.00)'/><use%20href='%23mo'%20transform='translate(-47.07,-16.00)%20rotate(180)%20translate(-0.7,0)'/><use%20href='%23mo'%20transform='translate(-47.07,164.00)%20rotate(180)%20translate(-0.7,0)'/><use%20href='%23mo'%20transform='translate(-47.07,344.00)%20rotate(180)%20translate(-0.7,0)'/><use%20href='%23mo'%20transform='translate(195.80,-16.00)%20rotate(180)%20translate(-0.7,0)'/><use%20href='%23mo'%20transform='translate(195.80,164.00)%20rotate(180)%20translate(-0.7,0)'/><use%20href='%23mo'%20transform='translate(195.80,344.00)%20rotate(180)%20translate(-0.7,0)'/><use%20href='%23mo'%20transform='translate(438.67,-16.00)%20rotate(180)%20translate(-0.7,0)'/><use%20href='%23mo'%20transform='translate(438.67,164.00)%20rotate(180)%20translate(-0.7,0)'/><use%20href='%23mo'%20transform='translate(438.67,344.00)%20rotate(180)%20translate(-0.7,0)'/></svg>");
+}
+
+
+/* --------------------------------------------------------------------------
+   KHUON CHUNG
+   Moi lop trang tri deu: khong bat su kien chuot, nam duoi noi dung, va bi
+   section cat khi tran mep. Section da co overflow:hidden trong Screen Lock.
+   -------------------------------------------------------------------------- */
+.d-sil::before,
+.d-pat::after{
+  content:"";position:absolute;pointer-events:none;z-index:0;
+}
+/* Bong qua cho: mot hinh vector to duoc to mau bang background-color.
+   GOC XOAY LUON 0deg. Dieu ran #1. Khong bao gio them transform:rotate. */
+.d-sil::before{
+  -webkit-mask-image:var(--quacho);mask-image:var(--quacho);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-size:contain;mask-size:contain;
+}
+/* Khoi hoa van cung dung mask. Ly do: SVG nap qua url() KHONG ke thua duoc
+   `currentColor` cua trang, dat lam background se ra mau den. Dung mask roi
+   to bang background-color thi doi duoc ca 4 mau thuong hieu bang token.
+   Moi khoi deu ghep them mot mask chuyen sac o canh trong, nho vay khong
+   canh nao cat ngang mot motif. Dieu ran #4. */
+
+/* CAT PHAN TRAN MEP. BAT BUOC.
+   page.css chi dat overflow:hidden cho section BEN TRONG khoi Screen Lock,
+   tuc tu 1041px tro len. Duoi nguong do section khong cat gi ca, nen bong
+   qua cho dat `right:-9%` se thoat ra ngoai va lam trang cuon ngang.
+   Da do o 768x1024: scrollWidth nhay tu 753 len 873.
+   Dat o day chu khong dat trong page.css, de lop trang tri tu chiu trach
+   nhiem cho phan tran cua chinh no. */
+.facts,.loc,.blocks,.dev{overflow:hidden}
+/* Da bo .life va .news khoi danh sach: hai section nay khong con lop
+   trang tri nao nen khong co gi tran mep de phai cat. */
+
+/* ==========================================================================
+   01. HERO - Thanh phan B (doi 24/09/2026 theo yeu cau client)
+   Truoc la bong qua cho lon goc duoi phai. Client yeu cau lam GIONG Brand
+   Story: texture qua cho chim goc TREN TRAI, mo dan sang phai va xuong duoi,
+   va BO bong goc duoi phai. Nam tren scrim (z-index 1), duoi chu (.hero-in 2).
+   ========================================================================== */
+.hero{position:relative}
+/* 30/09/2026: client yeu cau BO hoa tiet qua cho o Hero. Hero khong con decor. */
+.hero::after{content:none}
+
+/* ==========================================================================
+   02. STORY - Thanh phan B
+   Texture chim trong vung toi ben trai cua scrim, mo dan sang phia buc anh.
+   Khong dat logo to o day: mep trai da la vung chu.
+   ========================================================================== */
+.story::after{
+  content:"";position:absolute;pointer-events:none;z-index:1;left:0;top:0;bottom:0;width:min(46%,760px);
+  -webkit-mask-image:var(--pattern),
+    linear-gradient(90deg,#000 0%,#000 30%,transparent 100%),
+    linear-gradient(180deg,#000 0%,#000 34%,transparent 64%);mask-image:var(--pattern),
+    linear-gradient(90deg,#000 0%,#000 30%,transparent 100%),
+    linear-gradient(180deg,#000 0%,#000 34%,transparent 64%);
+  -webkit-mask-size:var(--tile),cover,cover;mask-size:var(--tile),cover,cover;
+  -webkit-mask-repeat:repeat,no-repeat,no-repeat;mask-repeat:repeat,no-repeat,no-repeat;
+  /* BA lop mask nen can HAI gia tri composite. Truoc day chi co mot, Chrome
+     noi suy phan thieu thanh `add`, tuc cac lop CONG DON thay vi giao nhau.
+     Lop gradient co mask-size:cover nen phu kin, cong vao la mat na dac hoan
+     toan. Cung bo `-webkit-mask-composite`: no dung bo gia tri cu cua WebKit,
+     dung chung voi ban chuan thi Chrome anh xa ca hai vao mot thuoc tinh noi
+     bo va gay xung dot. Chrome, Safari, Firefox deu ho tro ban chuan. */
+  mask-composite:intersect,intersect;
+  /* Round 2 (28/09/2026): nen moi la anh ho boi sang, dong Bronze .30 cu qua
+     nang. Doi sang cung cong thuc voi Hero: Beige Sand mo. */
+  background-color:var(--beige-sand);opacity:.13;
+}
+
+/* ==========================================================================
+   03. FACTS - Thanh phan A
+   Bong khong lo ap mep phai, tran ra ngoai. Nen Off White nen dung Bronze.
+   Da GO nen hoa van li ti cu o day, xem muc GO BO o cuoi file.
+   ========================================================================== */
+.facts::before{
+  content:"";position:absolute;pointer-events:none;z-index:0;
+  right:-9%;top:50%;transform:translateY(-50%);
+  width:clamp(280px,30vw,700px);height:clamp(315px,33.7vw,786px);
+  -webkit-mask-image:var(--quacho);mask-image:var(--quacho);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-size:contain;mask-size:contain;
+  background-color:var(--champagne-bronze);opacity:.085;
+}
+.facts>.wrap{position:relative;z-index:1}
+
+/* ==========================================================================
+   04. POSITION - Thanh phan B
+   Dai hoa tiet doc ap mep trai. Thay dai cu vo hat bang tile dung co.
+   Be ngang dai = dung 2 o lap tron ven theo chieu ngang. Chieu doc tran.
+   ========================================================================== */
+/* 24/09/2026: client yeu cau DOI dai hoa tiet sang MEP PHAI, dam nhat o sat
+   mep phai roi mo dan ve phia trai (gradient 270deg). */
+.loc::before{
+  /* Round 2 (29/09/2026): client yeu cau dai hoa tiet o MEP PHAI, nam DUOI anh
+     masterplan, bo cuc giong hoa tiet Section Form (.reg::after, doi xung). */
+  content:"";position:absolute;pointer-events:none;z-index:0;left:auto;right:0;top:0;bottom:0;width:min(26%,440px);
+  -webkit-mask-image:var(--pattern),
+    linear-gradient(270deg,#000 0%,#000 30%,transparent 100%);mask-image:var(--pattern),
+    linear-gradient(270deg,#000 0%,#000 30%,transparent 100%);
+  -webkit-mask-position:top right,center;mask-position:top right,center;
+  -webkit-mask-size:var(--tile),cover;mask-size:var(--tile),cover;
+  -webkit-mask-repeat:repeat,no-repeat;mask-repeat:repeat,no-repeat;
+  mask-composite:intersect;
+  background-color:var(--beige-sand);opacity:.20;
+}
+.loc>.wrap{position:relative;z-index:1}
+
+/* ==========================================================================
+   05. MAP - Thanh phan C
+   Ban do da rat day thong tin, decor to se tranh chap. Chi dung icon nho.
+   ========================================================================== */
+.map-head .eyebrow{position:relative;padding-left:1.9rem}
+.map-head .eyebrow::before{
+  content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:1.15rem;height:1.29rem;
+  -webkit-mask-image:var(--quacho);mask-image:var(--quacho);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-size:contain;mask-size:contain;
+  background-color:var(--champagne-bronze);opacity:.85;
+}
+
+/* ==========================================================================
+   06. LIFESTYLE - DA GO THEO YEU CAU CLIENT
+   Bong qua cho goc tren phai da duoc go bo. Section nay gio khong mang decor.
+   ========================================================================== */
+
+/* ==========================================================================
+   07. BLOCKS - Thanh phan B
+   Khoi hoa van kien truc dang chu nhat, dat vao khoang trong ben phai khoi
+   tieu de. Cao 2 motif (nhu ban goc). Da thu giam xuong 1 motif khi tieu de
+   doi sang 1 dong (khong xuong dong nua, khoi header thap hon), nhung hoa
+   van 1 motif nhin cut/thieu — khong dep. Do lai bang getBoundingClientRect:
+   o 1440x900 khoang trong tu dinh section den luoi anh la ~262px (thua nhieu
+   so voi 184px cua 2 motif), o nguong thap 1366x650 con ~161px (van du). Nen
+   giu nguyen 2 motif, khong can giam. */
+/* 30/09/2026: thieu position:relative o duoi 1041px lam dai hoa van nay
+   bam vao dau trang, hien len goc tren phai Hero tren tablet. */
+.blocks{position:relative}
+.blocks::after{
+  content:"";position:absolute;pointer-events:none;z-index:0;right:0;top:0;width:min(38%,620px);height:calc(var(--pat-h) * 2);
+  -webkit-mask-image:var(--pattern),
+    linear-gradient(90deg,transparent 0%,#000 38%,#000 100%);mask-image:var(--pattern),
+    linear-gradient(90deg,transparent 0%,#000 38%,#000 100%);
+  -webkit-mask-size:var(--tile),cover;mask-size:var(--tile),cover;
+  -webkit-mask-repeat:repeat,no-repeat;mask-repeat:repeat,no-repeat;
+  mask-composite:intersect;
+  background-color:var(--champagne-bronze);opacity:.22;
+}
+
+/* ==========================================================================
+   08. RESIDENCES - Thanh phan C
+   Icon qua cho lam dau tab dang chon, thay cho gach chan don thuan.
+   ========================================================================== */
+.resi-tabs button[aria-selected="true"]{position:relative}
+.resi-tabs button[aria-selected="true"]::after{
+  content:"";position:absolute;left:50%;bottom:-1.45rem;
+  transform:translateX(-50%);
+  width:.82rem;height:.92rem;
+  -webkit-mask-image:var(--quacho);mask-image:var(--quacho);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-size:contain;mask-size:contain;
+  background-color:var(--champagne-bronze);
+}
+
+/* ==========================================================================
+   09. NEWS - DA GO THEO YEU CAU CLIENT
+   Bong qua cho goc duoi trai da duoc go bo. Section nay gio khong mang decor.
+   ========================================================================== */
+
+/* ==========================================================================
+   10. REGISTER - Thanh phan B
+   Dai hoa tiet doc o le trai, nam duoi lop scrim nen chim vao nen anh.
+   ========================================================================== */
+.reg::after{
+  content:"";position:absolute;pointer-events:none;z-index:1;left:0;top:0;bottom:0;width:min(26%,440px);
+  -webkit-mask-image:var(--pattern),
+    linear-gradient(90deg,#000 0%,#000 30%,transparent 100%);mask-image:var(--pattern),
+    linear-gradient(90deg,#000 0%,#000 30%,transparent 100%);
+  -webkit-mask-size:var(--tile),cover;mask-size:var(--tile),cover;
+  -webkit-mask-repeat:repeat,no-repeat;mask-repeat:repeat,no-repeat;
+  mask-composite:intersect;
+  background-color:var(--beige-sand);opacity:.20;
+}
+.reg>.wrap{position:relative;z-index:2}
+
+/* ==========================================================================
+   11. DEVELOPER - Thanh phan A
+   Bong lon sau cot chu ben trai. Nen Off White nen Bronze rat nhe.
+   Da GO nen hoa van li ti cu o day.
+   ========================================================================== */
+/* Dieu ran #2: decor khong duoc tranh cho voi chu. Truoc day .dev chi co
+   MOT khoi luoi (dev-grid) nen bong la nay dat giua section (top:50%) roi
+   vao khoang thua canh chu Gamuda. Tu khi tach them dev-head + dev-bottom
+   (Section 13 phuc theo REVISION-BRIEF), top:50% lai de thang len doan van
+   ban dev-inv p — vi pham dieu ran. Doi xuong vung .dev-bottom (luoi logo
+   doi ngu/du an, thua chu hon, giong cach Facts dat bong canh cum so lieu). */
+.dev::before{
+  content:"";position:absolute;pointer-events:none;z-index:0;
+  left:-6%;top:80%;transform:translateY(-50%);
+  width:clamp(250px,26vw,600px);height:clamp(281px,29.2vw,674px);
+  -webkit-mask-image:var(--quacho);mask-image:var(--quacho);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-size:contain;mask-size:contain;
+  background-color:var(--champagne-bronze);opacity:.07;
+}
+.dev>.wrap{position:relative;z-index:1}
+
+/* ==========================================================================
+   12. FOOTER - DA GO THEO YEU CAU CLIENT
+   Dai hoa van ngang tren dai phap nhan da duoc go bo. Footer gio khong decor.
+   ========================================================================== */
+
+/* ==========================================================================
+   KHUNG CHO PHAI DUC, KHONG DUOC TRONG SUOT
+   Decor da nam dung lop duoi roi: do bang elementFromPoint tren luoi 96 diem
+   moi section, khong diem nao cham vao lop trang tri. Nhung nhieu khung cho
+   dung nen trong suot:
+       .ncard .ph   chi  rgba(244,240,231,.08)
+       .slot-box    chi  rgba(89,74,66,.04), khong co mau nen
+   nen bong qua cho o duoi ANH XUYEN LEN, trong nhu decor dang de len the.
+   Cho moi khung cho mot nen duc la het. Van giu soc cheo lam ket cau.
+   ========================================================================== */
+.ncard .ph{
+  background:
+    repeating-linear-gradient(135deg,rgba(244,240,231,.07) 0 10px,transparent 10px 20px),
+    #63534A;                                   /* Hoa Dau Brown sang hon mot bac */
+}
+.slot-box{
+  background:
+    repeating-linear-gradient(135deg,rgba(89,74,66,.05) 0 8px,transparent 8px 16px),
+    var(--bg-0);                               /* Off White duc */
+}
+/* 04 POSITION. Khung anh 4:5 nam ngay tren dai hoa van doc.
+   `.loc-fig` chi co nen rgba(251,250,246,.06) va `.loc-fig .ph` chi co soc cheo,
+   ca hai gan nhu trong suot, nen dai hoa van o duoi ANH XUYEN LEN va trong
+   nhu dai dang chay xuyen qua buc anh. Dung y cua ban duyet F04-position.jpg
+   la dai chay lien mach doc mep trai con khung anh DE LEN no.
+   Cho khung mot nen duc la du. Cung tong #63534A voi .ncard .ph, tuc Hoa Dau
+   Brown sang hon nen section mot bac, nen khung van noi len tren nen toi. */
+.loc-fig{background:#63534A}
+.loc-fig .ph{
+  background:
+    repeating-linear-gradient(135deg,rgba(244,240,231,.05) 0 12px,transparent 12px 24px),
+    #63534A;
+}
+/* Khung anh Block va Residences cung nam tren vung co decor */
+.blk-fig,.resi-fig,.ncard-fig,.life-main,.life-side,.loc-fig{isolation:isolate}
+
+/* ==========================================================================
+   GO BO NEN HOA VAN LI TI CU
+   Ba section Facts, Lifestyle va Developer dang rai tile toan nen o
+   background-size 280px, tuc motif chi 47x44px. Dieu ran #3 cam thang.
+   Ba section nay da co decor moi thay the o tren.
+   ========================================================================== */
+.facts::after,.life::after,.dev::after{content:none}
+
+/* ==========================================================================
+   RESPONSIVE
+   Duoi 1041px cac luoi hai cot sup ve mot cot, vung trong bien mat, bong lon
+   se de va vao chu. Thu nho va day ra sat mep, giu duy nhat cac dai hoa van.
+   ========================================================================== */
+@media (max-width:1040px){
+  .facts::before,.dev::before{
+    width:clamp(190px,34vw,300px);height:clamp(213px,38.2vw,337px);opacity:.06}
+  .facts::before{right:-16%}
+  .dev::before{left:-16%}
+  .story::after{width:min(62%,420px)}
+  .blocks::after{display:none} /* 30/09: tablet tieu de tran sang phai, de len hoa van -> an */
+  .reg::after{width:min(40%,260px)}
+}
+@media (max-width:640px){
+  /* Man rat hep: bo het bong lon, chi giu dai hoa van doc.
+     Dieu ran #2, decor khong duoc phep tranh cho voi chu. */
+  .facts::before,.dev::before{display:none}
+  .blocks::after{display:none}
+  .story::after{width:min(72%,320px);opacity:.13}
+  .reg::after{width:min(46%,190px)}
+}
+
+/* Giam chuyen dong: lop trang tri von tinh, khong co gi phai tat. */
+
+/* R3 (30/09/2026): Section 13 them hoa tiet GOC TREN PHAI cho do trong
+   (client). Luoi hoa tiet --pattern, dam o goc roi tan dan theo duong cheo
+   (radial), khong cham vao doan gioi thieu. Khac Section Form lien truoc
+   (dai doc mep phai) va la lon goc duoi trai cua chinh section nay. */
+section.dev::after{content:"";position:absolute;z-index:0;pointer-events:none;inset:auto;
+  top:0;right:0;width:min(40vw,760px);height:calc(var(--nav-h) + 20vh);
+  background:var(--beige-sand);opacity:.55;mix-blend-mode:normal;
+  -webkit-mask-image:var(--pattern),radial-gradient(ellipse 100% 100% at 100% 0%,#000 0%,rgba(0,0,0,.55) 38%,transparent 72%);
+  mask-image:var(--pattern),radial-gradient(ellipse 100% 100% at 100% 0%,#000 0%,rgba(0,0,0,.55) 38%,transparent 72%);
+  -webkit-mask-size:var(--tile),100% 100%;mask-size:var(--tile),100% 100%;
+  -webkit-mask-repeat:repeat,no-repeat;mask-repeat:repeat,no-repeat;
+  -webkit-mask-position:top right,center;mask-position:top right,center;
+  -webkit-mask-composite:source-in;mask-composite:intersect}
+@media (max-width:640px){ section.dev::after{width:70vw;height:34vh} }
