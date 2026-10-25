@@ -1,4 +1,4 @@
-﻿/* Interaction hierarchy: navy primary, quiet neutral secondary, small yellow indicators.
+/* Interaction hierarchy: contextual neutral surfaces, navy details, small yellow indicators.
    No section backgrounds, typography, dimensions or navigation geometry here. */
 :is(.cta, .btn-vr, .fab a, .fab button, .drawer-act, .news-nav button,
   .resi-tabs button, .tabs button, .np-chip, .np-chat-send-btn, .np-quick-act-btn,
@@ -7,28 +7,42 @@
   transition-duration: .22s;
   transition-timing-function: var(--ease);
 }
-/* Solid CTA on light surfaces. Existing image overlays remain secondary. */
+/* Deep bronze on light surfaces; preserve primary/secondary hierarchy. */
 .cta:not(.cta--onimg), .np-lead-btn-submit, .np-chat-send-btn {
-  background: var(--brand-navy); color: var(--brand-on-navy); border-color: var(--brand-navy);
+  background: var(--accent-deep); color: white; border-color: var(--accent-deep);
 }
 .cta:not(.cta--onimg):hover, .np-lead-btn-submit:hover, .np-chat-send-btn:hover:not(:disabled) {
-  background: var(--brand-navy); color: var(--brand-on-navy); border-color: var(--brand-navy);
+  background: var(--hoadau-brown); color: white; border-color: var(--brand-navy);
+  box-shadow: none;
+}
+/* Hero uses the original glass material and a neutral ivory primary. */
+.hero .hero-cta .cta {
+  background: rgba(30,24,20,.32); color: white; border-color: rgba(255,255,255,.7);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.hero .hero-cta .cta:not(.cta--onimg) { background: var(--bg-0); color: var(--tx-1); border-color: var(--bg-0); }
+.hero .hero-cta .cta:hover {
+  background: var(--bg-0); color: var(--brand-navy); border-color: var(--brand-navy);
   box-shadow: inset 0 -2px var(--brand-yellow);
 }
-.cta--onimg:hover { box-shadow: inset 0 -2px var(--brand-yellow); }
+.nav .nav-cta, .nav .nav-cta:hover {
+  background: var(--bg-0); color: var(--tx-1); border-color: var(--line-2); box-shadow: none;
+}
+.nav .nav-cta:hover { color: var(--brand-navy); border-color: var(--brand-navy); }
 /* Preserve the champagne header and logo variants, including the transparent hero state. */
 .nav.is-solid .lang button.on, .nav.is-solid .lang button:hover { color: var(--brand-navy); }
 .lang button.on { text-decoration: underline; text-decoration-color: var(--brand-yellow); text-underline-offset: 5px; }
 .nav.is-solid .btn-burger:hover { color: var(--brand-navy); }
 .nav .btn-vr, .nav.is-solid .btn-vr { background: transparent; box-shadow: none; }
-.nav.is-solid .btn-vr { color: var(--brand-navy); border-color: var(--brand-border); }
+.nav.is-solid .btn-vr { color: var(--tx-1); border-color: var(--line-2); }
 .nav:not(.is-solid) .btn-vr:hover, .nav.is-solid .btn-vr:hover {
-  background: var(--brand-navy); color: white; border-color: var(--brand-navy); box-shadow: none;
+  background: var(--bg-0); color: var(--brand-navy); border-color: var(--brand-navy); box-shadow: none;
 }
-/* Only the direct consultation action gets a filled brand colour in the floating stack. */
-.fab .fab-call { background: var(--brand-navy); color: white; }
-.fab .fab-call:hover { background: var(--brand-navy); box-shadow: inset 0 -2px var(--brand-yellow); }
-.fab :is(a, button):not(.fab-call):hover { box-shadow: inset 0 0 0 2px var(--brand-yellow); }
+/* One olive material unifies call, Zalo, chat, calculator and back-to-top. */
+.fab :is(a, button) { background: var(--dark-pine); color: var(--tx-on-dark); }
+.fab :is(a, button):hover {
+  background: var(--bg-0); color: var(--brand-navy); box-shadow: inset 0 -2px var(--brand-yellow);
+}
 /* Ghost/outline actions stay quiet until used. */
 .drawer-act:hover, button.drawer-act:hover, .drawer-nav a:hover,
 .pop-close:hover, .lb-close:hover, .ldoc-close:hover, .drawer-close:hover {
@@ -36,7 +50,7 @@
 }
 .drawer-nav a:hover i { color: var(--brand-navy); }
 .pop-close:hover, .lb-close:hover, .ldoc-close:hover, .drawer-close:hover {
-  background: var(--brand-navy); color: white; border-color: var(--brand-navy);
+  background: var(--bg-0); color: var(--brand-navy); border-color: var(--brand-navy);
 }
 /* On the dark registration surface, a neutral primary retains separation. */
 .reg-form .cta:not(.cta--onimg), .reg-form .cta:not(.cta--onimg):hover {
@@ -47,14 +61,14 @@
 .resi-tabs button:hover, .resi-tabs button[aria-selected="true"] {
   color: var(--brand-navy); border-bottom-color: var(--brand-navy);
 }
-.tabs button[aria-selected="true"] { background: var(--brand-navy); color: white; box-shadow: inset 0 -2px var(--brand-yellow); }
+.tabs button[aria-selected="true"] { background: var(--bg-0); color: var(--brand-navy); box-shadow: inset 0 -2px var(--brand-yellow); }
 .news-dots button.on { background: var(--brand-yellow); }
 /* Forms retain neutral fields and semantic validation colours. */
 .consent input, .np-chat-consent input { accent-color: var(--brand-navy); }
 .pop .field :is(input, select):focus, .np-chat-input:focus, .np-lead-input:focus {
   border-color: var(--brand-navy); box-shadow: 0 0 0 2px var(--brand-border);
 }
-.choice input:checked + span { background: var(--brand-navy); border-color: var(--brand-navy); color: white; }
+.choice input:checked + span { background: var(--bg-0); border-color: var(--brand-navy); color: var(--brand-navy); }
 .reg .field input:focus { border-color: var(--brand-yellow); box-shadow: 0 0 0 1px var(--brand-yellow); }
 /* Chat header stays olive. Quick replies/secondary contact actions are outlined. */
 .np-chip, .np-quick-act-btn, .np-quick-act-btn--zalo, .np-quick-act-btn--call {
@@ -68,13 +82,13 @@
 :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible,
 .np-chat-popup :focus-visible {
   outline: 2px solid var(--brand-navy); outline-offset: 3px;
-  box-shadow: 0 0 0 3px var(--brand-yellow);
+  box-shadow: 0 0 0 3px var(--bg-0);
 }
 .choice input:focus-visible + span { outline: 2px solid var(--brand-yellow); outline-offset: 3px; }
 :is(button, input, select, textarea):disabled, [aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
-:is(button, .cta):active:not(:disabled):not([aria-disabled="true"]) { box-shadow: inset 0 0 0 2px var(--brand-yellow); }
+:is(button, .cta):active:not(:disabled):not([aria-disabled="true"]) { box-shadow: inset 0 -2px var(--brand-yellow); }
 .np-chat-send-btn:disabled, .np-chat-send-btn:disabled:hover {
-  background: var(--brand-navy); color: white; box-shadow: none;
+  background: var(--accent-deep); color: white; box-shadow: none;
 }
 @media (prefers-reduced-motion: reduce) {
   :is(.cta, .btn-vr, .fab a, .fab button, .drawer-act, .news-nav button,
