@@ -1,0 +1,33 @@
+/* Shared by the site and its standalone map. Section/artwork tokens stay intact. */
+:root {
+  --brand-navy: #2527A3;
+  --brand-yellow: #FFDF00;
+  --brand-on-navy: #FFFFFF;
+  --brand-on-yellow: #2527A3;
+  --brand-soft: rgb(37 39 163 / 6%);
+  --brand-border: rgb(37 39 163 / 28%);
+  --brand-focus: #2527A3;
+}
+/* Only HTML controls inside the map; geographic layer colours are unchanged. */
+#lm :is(button, .hi, .band, li.go) {
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+#lm :is(button, [tabindex]):focus-visible {
+  outline: 2px solid var(--brand-navy); outline-offset: 3px;
+}
+#lm .bd-tabs button.on, #lm .presets button.on {
+  background: var(--brand-navy); color: var(--brand-on-navy);
+  border-color: var(--brand-navy); box-shadow: inset 0 -2px var(--brand-yellow);
+}
+#lm :is(.bd-tabs button, .presets button):hover:not(.on), #lm #ctl button:hover,
+#lm .icon-btn:hover, #lm #card .x:hover {
+  color: var(--brand-navy); background: var(--brand-soft); border-color: var(--brand-border);
+}
+#lm .hi.on, #lm .band.on { background: var(--brand-soft); box-shadow: inset 2px 0 var(--brand-navy); }
+#lm .hi.on .k { color: var(--brand-navy); }
+#lm .lg.on .tick { background: var(--brand-navy); border-color: var(--brand-navy); color: white; }
+#lm .cats button.on { border-color: var(--brand-border); background: var(--brand-soft); }
+#lm #ctl button:active { color: var(--brand-navy); box-shadow: inset 0 0 0 2px var(--brand-yellow); }
+@media (prefers-reduced-motion: reduce) {
+  #lm :is(button, .hi, .band, li.go) { transition-duration: 0s; }
+}

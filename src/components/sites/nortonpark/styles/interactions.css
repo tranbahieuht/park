@@ -1,158 +1,83 @@
-/* Interactive brand layer. Keep the original section backgrounds, artwork,
-   typography and geometry; tokens for those remain in brand-tokens.css. */
-:where(a, button, input, select, textarea, summary, .choice span, .nlink) {
+﻿/* Interaction hierarchy: navy primary, quiet neutral secondary, small yellow indicators.
+   No section backgrounds, typography, dimensions or navigation geometry here. */
+:is(.cta, .btn-vr, .fab a, .fab button, .drawer-act, .news-nav button,
+  .resi-tabs button, .tabs button, .np-chip, .np-chat-send-btn, .np-quick-act-btn,
+  .np-chat-header-close, .np-chat-reset, .pop-close, .lb-close, .ldoc-close) {
   transition-property: color, background-color, border-color, box-shadow, opacity, transform;
-  transition-duration: .25s;
+  transition-duration: .22s;
   transition-timing-function: var(--ease);
 }
-:is(.cta, .fab a, .fab button, .np-chat-send-btn, .np-lead-btn-submit,
-  .lang button, .np-chip, .np-quick-act-btn) {
-  transition-property: color, background-color, border-color, box-shadow, opacity, transform;
-}
-::selection { background: var(--brand-yellow); color: var(--brand-on-yellow); }
-:focus-visible, .np-chat-popup :focus-visible {
-  outline: 2px solid var(--brand-focus);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 5px #fff;
-}
-
-/* Both header states use the same reliable contrast. Keep the existing logo. */
-.nav, .nav.is-solid {
-  background: var(--brand-navy);
-  color: var(--brand-on-navy);
-  border-bottom-color: rgb(255 255 255 / 22%);
-  --brand-focus: var(--brand-yellow);
-}
-.nav.is-solid .brand-light { display: block; }
-.nav.is-solid .brand-dark { display: none; }
-.lang button { opacity: 1; color: var(--brand-on-navy); }
-.lang button.on, .lang button:hover, .btn-burger:hover { color: var(--brand-yellow); }
-.lang button.on { text-decoration: underline; text-underline-offset: 5px; }
-.btn-vr, .nav.is-solid .btn-vr, .nav.is-solid .btn-eye {
-  background: var(--brand-navy); color: var(--brand-on-navy); border-color: var(--brand-yellow);
-}
-.nav:not(.is-solid) .btn-vr:hover, .nav.is-solid .btn-vr:hover {
-  background: var(--brand-yellow); color: var(--brand-on-yellow); box-shadow: none;
-}
-
-/* High priority CTA = yellow; supporting actions = navy. */
-.cta, .np-lead-btn-submit {
-  background: var(--brand-yellow); color: var(--brand-on-yellow); border-color: var(--brand-yellow);
-}
-.cta:hover, .np-lead-btn-submit:hover {
-  background: var(--brand-navy); color: var(--brand-on-navy); border-color: var(--brand-yellow);
-}
-.cta--onimg, .fab a, .fab button, .drawer-act, button.drawer-act,
-.drawer-close, .pop-close, .lb-close, .ldoc-close,
-.news-nav button, .news-all, .map-zoom, .np-chat-send-btn,
-.np-chip, .np-quick-act-btn, .ldoc-body .ldoc-link {
+/* Solid CTA on light surfaces. Existing image overlays remain secondary. */
+.cta:not(.cta--onimg), .np-lead-btn-submit, .np-chat-send-btn {
   background: var(--brand-navy); color: var(--brand-on-navy); border-color: var(--brand-navy);
 }
-.cta--onimg:hover, .fab a:hover, .fab button:hover, .drawer-act:hover,
-.drawer-close:hover, .pop-close:hover, .lb-close:hover, .ldoc-close:hover,
-.news-nav button:hover, .news-all:hover, .news-all:focus-visible,
-.map-zoom:hover, .np-chat-send-btn:hover:not(:disabled), .np-chip:hover,
-.np-quick-act-btn:hover, .ldoc-body .ldoc-link:hover, .ldoc-body .ldoc-link:focus-visible {
-  background: var(--brand-yellow); color: var(--brand-on-yellow); border-color: var(--brand-navy);
+.cta:not(.cta--onimg):hover, .np-lead-btn-submit:hover, .np-chat-send-btn:hover:not(:disabled) {
+  background: var(--brand-navy); color: var(--brand-on-navy); border-color: var(--brand-navy);
+  box-shadow: inset 0 -2px var(--brand-yellow);
 }
-.fab .fab-calc { background: var(--brand-yellow); color: var(--brand-on-yellow); }
-.fab .fab-calc:hover { background: var(--brand-navy); color: var(--brand-on-navy); }
-
-.drawer-nav a, .drawer-nav i, .resi-cta, .cat-list .type-link,
-a.info-v, .ldoc-body a, .consent label a, .privacy a {
-  color: var(--brand-navy);
+.cta--onimg:hover { box-shadow: inset 0 -2px var(--brand-yellow); }
+/* Preserve the champagne header and logo variants, including the transparent hero state. */
+.nav.is-solid .lang button.on, .nav.is-solid .lang button:hover { color: var(--brand-navy); }
+.lang button.on { text-decoration: underline; text-decoration-color: var(--brand-yellow); text-underline-offset: 5px; }
+.nav.is-solid .btn-burger:hover { color: var(--brand-navy); }
+.nav .btn-vr, .nav.is-solid .btn-vr { background: transparent; box-shadow: none; }
+.nav.is-solid .btn-vr { color: var(--brand-navy); border-color: var(--brand-border); }
+.nav:not(.is-solid) .btn-vr:hover, .nav.is-solid .btn-vr:hover {
+  background: var(--brand-navy); color: white; border-color: var(--brand-navy); box-shadow: none;
 }
-.drawer-nav a:hover, .drawer-nav a:focus-visible {
-  color: var(--brand-navy); background: var(--brand-yellow);
+/* Only the direct consultation action gets a filled brand colour in the floating stack. */
+.fab .fab-call { background: var(--brand-navy); color: white; }
+.fab .fab-call:hover { background: var(--brand-navy); box-shadow: inset 0 -2px var(--brand-yellow); }
+.fab :is(a, button):not(.fab-call):hover { box-shadow: inset 0 0 0 2px var(--brand-yellow); }
+/* Ghost/outline actions stay quiet until used. */
+.drawer-act:hover, button.drawer-act:hover, .drawer-nav a:hover,
+.pop-close:hover, .lb-close:hover, .ldoc-close:hover, .drawer-close:hover {
+  background: var(--brand-soft); color: var(--brand-navy); border-color: var(--brand-border);
 }
-.resi-cta { border-color: var(--brand-navy); }
-.resi-cta:hover, .cat-list .type-link:hover, .cat-list .type-link:focus-visible,
-.ldoc-body a:hover, .consent label a:hover, .privacy a:hover {
-  color: var(--brand-navy); text-decoration: underline; text-decoration-color: var(--brand-navy);
+.drawer-nav a:hover i { color: var(--brand-navy); }
+.pop-close:hover, .lb-close:hover, .ldoc-close:hover, .drawer-close:hover {
+  background: var(--brand-navy); color: white; border-color: var(--brand-navy);
 }
-.cat--ltd .type-link, .cat--ltd .type-link:hover, .cat--ltd .type-link:focus-visible,
-.pop-info a.info-v, .reg-form .consent a, .reg-form .privacy a,
-.f-faq-item a { color: var(--brand-yellow); }
-a.info-v:hover { color: var(--brand-navy); text-decoration: underline; }
-.pop-info a.info-v:hover { color: var(--brand-yellow); }
-.f-list a:hover, .f-v:hover, .f-by-row a:hover, .f-faq-sum:hover,
-.f-faq-item[open] .f-faq-sum, .f-faq-sum .ic, .foot a:hover { color: var(--brand-yellow); }
-
-/* Tabs, carousel positions and form selection never rely on color alone. */
-.tabs { background: var(--brand-soft); border-color: var(--brand-border); }
-.tabs button, .resi-tabs button { color: var(--brand-navy); }
-.tabs button:hover { background: var(--brand-soft); }
-.tabs button[aria-selected="true"] {
-  background: var(--brand-yellow); color: var(--brand-on-yellow);
+/* On the dark registration surface, a neutral primary retains separation. */
+.reg-form .cta:not(.cta--onimg), .reg-form .cta:not(.cta--onimg):hover {
+  background: var(--bg-0); color: var(--brand-navy); border-color: var(--bg-0);
 }
+.news-nav button:hover { color: var(--brand-yellow); border-color: var(--brand-yellow); }
+.resi-cta:hover, .cat-list .type-link:hover { text-decoration: underline; text-decoration-color: var(--brand-navy); }
 .resi-tabs button:hover, .resi-tabs button[aria-selected="true"] {
   color: var(--brand-navy); border-bottom-color: var(--brand-navy);
-  box-shadow: 0 3px 0 var(--brand-yellow);
 }
-.news-dots button, .dot { background: #fff; }
-.news-dots button.on, .dot.on { background: var(--brand-yellow); }
-.nlink { color: var(--brand-on-navy); background: var(--brand-navy); border-color: var(--brand-yellow); }
-.ncard:hover .nlink, .ncard:focus-visible .nlink {
-  background: var(--brand-yellow); color: var(--brand-on-yellow); border-color: var(--brand-yellow);
-}
-.ct { border-color: var(--brand-border); }
-.ct .ct-n, .ct .ct-a, .ct .ic { color: var(--brand-navy); }
-.ct:hover { border-color: var(--brand-navy); background: var(--brand-soft); }
-.ct--ltd, .ct--ltd:hover { background: var(--brand-navy); border-color: var(--brand-navy); }
-.ct--ltd .ct-n, .ct--ltd .ct-a, .ct--ltd .ct-c { color: var(--brand-on-navy); }
-.ct--ltd .ic, .ct--ltd:hover .ct-n { color: var(--brand-yellow); }
-.choice span { background: var(--brand-navy); color: var(--brand-on-navy); border-color: #fff; }
-.choice:hover span { border-color: var(--brand-yellow); }
-.choice input:checked + span {
-  background: var(--brand-yellow); color: var(--brand-on-yellow); border-color: var(--brand-yellow);
-}
-.choice input:focus-visible + span { outline-color: var(--brand-yellow); }
+.tabs button[aria-selected="true"] { background: var(--brand-navy); color: white; box-shadow: inset 0 -2px var(--brand-yellow); }
+.news-dots button.on { background: var(--brand-yellow); }
+/* Forms retain neutral fields and semantic validation colours. */
 .consent input, .np-chat-consent input { accent-color: var(--brand-navy); }
-.reg-form .consent input { accent-color: var(--brand-yellow); }
-.back { color: #fff; }
-.back:hover { color: var(--brand-yellow); }
-.pop .field :is(input, select), .np-chat-input, .np-lead-input {
-  border-color: var(--brand-border); color: var(--brand-navy);
-}
 .pop .field :is(input, select):focus, .np-chat-input:focus, .np-lead-input:focus {
   border-color: var(--brand-navy); box-shadow: 0 0 0 2px var(--brand-border);
 }
-.reg .field input:focus { border-color: var(--brand-yellow); box-shadow: 0 0 0 2px var(--brand-yellow); }
-.reg .field input[aria-invalid="true"] { border-color: #E08E7A; }
-.pop .field input[aria-invalid="true"] { border-color: #A8442F; }
-.pop .field select option { background: #fff; color: var(--brand-navy); }
-.pop .field select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232527A3' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+.choice input:checked + span { background: var(--brand-navy); border-color: var(--brand-navy); color: white; }
+.reg .field input:focus { border-color: var(--brand-yellow); box-shadow: 0 0 0 1px var(--brand-yellow); }
+/* Chat header stays olive. Quick replies/secondary contact actions are outlined. */
+.np-chip, .np-quick-act-btn, .np-quick-act-btn--zalo, .np-quick-act-btn--call {
+  background: transparent; color: var(--brand-navy); border-color: var(--brand-border);
 }
-
-/* Chat toolbar, quick replies, send and contact actions. */
-.np-chat-header, .np-msg--user .np-msg-bubble {
-  background: var(--brand-navy); color: var(--brand-on-navy);
-  --brand-focus: var(--brand-yellow);
+.np-chip:hover, .np-quick-act-btn:hover, .np-quick-act-btn--zalo:hover, .np-quick-act-btn--call:hover {
+  background: var(--brand-soft); color: var(--brand-navy); border-color: var(--brand-navy);
 }
-.np-chat-avatar { background: var(--brand-yellow); color: var(--brand-on-yellow); }
-.np-chat-header-close, .np-chat-reset { color: #fff; }
-.np-chat-header-close:hover, .np-chat-reset:hover {
-  background: var(--brand-yellow); color: var(--brand-on-yellow);
+.np-chat-header-close:hover, .np-chat-reset:hover { color: var(--brand-yellow); background: transparent; }
+/* Two-tone focus works on both ivory and dark olive, without a glow. */
+:is(a, button, input, select, textarea, summary, [tabindex]):focus-visible,
+.np-chat-popup :focus-visible {
+  outline: 2px solid var(--brand-navy); outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--brand-yellow);
 }
-.np-typing-dot { background: var(--brand-navy); }
-.np-chat-callout-dot { background: var(--brand-yellow); animation: none; }
-.np-media-card { border-color: var(--brand-border); }
-.np-media-card:hover { border-color: var(--brand-navy); }
-
-/* Keep disabled controls distinct, including while a request is pending. */
-:where(button, .cta, .btn-vr, .drawer-act):active:not(:disabled):not([aria-disabled="true"]) {
-  box-shadow: inset 0 0 0 2px var(--brand-yellow);
-}
-:is(button, input, select, textarea):disabled, [aria-disabled="true"] {
-  opacity: .55; cursor: not-allowed; filter: grayscale(1);
-}
-:is(button, input, select, textarea):disabled:hover, [aria-disabled="true"]:hover {
-  transform: none;
-}
-button:disabled, button:disabled:hover {
-  background: var(--brand-navy); color: var(--brand-on-navy); border-color: var(--brand-navy);
+.choice input:focus-visible + span { outline: 2px solid var(--brand-yellow); outline-offset: 3px; }
+:is(button, input, select, textarea):disabled, [aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
+:is(button, .cta):active:not(:disabled):not([aria-disabled="true"]) { box-shadow: inset 0 0 0 2px var(--brand-yellow); }
+.np-chat-send-btn:disabled, .np-chat-send-btn:disabled:hover {
+  background: var(--brand-navy); color: white; box-shadow: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  :where(a, button, input, select, textarea, summary, .choice span, .nlink) { transition-duration: 0s; }
+  :is(.cta, .btn-vr, .fab a, .fab button, .drawer-act, .news-nav button,
+    .resi-tabs button, .tabs button, .np-chip, .np-chat-send-btn, .np-quick-act-btn,
+    .np-chat-header-close, .np-chat-reset, .pop-close, .lb-close, .ldoc-close) { transition-duration: 0s; }
 }
