@@ -144,6 +144,12 @@ export function Footer() {
           <div className="f-by-legal">
             <p className="f-by-disc" {...html("by.disc")} />
             <p className="f-by-line" {...html("by.line")} />
+            <p className="f-by-credit">
+              Designed by{" "}
+              <a href="https://ximitech.vn/" target="_blank" rel="noopener">
+                ximitech.vn
+              </a>
+            </p>
           </div>
         </div>
       </div>
