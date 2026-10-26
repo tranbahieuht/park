@@ -5,6 +5,11 @@ export type Dict = Record<string, string>;
 
 /** Vietnamese strings, taken from the source HTML (data-i18n innerHTML). */
 export const VI: Dict = {
+  "lead.sending": "Đang gửi…",
+  "lead.invalid": "Vui lòng kiểm tra họ tên, số điện thoại, email (nếu có) và xác nhận đồng ý. Dữ liệu đã nhập được giữ nguyên.",
+  "lead.failed": "Chưa gửi được thông tin. Vui lòng thử lại sau.",
+  "lead.rate": "Bạn đã gửi quá nhiều yêu cầu. Vui lòng thử lại sau 10 phút.",
+  "lead.busy": "Thông tin này đang được xử lý. Vui lòng chờ một lát trước khi thử lại.",
   ...LOCATION_MAP_VI,
   "nav.vr": "360 Tour",
   "nav.cta": "Tư vấn",
@@ -207,6 +212,11 @@ export const VI: Dict = {
 
 /** English strings, taken from the source page.js dictionary. */
 export const EN: Dict = {
+  "lead.sending": "Sending…",
+  "lead.invalid": "Please check your name, phone, email (if provided) and consent. Your entries have been kept.",
+  "lead.failed": "Your details could not be sent. Please try again later.",
+  "lead.rate": "Too many requests. Please try again in 10 minutes.",
+  "lead.busy": "These details are being processed. Please wait a moment before trying again.",
   ...LOCATION_MAP_EN,
   "nav.cta": "Enquire",
   "nav.vr": "360 Tour",
