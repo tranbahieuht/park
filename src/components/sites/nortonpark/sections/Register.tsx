@@ -5,8 +5,10 @@ import { SAVILLS_CONTACT } from "../data/contact";
 import { useRef, useState } from "react";
 import { Icon } from "../Icons";
 import { ERR } from "../data/i18n";
-import { asset, markLeadSent, push, validPhone } from "../lib/dom";
+import { asset, markLeadSent, push } from "../lib/dom";
 import { useLang } from "../lib/i18n";
+import { validLeadPhone } from "@/lib/leads/validation";
+import { useLeadSubmission } from "../lib/useLeadSubmission";
 import { UTM_KEYS } from "../lib/useUtm";
 
 const STD_UNITS: Array<[string, string]> = [
@@ -26,11 +28,9 @@ const LTD_UNITS: Array<[string, string]> = [
 
 type ErrKey = "name" | "phone" | "consent";
 
-/* Two-step consultation form. The source posts to its own lead API; this
-   clone keeps submissions local (validation, dataLayer event, success state)
-   and sends nothing anywhere. */
+/* Two-step consultation form; shared server-side SMTP API confirms delivery acceptance. */
 export function Register() {
-  const { lang, html } = useLang();
+  const { lang, html, t } = useLang();
   const [step, setStep] = useState<1 | 2>(1);
   const [unit, setUnit] = useState("");
   const [name, setName] = useState("");
@@ -40,6 +40,7 @@ export function Register() {
   const [hp, setHp] = useState("");
   const [errs, setErrs] = useState<Partial<Record<ErrKey, boolean>>>({});
   const [sent, setSent] = useState(false);
+  const submission = useLeadSubmission();
   const nameRef = useRef<HTMLInputElement>(null);
   const okRef = useRef<HTMLDivElement>(null);
 
@@ -53,12 +54,14 @@ export function Register() {
     push("form_step", { step: 1 });
   };
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (hp) return; /* bot trap */
-    const nextErrs = { name: !name.trim(), phone: !validPhone(phone), consent: !consent };
+    if (hp || submission.pending || sent) return; /* bot trap */
+    const nextErrs = { name: name.trim().length < 2, phone: !validLeadPhone(phone), consent: !consent };
     setErrs(nextErrs);
     if (nextErrs.name || nextErrs.phone || nextErrs.consent) return;
+    const accepted = await submission.send({ name, phone, email, unit, consent, website: hp, language: lang, source: "landing" });
+    if (!accepted) return;
     push("generate_lead", { form_position: "landing", language: lang, unit_interest: unit });
     markLeadSent();
     setSent(true);
@@ -94,7 +97,7 @@ export function Register() {
               </div>
             </div>
 
-            <form id="leadForm" method="post" noValidate onSubmit={submit} hidden={sent}>
+            <form id="leadForm" method="post" noValidate onSubmit={submit} hidden={sent} aria-busy={submission.pending}>
               <div id="step1" className={step === 1 ? undefined : "hidden"}>
                 <p className="step-label" {...html("form.s1")} />
                 <fieldset>
@@ -120,6 +123,7 @@ export function Register() {
                     ref={nameRef}
                     type="text"
                     id="fullname"
+                    maxLength={120}
                     name="fullname"
                     autoComplete="name"
                     aria-describedby="err-fullname"
@@ -136,6 +140,7 @@ export function Register() {
                   <input
                     type="tel"
                     id="phone"
+                    maxLength={32}
                     name="phone"
                     autoComplete="tel"
                     inputMode="tel"
@@ -150,7 +155,7 @@ export function Register() {
                 </div>
                 <div className="field">
                   <label htmlFor="email" {...html("form.email")} />
-                  <input type="email" id="email" name="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  <input type="email" maxLength={254} id="email" name="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="consent">
                   <input
@@ -167,8 +172,9 @@ export function Register() {
                 <span className="err err--consent" id="err-consent" aria-live="polite">
                   {errs.consent ? ERR[lang].consent : ""}
                 </span>
-                <button type="submit" className="cta cta--wide">
-                  <span {...html("cta.main")} />
+                {submission.error && <p className="err" role="alert">{t("lead." + submission.error)}</p>}
+                <button type="submit" className="cta cta--wide" disabled={submission.pending} aria-busy={submission.pending}>
+                  {submission.pending ? <span>{t("lead.sending")}</span> : <span {...html("cta.main")} />}
                   <Icon name="arrow" small />
                 </button>
                 <button type="button" className="back" id="back" onClick={back} {...html("form.back")} />

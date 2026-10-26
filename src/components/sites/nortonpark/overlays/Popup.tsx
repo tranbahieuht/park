@@ -5,8 +5,10 @@ import { SAVILLS_CONTACT } from "../data/contact";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "../Icons";
 import { ERR } from "../data/i18n";
-import { asset, leadSent, lockScroll, markLeadSent, push, validPhone } from "../lib/dom";
+import { asset, leadSent, lockScroll, markLeadSent, push } from "../lib/dom";
 import { useLang } from "../lib/i18n";
+import { validLeadPhone } from "@/lib/leads/validation";
+import { useLeadSubmission } from "../lib/useLeadSubmission";
 
 const UNITS_STD: Array<[string, string]> = [
   ["Studio", "form.u1"],
@@ -39,11 +41,12 @@ function blocked() {
 }
 
 /* Lead popup: opens 5 s after every page load (retrying each second while
-   blocked) unless a lead was already sent. Submissions stay local. */
+   blocked) unless a lead was already sent. Submissions are accepted only after the shared SMTP API succeeds. */
 export function Popup() {
   const { lang, t, html } = useLang();
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
+  const submission = useLeadSubmission();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -88,12 +91,14 @@ export function Popup() {
     };
   }, [open]);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (hp) return;
-    const next = { name: !name.trim(), phone: !validPhone(phone), consent: !consent };
+    if (hp || submission.pending || sent) return;
+    const next = { name: name.trim().length < 2, phone: !validLeadPhone(phone), consent: !consent };
     setErrs(next);
     if (next.name || next.phone || next.consent) return;
+    const accepted = await submission.send({ name, phone, email, unit, consent, website: hp, language: lang, source: "popup" });
+    if (!accepted) return;
     push("generate_lead", { form_position: "popup", language: lang, unit_interest: unit });
     markLeadSent();
     setSent(true);
@@ -108,11 +113,12 @@ export function Popup() {
         <div className="pop-form">
           <img className="pop-logo" src={asset("assets/logos/norton-park-logo-primary.svg")} alt="Norton Park" width={1200} height={200} loading="lazy" hidden={sent} />
           <p className="pop-sub" id="popSub" hidden={sent} {...html("pop.sub")} />
-          <form id="popForm" method="post" noValidate onSubmit={submit} hidden={sent}>
+          <form id="popForm" method="post" noValidate onSubmit={submit} hidden={sent} aria-busy={submission.pending}>
             <div className="two">
               <div className="field">
                 <input
                   type="text"
+                  maxLength={120}
                   id="pName"
                   name="fullname"
                   autoComplete="name"
@@ -129,6 +135,7 @@ export function Popup() {
               <div className="field">
                 <input
                   type="tel"
+                  maxLength={32}
                   id="pPhone"
                   name="phone"
                   autoComplete="tel"
@@ -145,7 +152,7 @@ export function Popup() {
               </div>
             </div>
             <div className="field">
-              <input type="email" id="pEmail" name="email" autoComplete="email" placeholder={t("pop.email")} value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input type="email" maxLength={254} id="pEmail" name="email" autoComplete="email" placeholder={t("pop.email")} value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="field">
               <select id="pUnit" name="unit_interest" value={unit} onChange={(e) => setUnit(e.target.value)}>
@@ -187,8 +194,9 @@ export function Popup() {
             </div>
             <input type="hidden" name="page_variant" value="norton_park_lead_a" />
             <input type="hidden" name="form_position" value="popup" />
-            <button type="submit" className="cta cta--wide">
-              <span {...html("pop.cta")} />
+            {submission.error && <p className="err" role="alert">{t("lead." + submission.error)}</p>}
+            <button type="submit" className="cta cta--wide" disabled={submission.pending} aria-busy={submission.pending}>
+              {submission.pending ? <span>{t("lead.sending")}</span> : <span {...html("pop.cta")} />}
               <Icon name="arrow" small />
             </button>
           </form>
