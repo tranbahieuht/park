@@ -1,12 +1,13 @@
 /* Shared by the site and its standalone map. Section/artwork tokens stay intact. */
 :root {
-  --brand-navy: #2527A3;
+  --savills-navy: #25273A;
+  --brand-navy: var(--savills-navy);
   --brand-yellow: #FFDF00;
   --brand-on-navy: #FFFFFF;
-  --brand-on-yellow: #2527A3;
-  --brand-soft: rgb(37 39 163 / 6%);
-  --brand-border: rgb(37 39 163 / 28%);
-  --brand-focus: #2527A3;
+  --brand-on-yellow: var(--savills-navy);
+  --brand-soft: rgb(37 39 58 / 6%);
+  --brand-border: rgb(37 39 58 / 28%);
+  --brand-focus: var(--savills-navy);
 }
 /* Only HTML controls inside the map; geographic layer colours are unchanged. */
 #lm :is(button, .hi, .band, li.go) {

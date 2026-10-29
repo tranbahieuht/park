@@ -9,7 +9,7 @@ import { useLang } from "../lib/i18n";
 import { useUI } from "../lib/ui";
 
 const MAX_INPUT_CHARS = 500;
-const OA_URL = "https://zalo.me/2522093664370221137";
+const OA_URL = SAVILLS_CONTACT.zaloUrl;
 
 /* Greeting served by the source's /api/public-config. */
 const GREETING = {

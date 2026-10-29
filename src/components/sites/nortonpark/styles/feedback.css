@@ -1,0 +1,33 @@
+/* Savills feedback, 28/10/2026: scoped additions preserve the project palette. */
+.nav-brands{display:flex;align-items:center;justify-content:center;gap:clamp(10px,1.4vw,24px);min-width:0}
+.nav-savills-logo{display:block;width:clamp(34px,2.7rem,54px);height:auto;aspect-ratio:1;object-fit:contain;flex:none}
+.pop .pop-savills-logo{width:64px;height:auto;aspect-ratio:1;object-fit:contain}
+.nav .nav-cta,.pop .cta:not(:disabled){background:var(--savills-navy);border-color:var(--savills-navy);color:var(--brand-on-navy)}
+.nav .nav-cta:hover,.pop .cta:not(:disabled):hover{background:var(--bg-0);color:var(--savills-navy)}
+.nav.is-solid .lang button.on,.savills-number,.drawer-nav a:hover i{color:var(--savills-navy)}
+.pop .field :is(input,select):focus,.reg .field input:focus{border-color:var(--savills-navy);box-shadow:0 0 0 2px var(--brand-border)}
+.f-savills-copyright{margin:0;padding:1.5rem 0;border-top:1px solid var(--footer-rule);font-size:.72rem;line-height:1.7}
+.savills-certificate{margin:clamp(24px,4vw,56px) auto;max-width:620px}
+.savills-certificate a,.savills-certificate img{display:block;width:100%;height:auto}
+body:has(.pop.is-open,.drawer.is-open,.ldoc.is-open,.lb.is-open,#register:focus-within) .fab{visibility:hidden;pointer-events:none}
+@media(max-width:820px){
+  .nav-in{grid-template-columns:auto minmax(0,1fr) auto;gap:8px;padding-inline:12px;max-width:100%}
+  .nav-brands{gap:8px}
+  .nav .brand img{width:clamp(86px,19vw,145px);max-height:30px}
+  .nav-savills-logo{width:34px}
+  .nav-actions{gap:6px}
+  .nav .btn-vr{display:flex;width:30px;height:30px;padding:0;justify-content:center}
+  .nav .btn-vr-t{display:none}
+  .nav .btn-vr .ic{width:20px;height:20px}
+  .nav .nav-cta{display:inline-flex;padding:8px 9px;font-size:.56rem;letter-spacing:.02em;white-space:nowrap}
+  .nav .btn-burger{width:26px;min-width:26px}
+  .nav .lang{font-size:.6rem;gap:3px}
+  .savills-certificate{max-width:560px}
+}
+@media(max-width:400px){
+  .nav-in{padding-inline:8px;gap:5px}
+  .nav-brands{gap:6px}
+  .nav .brand img{width:86px}
+  .nav-savills-logo{width:30px}
+  .nav-actions{gap:4px}
+}

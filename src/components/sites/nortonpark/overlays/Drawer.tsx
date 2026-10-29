@@ -7,7 +7,6 @@ import { Icon } from "../Icons";
 import { asset, calcHref, lockScroll, push, trapTab } from "../lib/dom";
 import { useLang } from "../lib/i18n";
 import { useUI } from "../lib/ui";
-import { useChatLauncher } from "./useChatLauncher";
 
 const LINKS: Array<[string, string, string]> = [
   ["#top", "01", "dr.1"],
@@ -21,9 +20,8 @@ const LINKS: Array<[string, string, string]> = [
 /* Right-hand menu drawer: scroll lock, focus moves to the close button and
    returns to the burger, Esc closes, Tab stays inside the panel. */
 export function Drawer() {
-  const { lang, html } = useLang();
+  const { lang, html, t } = useLang();
   const { drawerOpen, closeDrawer } = useUI();
-  const { launch } = useChatLauncher();
   const panelRef = useRef<HTMLElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
@@ -51,10 +49,10 @@ export function Drawer() {
   return (
     <div className={drawerOpen ? "drawer is-open" : "drawer"} id="drawer">
       <div className="drawer-backdrop" data-drawer-close="" aria-hidden="true" onClick={closeDrawer}></div>
-      <aside className="drawer-panel" role="dialog" aria-modal="true" aria-label="Menu điều hướng" ref={panelRef}>
+      <aside className="drawer-panel" role="dialog" aria-modal="true" aria-label={t("ui.navigation")} ref={panelRef}>
         <div className="drawer-top">
           <img className="drawer-logo" src={asset("assets/logos/norton-park-logo-primary.svg")} alt="Norton Park" width={1200} height={200} loading="lazy" />
-          <button type="button" className="drawer-close" data-drawer-close="" aria-label="Đóng menu" ref={closeRef} onClick={closeDrawer}>
+          <button type="button" className="drawer-close" data-drawer-close="" aria-label={t("ui.closeMenu")} ref={closeRef} onClick={closeDrawer}>
             <Icon name="close" />
           </button>
         </div>
@@ -86,14 +84,10 @@ export function Drawer() {
             <Icon name="phone" small />
             <span {...html("dr.call")} />
           </a>
-          <a className="drawer-act" href="https://zalo.me/2522093664370221137" target="_blank" rel="noopener" data-cta="zalo_drawer">
+          <a className="drawer-act" href={SAVILLS_CONTACT.zaloUrl} target="_blank" rel="noopener" data-cta="zalo_drawer">
             <Icon name="zalo" small />
             <span {...html("dr.zalo")} />
           </a>
-          <button type="button" className="drawer-act" data-chat="" data-cta="chat_drawer" aria-controls="npChatPopup" onClick={launch}>
-            <Icon name="bot" small />
-            <span {...html("chat.label")} />
-          </button>
           <p className="drawer-tag">The Global Sanctuary in Your Rhythm</p>
         </div>
       </aside>

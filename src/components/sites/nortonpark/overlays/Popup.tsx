@@ -5,7 +5,7 @@ import { SAVILLS_CONTACT } from "../data/contact";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "../Icons";
 import { ERR } from "../data/i18n";
-import { asset, leadSent, lockScroll, markLeadSent, push } from "../lib/dom";
+import { asset, leadSent, lockScroll, markLeadSent, push, trapTab } from "../lib/dom";
 import { useLang } from "../lib/i18n";
 import { validLeadPhone } from "@/lib/leads/validation";
 import { useLeadSubmission } from "../lib/useLeadSubmission";
@@ -54,6 +54,7 @@ export function Popup() {
   const [consent, setConsent] = useState(false);
   const [hp, setHp] = useState("");
   const [errs, setErrs] = useState<{ name?: boolean; phone?: boolean; consent?: boolean }>({});
+  const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const lastFocus = useRef<HTMLElement | null>(null);
 
@@ -82,6 +83,7 @@ export function Popup() {
     closeRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
+      else trapTab(e, panelRef.current, '#popForm:not([hidden]) :is(a[href],button:not([disabled]),input:not([type="hidden"]):not([tabindex="-1"]),select), .pop-info a[href], .pop-close');
     };
     document.addEventListener("keydown", onKey);
     return () => {
@@ -109,9 +111,9 @@ export function Popup() {
   return (
     <div className={open ? "pop is-open" : "pop"} id="pop">
       <div className="pop-backdrop" data-pop-close="" aria-hidden="true" onClick={close}></div>
-      <div className="pop-panel" role="dialog" aria-modal="true" aria-labelledby="popSub">
+      <div ref={panelRef} className="pop-panel" role="dialog" aria-modal="true" aria-labelledby="popSub">
         <div className="pop-form">
-          <img className="pop-logo" src={asset("assets/logos/norton-park-logo-primary.svg")} alt="Norton Park" width={1200} height={200} loading="lazy" hidden={sent} />
+          <img className="pop-logo pop-savills-logo" src={asset("assets/logos/savills-official.png")} alt="Savills" width={158} height={158} loading="lazy" hidden={sent} />
           <p className="pop-sub" id="popSub" hidden={sent} {...html("pop.sub")} />
           <form id="popForm" method="post" noValidate onSubmit={submit} hidden={sent} aria-busy={submission.pending}>
             <div className="two">
@@ -224,9 +226,7 @@ export function Popup() {
             </div>
             <div>
               <span className="info-k" {...html("ct.fb")} />
-              <a className="info-v" href="https://www.facebook.com/NortonParkbyGLVN" target="_blank" rel="noopener" data-cta="fanpage_popup">
-                Norton Park by Gamuda{" "}Land
-              </a>
+              <a className="info-v" href={SAVILLS_CONTACT.fanpageUrl} target="_blank" rel="noopener noreferrer" data-cta="fanpage_popup">{SAVILLS_CONTACT.fanpageName}</a>
             </div>
             <div>
               <span className="info-k">{t("ct.office")}</span>
@@ -238,7 +238,7 @@ export function Popup() {
             </div>
           </div>
         </div>
-        <button type="button" className="pop-close" data-pop-close="" aria-label="Đóng" ref={closeRef} onClick={close}>
+        <button type="button" className="pop-close" data-pop-close="" aria-label={t("ui.close")} ref={closeRef} onClick={close}>
           <Icon name="close" />
         </button>
       </div>

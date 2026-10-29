@@ -8,7 +8,7 @@ import { useLang } from "../lib/i18n";
    remaining column is >= 280px the text sits beside it (.loc--split),
    otherwise it overlays the image (.loc--stack). Screen Lock only. */
 export function Position() {
-  const { html } = useLang();
+  const { lang, html, t } = useLang();
   const secRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -48,11 +48,11 @@ export function Position() {
         <div className="loc-figwrap">
           <figure className="loc-fig" style={vars({ "--i": 1 })} data-mo="mask">
             <img
-              src={asset("assets/images/cgi/masterplan-birdview-r16.webp")}
-              alt="Phối cảnh Norton Park trong tổng thể khu vực: VSIP 1, AEON Mall Thuận Giao, Tuyến Metro số 2 và Nhà ga C8, Sân Golf Sông Bé, Đại lộ Bình Dương, Công viên Norton Park, Phân khu B, Phân khu C và Trung tâm TP.HCM"
+              src={asset(`assets/images/drive/location-place-${lang}.webp`)}
+              alt={t("loc.imageAlt")}
               loading="lazy"
-              width={2000}
-              height={1498}
+              width={3200}
+              height={1800}
             />
           </figure>
         </div>

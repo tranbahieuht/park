@@ -12,6 +12,7 @@ import "@/components/sites/nortonpark/styles/clone.css";
 import "@/components/sites/nortonpark/styles/savills.css";
 import "../../public/sites/nortonpark/interaction-colors.css";
 import "@/components/sites/nortonpark/styles/interactions.css";
+import "@/components/sites/nortonpark/styles/feedback.css";
 import { InlineScript } from "@/components/sites/nortonpark/InlineScript";
 
 export const metadata: Metadata = {

@@ -9,7 +9,7 @@ import { useUI } from "../lib/ui";
 /* Fixed header. Transparent/dark while the middle of the bar sits over a
    section marked data-nav="dark" (photo sections), solid beige otherwise. */
 export function Nav() {
-  const { lang, setLang, html } = useLang();
+  const { lang, setLang, html, t } = useLang();
   const { drawerOpen, openDrawer } = useUI();
   const navRef = useRef<HTMLElement>(null);
 
@@ -49,7 +49,7 @@ export function Nav() {
   return (
     <header className="nav" id="nav" ref={navRef}>
       <div className="nav-in">
-        <div className="lang" role="group" aria-label="Ngôn ngữ">
+        <div className="lang" role="group" aria-label={t("ui.language")}>
           <button type="button" data-lang="vi" className={lang === "vi" ? "on" : undefined} aria-pressed={lang === "vi"} onClick={() => setLang("vi")}>
             VI
           </button>
@@ -58,10 +58,13 @@ export function Nav() {
             EN
           </button>
         </div>
-        <a href="#top" className="brand" aria-label="Norton Park">
-          <img className="brand-light" src={asset("assets/logos/norton-park-logo-primary-beige.svg")} alt="Norton Park, A Gamuda Land Community" width={1200} height={200} />
-          <img className="brand-dark" src={asset("assets/logos/norton-park-logo-primary.svg")} alt="Biểu trưng Gamuda Land" aria-hidden="true" width={1200} height={200} />
-        </a>
+        <div className="nav-brands">
+          <a href="#top" className="brand" aria-label="Norton Park">
+            <img className="brand-light" src={asset("assets/logos/norton-park-logo-primary-beige.svg")} alt="Norton Park, A Gamuda Land Community" width={1200} height={200} />
+            <img className="brand-dark" src={asset("assets/logos/norton-park-logo-primary.svg")} alt="" aria-hidden="true" width={1200} height={200} />
+          </a>
+          <img className="nav-savills-logo" src={asset("assets/logos/savills-official.png")} alt="Savills" width={158} height={158} />
+        </div>
         <div className="nav-actions">
           <a className="btn-vr btn-eye" href="https://360.nortonpark.com.vn/" target="_blank" rel="noopener" data-cta="vr_nav">
             <Icon name="360" small />
@@ -74,7 +77,7 @@ export function Nav() {
             type="button"
             className="btn-burger"
             id="burger"
-            aria-label="Mở menu"
+            aria-label={t("ui.menu")}
             aria-expanded={drawerOpen}
             aria-controls="drawer"
             onClick={openDrawer}

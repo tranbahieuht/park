@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useLang } from "../lib/i18n";
+import { asset } from "../lib/dom";
 
 function ArchitecturalLines() {
   return (
@@ -83,6 +84,11 @@ export function Savills() {
             {t("sv.title")}
           </h2>
         </div>
+        <figure className="savills-certificate" data-sv-reveal="certificate">
+          <a href={asset("assets/images/drive/savills-official.png")} target="_blank" rel="noopener noreferrer" aria-label={t("sv.imageAlt")}>
+            <img src={asset("assets/images/drive/savills-official.png")} alt={t("sv.imageAlt")} width={1920} height={1920} loading="lazy" />
+          </a>
+        </figure>
         <div className="savills-copy">
           <div className="savills-intro savills-intro--global" data-sv-reveal="intro">
             <h3 className="d3">{t("sv.h3.global")}</h3>

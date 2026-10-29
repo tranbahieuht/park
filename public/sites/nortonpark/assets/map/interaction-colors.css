@@ -1,11 +1,12 @@
 /* The map is an isolated iframe: mirror only the interactive brand tokens.
    Preserve the map artwork and category colors so its legend stays accurate. */
 :root {
-  --brand-navy: #2527A3;
+  --savills-navy: #25273A;
+  --brand-navy: var(--savills-navy);
   --brand-yellow: #FFDF00;
   --brand-on-navy: #FFFFFF;
-  --brand-on-yellow: #2527A3;
-  --brand-soft: rgb(37 39 163 / 8%);
+  --brand-on-yellow: var(--savills-navy);
+  --brand-soft: rgb(37 39 58 / 8%);
 }
 button, a, .band li.go {
   transition-property: background-color, color, border-color, opacity, box-shadow;

@@ -237,9 +237,7 @@ export function Register() {
               <Icon name="fb" />
               <div>
                 <span className="info-k" {...html("ct.fb")} />
-                <a className="info-v" href="https://www.facebook.com/NortonParkbyGLVN" target="_blank" rel="noopener" data-cta="fanpage_contact">
-                  Norton Park by Gamuda{" "}Land
-                </a>
+                <a className="info-v" href={SAVILLS_CONTACT.fanpageUrl} target="_blank" rel="noopener noreferrer" data-cta="fanpage_contact">{SAVILLS_CONTACT.fanpageName}</a>
               </div>
             </div>
             <p className="disc" data-nosnippet="" {...html("foot.disclaimer")} />

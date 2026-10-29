@@ -6,6 +6,11 @@ export const SAVILLS_CONTACT = {
   phoneHref: "tel:+84969696201",
   email: "sales@savills.com.vn",
   emailHref: "mailto:sales@savills.com.vn",
+  fanpageName: "Savills Vietnam Residential",
+  fanpageUrl: "https://www.facebook.com/savillsresidentialsales",
+  privacyPolicy: "https://savills-hub.com.vn/privacy-policy/",
+  // Confirmed in the client's [LP] Norton Park document, updated 28/10/2026.
+  zaloUrl: "https://zalo.me/1092029419951822931",
   website: "https://sav.li/resi",
   address: {
     vi: "81-83-83B-85, đường Hàm Nghi, TP. Hồ Chí Minh",

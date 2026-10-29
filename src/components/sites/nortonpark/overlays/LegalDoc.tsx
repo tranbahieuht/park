@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { LEGAL_CLOSE, LEGAL_DOCS, LEGAL_KICKER, type LegalKey } from "../data/legal";
 import { lockScroll, push, trapTab } from "../lib/dom";
 import { useLang } from "../lib/i18n";
+import { SAVILLS_CONTACT } from "../data/contact";
 
 const KEYS = Object.keys(LEGAL_DOCS) as LegalKey[];
 const isKey = (k: string | null): k is LegalKey => !!k && (KEYS as string[]).includes(k);
@@ -13,7 +14,7 @@ const HASH_RE = /^#(chinh-sach-bao-mat|dieu-khoan-su-dung|mien-tru-trach-nhiem|c
    matching document (captured at document level, so links inside translated
    strings work too). Direct links such as /#chinh-sach-bao-mat open it on load. */
 export function LegalDoc() {
-  const { lang } = useLang();
+  const { lang, t } = useLang();
   const [cur, setCur] = useState<LegalKey | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
@@ -74,7 +75,12 @@ export function LegalDoc() {
     closeRef.current?.focus();
   }, [cur, lang]);
 
-  const d = cur ? LEGAL_DOCS[cur][lang] : null;
+  // Existing bookmarks to the old privacy hash still show the supplied policy.
+  // Other legal documents retain their original content.
+  const d = cur === "privacy" ? {
+    title: t("f.l1"), upd: "",
+    html: `<p><a href="${SAVILLS_CONTACT.privacyPolicy}" target="_blank" rel="noopener noreferrer">${t("f.l1")} — ${lang === "vi" ? "Savills Việt Nam" : "Savills Vietnam"}</a></p>`,
+  } : cur ? LEGAL_DOCS[cur][lang] : null;
   return (
     <div className={open ? "ldoc is-open" : "ldoc"} id="legalDoc">
       <div className="ldoc-backdrop" data-ldoc-close="" onClick={() => setCur(null)}></div>
