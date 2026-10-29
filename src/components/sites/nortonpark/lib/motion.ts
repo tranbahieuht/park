@@ -36,6 +36,8 @@ const MO_CFG: Record<string, Array<[Kind, string]>> = {
     ["t", ".dev-body"], ["t", ".blk-h"], ["card", "#devTeam > *"]],
   calc: [["fade", ".calc-head .smark"], ["t", ".calc-head .eyebrow"], ["t", ".calc-head h2"], ["t", ".calc-sub"],
     ["t", ".calc-head .cta"], ["card", ".ct"]],
+  savills: [["t", ".savills-heading"], ["mask", ".savills-certificate"]],
+  "savills-about": [["t", ".savills-intro"], ["t", ".savills-promises > h3"], ["t", ".savills-commitments li"]],
 };
 
 const $$ = <T extends Element = HTMLElement>(s: string, c: ParentNode = document) => Array.from(c.querySelectorAll<T & HTMLElement>(s));

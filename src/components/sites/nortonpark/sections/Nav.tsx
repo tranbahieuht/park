@@ -63,7 +63,7 @@ export function Nav() {
             <img className="brand-light" src={asset("assets/logos/norton-park-logo-primary-beige.svg")} alt="Norton Park, A Gamuda Land Community" width={1200} height={200} />
             <img className="brand-dark" src={asset("assets/logos/norton-park-logo-primary.svg")} alt="" aria-hidden="true" width={1200} height={200} />
           </a>
-          <img className="nav-savills-logo" src={asset("assets/logos/savills-official.png")} alt="Savills" width={158} height={158} />
+          <img className="nav-brand-mark" src={asset("assets/logos/quacho-symbol-bronze.png")} alt="" aria-hidden="true" width={254} height={322} />
         </div>
         <div className="nav-actions">
           <a className="btn-vr btn-eye" href="https://360.nortonpark.com.vn/" target="_blank" rel="noopener" data-cta="vr_nav">

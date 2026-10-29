@@ -113,7 +113,7 @@ export function Popup() {
       <div className="pop-backdrop" data-pop-close="" aria-hidden="true" onClick={close}></div>
       <div ref={panelRef} className="pop-panel" role="dialog" aria-modal="true" aria-labelledby="popSub">
         <div className="pop-form">
-          <img className="pop-logo pop-savills-logo" src={asset("assets/logos/savills-official.png")} alt="Savills" width={158} height={158} loading="lazy" hidden={sent} />
+          <img className="pop-logo pop-brand-mark" src={asset("assets/logos/quacho-symbol-bronze.png")} alt="Norton Park" width={254} height={322} loading="lazy" hidden={sent} />
           <p className="pop-sub" id="popSub" hidden={sent} {...html("pop.sub")} />
           <form id="popForm" method="post" noValidate onSubmit={submit} hidden={sent} aria-busy={submission.pending}>
             <div className="two">

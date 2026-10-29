@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { useLang } from "../lib/i18n";
 import { asset } from "../lib/dom";
 
@@ -22,101 +21,61 @@ function ArchitecturalLines() {
  *  email and URL are language-neutral and shared across both locales. */
 export function Savills() {
   const { lang, t } = useLang();
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section || !("IntersectionObserver" in window)) return;
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const targets = Array.from(section.querySelectorAll<HTMLElement>("[data-sv-reveal]"));
-    let revealObserver: IntersectionObserver | undefined;
-    let viewObserver: IntersectionObserver | undefined;
-
-    const stop = () => {
-      revealObserver?.disconnect();
-      viewObserver?.disconnect();
-      section.removeAttribute("data-sv-motion");
-      section.removeAttribute("data-sv-inview");
-    };
-    const start = () => {
-      stop();
-      if (reducedMotion.matches) return;
-
-      // Like the site's motion system: visible by default, once-only reveals,
-      // the same easing, and no scroll listeners or React state per frame.
-      section.setAttribute("data-sv-motion", "on");
-      revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("sv-revealed");
-          observer.unobserve(entry.target);
-        });
-      }, { rootMargin: "0px 0px -6% 0px", threshold: .08 });
-      targets.filter((target) => !target.classList.contains("sv-revealed"))
-        .forEach((target) => revealObserver?.observe(target));
-
-      viewObserver = new IntersectionObserver(([entry]) => {
-        section.toggleAttribute("data-sv-inview", entry.isIntersecting);
-        if (entry.isIntersecting) section.classList.add("sv-entered");
-      }, { threshold: 0 });
-      viewObserver.observe(section);
-    };
-
-    start();
-    reducedMotion.addEventListener("change", start);
-    return () => {
-      stop();
-      reducedMotion.removeEventListener("change", start);
-    };
-  }, [lang]);
 
   return (
-    <section className="savills bay" id="savills" ref={sectionRef} lang={lang} aria-labelledby="savills-title">
+    <>
+    <section className="savills savills-partner bay" id="savills" lang={lang} aria-labelledby="savills-title">
       <div className="savills-decoration" aria-hidden="true">
         <div className="savills-art savills-art--right"><ArchitecturalLines /></div>
         <div className="savills-art savills-art--left"><ArchitecturalLines /></div>
       </div>
-      <div className="wrap">
-        <div className="savills-heading" data-sv-reveal="heading">
+      <div className="wrap savills-partner-grid">
+        <div className="savills-heading" data-mo="t">
           <span className="savills-heading-rule" aria-hidden="true" />
           <h2 className="d2" id="savills-title">
             {t("sv.title")}
           </h2>
         </div>
-        <figure className="savills-certificate" data-sv-reveal="certificate">
+        <figure className="savills-certificate" data-mo="mask">
           <a href={asset("assets/images/drive/savills-official.png")} target="_blank" rel="noopener noreferrer" aria-label={t("sv.imageAlt")}>
             <img src={asset("assets/images/drive/savills-official.png")} alt={t("sv.imageAlt")} width={1920} height={1920} loading="lazy" />
           </a>
         </figure>
+      </div>
+    </section>
+    <section className="savills savills-about bay" id="savills-about" lang={lang} aria-labelledby="savills-global-title savills-residential-title">
+      <div className="savills-decoration" aria-hidden="true">
+        <div className="savills-art savills-art--left"><ArchitecturalLines /></div>
+      </div>
+      <div className="wrap">
         <div className="savills-copy">
-          <div className="savills-intro savills-intro--global" data-sv-reveal="intro">
-            <h3 className="d3">{t("sv.h3.global")}</h3>
+          <div className="savills-intro savills-intro--global" data-mo="t">
+            <h3 className="d3" id="savills-global-title">{t("sv.h3.global")}</h3>
             <p>{t("sv.p.global")}</p>
           </div>
-          <div className="savills-intro savills-intro--residential" data-sv-reveal="intro">
-            <h3 className="d3">{t("sv.h3.resi")}</h3>
+          <div className="savills-intro savills-intro--residential" data-mo="t">
+            <h3 className="d3" id="savills-residential-title">{t("sv.h3.resi")}</h3>
             <p>{t("sv.p.resi")}</p>
           </div>
         </div>
         <div className="savills-promises">
-          <h3 className="d3" data-sv-reveal="label">{t("sv.commitments")}</h3>
+          <h3 className="d3" data-mo="t">{t("sv.commitments")}</h3>
           <ol className="savills-commitments" role="list">
-            <li data-sv-reveal="commitment">
+            <li data-mo="t">
               <span className="savills-number" aria-hidden="true">01</span>
               <div className="savills-promise-copy">
                 <strong dangerouslySetInnerHTML={{ __html: t("sv.c1.title") }} />{" "}
                 <span>{t("sv.c1.body")}</span>
               </div>
             </li>
-            <li data-sv-reveal="commitment">
+            <li data-mo="t">
               <span className="savills-number" aria-hidden="true">02</span>
               <div className="savills-promise-copy">
                 <strong dangerouslySetInnerHTML={{ __html: t("sv.c2.title") }} />{" "}
                 <span>{t("sv.c2.body")}</span>
               </div>
             </li>
-            <li data-sv-reveal="commitment">
+            <li data-mo="t">
               <span className="savills-number" aria-hidden="true">03</span>
               <div className="savills-promise-copy">
                 <strong dangerouslySetInnerHTML={{ __html: t("sv.c3.title") }} />{" "}
@@ -127,5 +86,6 @@ export function Savills() {
         </div>
       </div>
     </section>
+    </>
   );
 }
