@@ -1,0 +1,30 @@
+/* Shared artwork geometry for React placements and the standalone map iframe. */
+.brand-logo{
+  --brand-norton-width:clamp(160px,14vw,216px);
+  --brand-savills-size:36px;
+  --brand-logo-gap:clamp(12px,1.15vw,20px);
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:var(--brand-logo-gap);vertical-align:middle;line-height:0;flex:none;
+}
+.brand-logo__norton{display:block;position:relative;width:var(--brand-norton-width);flex:none}
+.brand-logo__norton img{display:block;width:100%;height:auto;aspect-ratio:6/1;object-fit:contain}
+.brand-logo--auto .brand-logo__norton-light{display:none}
+.nav:not(.is-solid) .brand-logo--auto .brand-logo__norton-dark{display:none}
+.nav:not(.is-solid) .brand-logo--auto .brand-logo__norton-light{display:block}
+.brand-logo .brand-logo__savills{display:block;width:var(--brand-savills-size);height:auto;aspect-ratio:1;object-fit:contain;border-radius:10%;flex:none}
+.brand-logo--cobrand{--brand-savills-size:34px;--brand-logo-gap:14px;padding:6px 12px;background:transparent}
+.brand-logo__divider{display:block;flex:none;width:1px;height:24px;background:#FFF;opacity:.22}
+@media(max-width:820px){
+  .nav .brand-logo--cobrand{--brand-norton-width:clamp(96px,18vw,144px);--brand-savills-size:26px;--brand-logo-gap:8px;padding:5px 8px}
+  .nav .brand-logo__divider{height:20px}
+}
+@media(max-width:460px){
+  .nav .brand-logo--cobrand{--brand-norton-width:96px;--brand-savills-size:22px;--brand-logo-gap:5px;padding:5px 6px}
+  .nav .brand-logo__divider{height:18px}
+}
+@media(max-width:400px){
+  .nav .brand-logo--cobrand{--brand-norton-width:88px;--brand-savills-size:20px;--brand-logo-gap:4px}
+}
+@media(max-width:360px){
+  .nav .brand-logo--cobrand{--brand-norton-width:74px;--brand-savills-size:18px;--brand-logo-gap:3px;padding-inline:5px}
+}

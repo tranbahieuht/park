@@ -354,8 +354,11 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--bronze);ou
 #lm:not(.live) #hint{opacity:0}
 @media (max-width:760px) and (min-height:521px){#gate{left:50%;bottom:calc(var(--peek) + 14px)}}
 @media (max-height:520px){#gate{left:calc((100% - var(--bw) - var(--gap)) / 2)}}
+#board .bd-head .brand-logo{--brand-savills-size:52px}
+@media(max-width:760px){#board .bd-head .brand-logo{--brand-savills-size:44px}}
 </style>
 <link rel="stylesheet" href="../../interaction-colors.css">
+<link rel="stylesheet" href="../../brand-logo.css">
 </head>
 <body>
 <div id="lm" class="boot">
@@ -364,7 +367,7 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--bronze);ou
   <aside id="board" aria-label="Thông tin kết nối Norton Park" data-lm-i18n-label="map.ui.board">
     <div class="bd-handle" aria-hidden="true"></div>
     <header class="bd-head">
-      <img class="logo" src="assets/location-map-logo.png" alt="Norton Park — A Gamuda Land Community" width="428" height="72">
+      <span class="brand-logo brand-logo--savills"><img class="brand-logo__savills" src="../logos/savills-client.png" alt="Savills" width="1181" height="1181"></span>
       <button id="bdMin" class="icon-btn" title="Thu gọn bảng thông tin" aria-label="Thu gọn bảng thông tin" data-lm-i18n-title="map.ui.collapse" data-lm-i18n-label="map.ui.collapse">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
       </button>

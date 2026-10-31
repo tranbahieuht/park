@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { Icon } from "../Icons";
-import { asset, navH } from "../lib/dom";
+import { navH } from "../lib/dom";
+import { BrandLogo } from "../BrandLogo";
 import { useLang } from "../lib/i18n";
 import { useUI } from "../lib/ui";
 
@@ -58,13 +59,9 @@ export function Nav() {
             EN
           </button>
         </div>
-        <div className="nav-brands">
-          <a href="#top" className="brand" aria-label="Norton Park">
-            <img className="brand-light" src={asset("assets/logos/norton-park-logo-primary-beige.svg")} alt="Norton Park, A Gamuda Land Community" width={1200} height={200} />
-            <img className="brand-dark" src={asset("assets/logos/norton-park-logo-primary.svg")} alt="" aria-hidden="true" width={1200} height={200} />
-          </a>
-          <img className="nav-brand-mark" src={asset("assets/logos/quacho-symbol-bronze.png")} alt="" aria-hidden="true" width={254} height={322} />
-        </div>
+        <a href="#top" className="nav-brands" aria-label="Norton Park — Savills">
+          <BrandLogo variant="cobrand" tone="auto" />
+        </a>
         <div className="nav-actions">
           <a className="btn-vr btn-eye" href="https://360.nortonpark.com.vn/" target="_blank" rel="noopener" data-cta="vr_nav">
             <Icon name="360" small />

@@ -3,19 +3,9 @@
 import { SAVILLS_CONTACT } from "../data/contact";
 
 import { Icon } from "../Icons";
-import { asset, calcHref } from "../lib/dom";
+import { calcHref } from "../lib/dom";
+import { BrandLogo } from "../BrandLogo";
 import { useLang } from "../lib/i18n";
-
-const FAQ = ["1", "2", "3", "4", "5", "6"];
-
-const LEGAL: Array<[string, string, string]> = [
-  ["chinh-sach-bao-mat", "privacy", "f.l1"],
-  ["dieu-khoan-su-dung", "terms", "f.l2"],
-  ["mien-tru-trach-nhiem", "disclaimer", "f.l5"],
-  ["cong-bo-phap-ly", "notice", "f.l3"],
-  ["canh-bao-gia-mao", "fraud", "f.l4"],
-  ["thong-tin-phap-nhan", "entity", "f.entity"],
-];
 
 /* Product table from the source's visually hidden SEO block. */
 const PRODUCTS: string[][] = [
@@ -45,23 +35,9 @@ export function Footer() {
   return (
     <footer className="foot">
       <div className="wrap">
-        <details className="f-faq" id="faq">
-          <summary className="f-faq-sum">
-            <span {...html("faq.heading")} />
-            <Icon name="down" small hidden />
-          </summary>
-          <div className="f-faq-grid">
-            {FAQ.map((n) => (
-              <article key={n} className="f-faq-item">
-                <h3 {...html("faq.q" + n)} />
-                <p {...html("faq.a" + n)} />
-              </article>
-            ))}
-          </div>
-        </details>
         <div className="f-top">
           <div>
-            <img className="f-logo" src={asset("assets/logos/norton-park-logo-primary-beige.svg")} alt="Norton Park, A Gamuda Land Community" width={1200} height={200} loading="lazy" />
+            <BrandLogo variant="savills" className="f-logo" savillsSize="clamp(72px,6vw,88px)" loading="lazy" />
           </div>
           <div>
             <span className="f-h" {...html("f.explore")} />
@@ -109,12 +85,7 @@ export function Footer() {
           <div>
             <span className="f-h" {...html("f.legal")} />
             <ul className="f-list">
-              {/* Savills privacy opens the supplied policy; other documents keep their popup. */}
-              {LEGAL.map(([hash, key, label]) => (
-                <li key={key}>
-                  <a href={key === "privacy" ? SAVILLS_CONTACT.privacyPolicy : "#" + hash} data-legal={key === "privacy" ? undefined : key} target={key === "privacy" ? "_blank" : undefined} rel={key === "privacy" ? "noopener noreferrer" : undefined} {...html(label)} />
-                </li>
-              ))}
+              <li><a href={SAVILLS_CONTACT.privacyPolicy} target="_blank" rel="noopener noreferrer" {...html("f.l1")} /></li>
             </ul>
           </div>
         </div>

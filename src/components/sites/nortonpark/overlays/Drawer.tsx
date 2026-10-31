@@ -4,7 +4,8 @@ import { SAVILLS_CONTACT } from "../data/contact";
 
 import { useEffect, useRef } from "react";
 import { Icon } from "../Icons";
-import { asset, calcHref, lockScroll, push, trapTab } from "../lib/dom";
+import { calcHref, lockScroll, push, trapTab } from "../lib/dom";
+import { BrandLogo } from "../BrandLogo";
 import { useLang } from "../lib/i18n";
 import { useUI } from "../lib/ui";
 
@@ -51,7 +52,7 @@ export function Drawer() {
       <div className="drawer-backdrop" data-drawer-close="" aria-hidden="true" onClick={closeDrawer}></div>
       <aside className="drawer-panel" role="dialog" aria-modal="true" aria-label={t("ui.navigation")} ref={panelRef}>
         <div className="drawer-top">
-          <img className="drawer-logo" src={asset("assets/logos/norton-park-logo-primary.svg")} alt="Norton Park" width={1200} height={200} loading="lazy" />
+          <BrandLogo variant="norton" className="drawer-logo" nortonWidth="100%" loading="lazy" />
           <button type="button" className="drawer-close" data-drawer-close="" aria-label={t("ui.closeMenu")} ref={closeRef} onClick={closeDrawer}>
             <Icon name="close" />
           </button>

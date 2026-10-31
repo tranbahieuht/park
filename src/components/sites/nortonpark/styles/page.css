@@ -89,7 +89,7 @@ legend{padding:0}
 }
 .nav-in{
   max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter);
-  height:var(--nav-h);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;
+  height:var(--nav-h);display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:16px;
 }
 .lang{display:flex;align-items:center;gap:8px;font-family:var(--font-sub);
   font-size:.74rem;letter-spacing:.16em;text-transform:uppercase}
@@ -99,10 +99,6 @@ legend{padding:0}
 .lang button:hover{opacity:.85}
 .lang i{opacity:.4;font-style:normal}
 
-.brand{justify-self:center;display:block;line-height:0}
-.brand img{width:clamp(8.1rem,14vw,11.6rem);max-height:2.25rem;height:auto;object-fit:contain}
-.nav:not(.is-solid) .brand-dark{display:none}
-.nav.is-solid .brand-light{display:none}
 
 .nav-actions{display:flex;align-items:center;gap:12px;justify-self:end}
 
@@ -1709,7 +1705,6 @@ button.drawer-act{-webkit-appearance:none;appearance:none;background:transparent
   .nav-actions{gap:8px}
   /* Dai hoa tiet doc lem vao chu vi le noi dung tren mobile chi con 24px */
   .loc::before{display:none}
-  .brand img{width:clamp(104px,26vw,150px);max-height:30px}
   .cta--sm{padding:9px 15px;font-size:.6rem;letter-spacing:.1em}
   .lang{font-size:.66rem;gap:5px}
   .story-top{grid-template-columns:1fr;gap:26px}
@@ -1802,7 +1797,6 @@ button.drawer-act{-webkit-appearance:none;appearance:none;background:transparent
   .nav-actions{gap:6px}
   .lang{font-size:.6rem;gap:4px}
   .nav-cta{padding:8px 11px;font-size:.55rem;letter-spacing:.07em}
-  .brand img{width:clamp(96px,30vw,150px)}
 }
 /* Khong co scroll snap thi anchor phai tru chieu cao nav ghim */
 @media (max-width:1040px),(max-height:599px){

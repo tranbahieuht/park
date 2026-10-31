@@ -9,6 +9,7 @@ import { asset, leadSent, lockScroll, markLeadSent, push, trapTab } from "../lib
 import { useLang } from "../lib/i18n";
 import { validLeadPhone } from "@/lib/leads/validation";
 import { useLeadSubmission } from "../lib/useLeadSubmission";
+import { BrandLogo } from "../BrandLogo";
 
 const UNITS_STD: Array<[string, string]> = [
   ["Studio", "form.u1"],
@@ -113,7 +114,7 @@ export function Popup() {
       <div className="pop-backdrop" data-pop-close="" aria-hidden="true" onClick={close}></div>
       <div ref={panelRef} className="pop-panel" role="dialog" aria-modal="true" aria-labelledby="popSub">
         <div className="pop-form">
-          <img className="pop-logo pop-brand-mark" src={asset("assets/logos/quacho-symbol-bronze.png")} alt="Norton Park" width={254} height={322} loading="lazy" hidden={sent} />
+          <BrandLogo variant="savills" className="pop-logo" savillsSize="60px" loading="lazy" hidden={sent} />
           <p className="pop-sub" id="popSub" hidden={sent} {...html("pop.sub")} />
           <form id="popForm" method="post" noValidate onSubmit={submit} hidden={sent} aria-busy={submission.pending}>
             <div className="two">
