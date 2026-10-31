@@ -1193,6 +1193,10 @@ a.f-v:hover{color:var(--beige-sand)}
 .f-by-disc,.f-by-line{margin:0;max-width:150ch;font-size:.72rem;line-height:1.7;text-wrap:pretty}
 .f-by-disc{color:rgba(213,206,184,.8)}
 .f-by-line{color:var(--beige-sand)}
+/* Dong credit thiet ke, dong cuoi cung cua footer. */
+.f-by-credit{margin:0;font-size:.68rem;letter-spacing:.04em;color:rgba(213,206,184,.66)}
+.f-by-credit a{color:inherit;text-decoration:none;transition:color .3s var(--ease)}
+.f-by-credit a:hover{color:var(--beige-sand)}
 @media (max-width:820px){
   .f-by{grid-template-columns:1fr;row-gap:1.15rem;padding:20px 0 26px}
   .f-by-co{grid-column:auto}
