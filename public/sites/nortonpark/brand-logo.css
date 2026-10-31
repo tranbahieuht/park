@@ -11,7 +11,7 @@
 .brand-logo--auto .brand-logo__norton-light{display:none}
 .nav:not(.is-solid) .brand-logo--auto .brand-logo__norton-dark{display:none}
 .nav:not(.is-solid) .brand-logo--auto .brand-logo__norton-light{display:block}
-.brand-logo .brand-logo__savills{display:block;width:var(--brand-savills-size);height:auto;aspect-ratio:1;object-fit:contain;border-radius:10%;flex:none}
+.brand-logo .brand-logo__savills{display:block;width:var(--brand-savills-size);height:auto;aspect-ratio:1;object-fit:contain;border-radius:0;flex:none}
 .brand-logo--cobrand{--brand-savills-size:34px;--brand-logo-gap:14px;padding:6px 12px;background:transparent}
 .brand-logo__divider{display:block;flex:none;width:1px;height:24px;background:#FFF;opacity:.22}
 @media(max-width:820px){
