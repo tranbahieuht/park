@@ -28,7 +28,7 @@
 .ldoc-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;
   padding:clamp(20px,2.6vw,32px) clamp(22px,3.4vw,48px) clamp(26px,3.4vw,44px);
   font-size:.9rem;line-height:1.75;scrollbar-width:thin;scrollbar-color:rgba(89,74,66,.35) transparent}
-.ldoc-body h3{margin:1.7em 0 .55em;font-family:var(--font-sub);font-size:.66rem;font-weight:700;letter-spacing:.14em;
+.ldoc-body h3{margin:1.7em 0 .55em;font-family:var(--font-display);font-size:1.05rem;font-weight:700;letter-spacing:.04em;
   text-transform:uppercase;color:var(--tx-1,#3E332D)}
 .ldoc-body h3:first-child{margin-top:0}
 .ldoc-body p{margin:0 0 .9em}

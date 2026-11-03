@@ -7,6 +7,7 @@ import { LangProvider } from "./lib/i18n";
 import { useMotion } from "./lib/motion";
 import { UIProvider } from "./lib/ui";
 import { useUtm } from "./lib/useUtm";
+import { useConsultationLaunchers } from "./lib/useConsultationLaunchers";
 import { ChatWidget } from "./overlays/ChatWidget";
 import { Drawer } from "./overlays/Drawer";
 import { Fab } from "./overlays/Fab";
@@ -94,6 +95,7 @@ function PageBody() {
   useContentProtection();
   useCtaTracking();
   useUtm();
+  useConsultationLaunchers();
   return (
     <>
       <IconSprite />

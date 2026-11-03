@@ -4,7 +4,8 @@ import { SAVILLS_CONTACT } from "../data/contact";
 
 import { useEffect, useRef } from "react";
 import { Icon } from "../Icons";
-import { calcHref, lockScroll, push, trapTab } from "../lib/dom";
+import { lockScroll, push, trapTab } from "../lib/dom";
+import { WhatsAppLink } from "../WhatsAppLink";
 import { BrandLogo } from "../BrandLogo";
 import { useLang } from "../lib/i18n";
 import { useUI } from "../lib/ui";
@@ -21,7 +22,7 @@ const LINKS: Array<[string, string, string]> = [
 /* Right-hand menu drawer: scroll lock, focus moves to the close button and
    returns to the burger, Esc closes, Tab stays inside the panel. */
 export function Drawer() {
-  const { lang, html, t } = useLang();
+  const { html, t } = useLang();
   const { drawerOpen, closeDrawer } = useUI();
   const panelRef = useRef<HTMLElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -48,7 +49,7 @@ export function Drawer() {
   }, [drawerOpen, closeDrawer]);
 
   return (
-    <div className={drawerOpen ? "drawer is-open" : "drawer"} id="drawer">
+    <div className={drawerOpen ? "drawer is-open" : "drawer"} id="drawer" inert={!drawerOpen} aria-hidden={!drawerOpen}>
       <div className="drawer-backdrop" data-drawer-close="" aria-hidden="true" onClick={closeDrawer}></div>
       <aside className="drawer-panel" role="dialog" aria-modal="true" aria-label={t("ui.navigation")} ref={panelRef}>
         <div className="drawer-top">
@@ -73,11 +74,11 @@ export function Drawer() {
           ))}
         </nav>
         <div className="drawer-foot">
-          <a className="drawer-act" data-calc="" href={calcHref("", lang)} data-cta="calc_drawer">
+          <a className="drawer-act" data-calc="" href="#register" data-cta="calc_drawer">
             <Icon name="calc" small />
             <span {...html("nav.calc")} />
           </a>
-          <a className="drawer-act" href="https://360.nortonpark.com.vn/" target="_blank" rel="noopener" data-cta="vr_drawer">
+          <a className="drawer-act" href="https://360.nortonpark.com.vn/" target="_blank" rel="noopener noreferrer" data-cta="vr_drawer">
             <Icon name="360" small />
             <span {...html("nav.vr")} />
           </a>
@@ -85,10 +86,7 @@ export function Drawer() {
             <Icon name="phone" small />
             <span {...html("dr.call")} />
           </a>
-          <a className="drawer-act" href={SAVILLS_CONTACT.zaloUrl} target="_blank" rel="noopener" data-cta="zalo_drawer">
-            <Icon name="zalo" small />
-            <span {...html("dr.zalo")} />
-          </a>
+          <WhatsAppLink className="drawer-act" cta="whatsapp_drawer" label />
           <p className="drawer-tag">The Global Sanctuary in Your Rhythm</p>
         </div>
       </aside>

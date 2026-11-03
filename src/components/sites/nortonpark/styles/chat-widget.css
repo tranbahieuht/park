@@ -85,7 +85,7 @@
 }
 
 .np-chat-title-group h3 {
-  font-family: 'The Seasons', Georgia, serif;
+  font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 500;
   margin: 0;
@@ -94,7 +94,7 @@
 }
 
 .np-chat-status-text {
-  font-family: 'Gotham', system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 0.725rem;
   color: rgba(244, 240, 231, 0.8);
   display: flex;
@@ -157,7 +157,7 @@
 .np-msg-bubble {
   padding: 0.75rem 0.95rem;
   border-radius: 0.875rem;
-  font-family: 'Gotham', system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 0.875rem;
   line-height: 1.45;
   word-break: break-word;
@@ -223,7 +223,7 @@
 }
 
 .np-thinking-text {
-  font-family: 'Gotham', system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 0.8125rem;
   font-style: italic;
   letter-spacing: 0.01em;
@@ -280,7 +280,7 @@
   color: var(--hoadau-brown, #594A42);
   border-radius: 999px;
   padding: 0.4rem 0.75rem;
-  font-family: 'Gotham', system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 500;
   cursor: pointer;
@@ -305,7 +305,7 @@
 }
 
 .np-lead-card-title {
-  font-family: 'The Seasons', Georgia, serif;
+  font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--hoadau-brown, #594A42);
@@ -313,7 +313,7 @@
 }
 
 .np-lead-card-desc {
-  font-family: 'Gotham', system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 0.775rem;
   color: var(--tx-3, #6E6455);
   margin-bottom: 0.75rem;
@@ -331,7 +331,7 @@
   padding: 0.55rem 0.75rem;
   border: 1px solid rgba(89, 74, 66, 0.2);
   border-radius: var(--r-input, 0.5rem);
-  font-family: 'Gotham', system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 0.8125rem;
   background: var(--bg-0, #FBFAF6);
   color: var(--hoadau-brown, #594A42);
@@ -352,7 +352,7 @@
   color: #FFFFFF;
   border: none;
   border-radius: var(--r-btn, 999px);
-  font-family: 'Gotham', system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -367,7 +367,7 @@
   box-shadow: 0 0.25rem 0.625rem rgba(142, 106, 78, 0.35);
 }
 
-/* Quick Action Buttons (Zalo OA & Hotline) */
+/* Quick Action Buttons (WhatsApp & Hotline) */
 .np-quick-actions {
   display: flex;
   gap: 0.5rem;
@@ -384,20 +384,20 @@
   gap: 0.35rem;
   padding: 0.45rem 0.5rem;
   border-radius: 0.5rem;
-  font-family: 'Gotham', system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 0.725rem;
   font-weight: 500;
   text-decoration: none;
   transition: background 0.2s;
 }
 
-.np-quick-act-btn--zalo {
+.np-quick-act-btn--whatsapp {
   background: #EBF3FF;
   color: #0068FF;
   border: 1px solid rgba(0, 104, 255, 0.2);
 }
 
-.np-quick-act-btn--zalo:hover {
+.np-quick-act-btn--whatsapp:hover {
   background: #D9E8FF;
 }
 
@@ -438,7 +438,7 @@
   border: 1px solid rgba(89, 74, 66, 0.2);
   border-radius: 999px;
   background: var(--bg-0, #FBFAF6);
-  font-family: 'Gotham', system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 0.85rem;
   color: var(--hoadau-brown, #594A42);
   outline: none;
@@ -479,7 +479,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 0.35rem;
-  font-family: 'Gotham', system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 0.6875rem;
   color: var(--tx-4, #A39A84);
 }

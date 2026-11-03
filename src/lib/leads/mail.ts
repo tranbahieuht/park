@@ -6,10 +6,12 @@ export function smtpConfig() {
   const e = process.env;
   const port = Number(e.SMTP_PORT);
   const secure = e.SMTP_SECURE === "true";
-  const from = e.SMTP_FROM || "", to = e.LEAD_RECEIVER_EMAIL || "";
+  // The recipient is fixed by the Savills brief, never supplied by the client.
+  const from = e.SMTP_FROM || "", to = "sales@savills.com.vn";
   if (!e.SMTP_HOST || /[\s\u0000-\u001f]/.test(e.SMTP_HOST) || !Number.isInteger(port) || port < 1 || port > 65535
     || !["true", "false"].includes(e.SMTP_SECURE || "") || !validLeadEmail(from) || !validLeadEmail(to)
-    || !e.SMTP_USER || !e.SMTP_PASSWORD) throw new Error("SMTP configuration unavailable");
+    || !validLeadEmail(e.SMTP_USER || "") || from.toLowerCase() !== e.SMTP_USER?.toLowerCase()
+    || !e.SMTP_PASSWORD || (port === 465 && !secure)) throw new Error("SMTP configuration unavailable");
   return { host: e.SMTP_HOST, port, secure, auth: { user: e.SMTP_USER, pass: e.SMTP_PASSWORD }, from, to };
 }
 

@@ -3,7 +3,6 @@
 import { SAVILLS_CONTACT } from "../data/contact";
 
 import { Icon } from "../Icons";
-import { calcHref } from "../lib/dom";
 import { BrandLogo } from "../BrandLogo";
 import { useLang } from "../lib/i18n";
 
@@ -31,7 +30,7 @@ const PRESS: Array<[string, string, string, string]> = [
 ];
 
 export function Footer() {
-  const { lang, html } = useLang();
+  const { html } = useLang();
   return (
     <footer className="foot">
       <div className="wrap">
@@ -46,8 +45,7 @@ export function Footer() {
               <li><a href="#position" {...html("dr.2")} /></li>
               <li><a href="#lifestyle" {...html("dr.3")} /></li>
               <li><a href="#residences" {...html("dr.4")} /></li>
-              <li><a href={calcHref("", lang)} data-calc="" {...html("f.calc")} /></li>
-              <li><a href="https://360.nortonpark.com.vn/" target="_blank" rel="noopener" {...html("f.vr")} /></li>
+              <li><a href="https://360.nortonpark.com.vn/" target="_blank" rel="noopener noreferrer" {...html("f.vr")} /></li>
               <li><a href="#register" {...html("dr.6")} /></li>
             </ul>
           </div>

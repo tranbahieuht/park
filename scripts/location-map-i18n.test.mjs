@@ -68,15 +68,15 @@ test('standalone map scripts parse (Next build does not compile public HTML scri
 
 test('an open location card renders its own travel time and updates with the locale', () => {
   const render = html.match(/function renderCard\(\) \{[\s\S]*?\n\}/)[0];
+  const bandLookup = html.match(/function bandOf\(id\) \{[\s\S]*?\n\}/)[0];
   const feature = data.features.poi.find(point => point.id === 'columbia');
   for (const copy of [vi, en]) {
     const nodes = {};
-    vm.runInNewContext(`${render}\nrenderCard();`, {
+    vm.runInNewContext(`${bandLookup}\n${render}\nrenderCard();`, {
       cardFor: { ...feature, kind: 'poi' }, CAT: data.cats, D: data,
       $: selector => nodes[selector] ||= {},
       tr: (key, fallback) => copy[key] ?? fallback,
       esc: value => String(value),
-      bandOf: id => data.bands.find(band => band.items.some(item => item.f === id))?.t,
     });
     assert.equal(nodes['#card .n'].textContent, copy['map.feature.columbia']);
     assert.equal(nodes['#card .k'].textContent, copy[`map.cat.${feature.cat}`]);

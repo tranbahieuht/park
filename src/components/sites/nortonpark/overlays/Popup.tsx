@@ -10,6 +10,8 @@ import { useLang } from "../lib/i18n";
 import { validLeadPhone } from "@/lib/leads/validation";
 import { useLeadSubmission } from "../lib/useLeadSubmission";
 import { BrandLogo } from "../BrandLogo";
+import type { LeadInput } from "@/lib/leads/validation";
+import type { ConsultationContext } from "../lib/useConsultationLaunchers";
 
 const UNITS_STD: Array<[string, string]> = [
   ["Studio", "form.u1"],
@@ -46,8 +48,10 @@ function blocked() {
 export function Popup() {
   const { lang, t, html } = useLang();
   const [open, setOpen] = useState(false);
+  const [source, setSource] = useState<LeadInput["source"]>("popup");
   const [sent, setSent] = useState(false);
   const submission = useLeadSubmission();
+  const { reset } = submission;
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -58,11 +62,28 @@ export function Popup() {
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const lastFocus = useRef<HTMLElement | null>(null);
+  const manuallyOpened = useRef(false);
+
+  useEffect(() => {
+    const launch = (event: Event) => {
+      const context = (event as CustomEvent<ConsultationContext>).detail;
+      manuallyOpened.current = true;
+      lastFocus.current = context.trigger;
+      if (reset()) {
+        setSent(false);
+        setSource(context.source);
+        setUnit(context.unit);
+      }
+      setOpen(true);
+    };
+    document.addEventListener("np:consultation", launch);
+    return () => document.removeEventListener("np:consultation", launch);
+  }, [reset]);
 
   useEffect(() => {
     let timer = 0;
     const tryOpen = () => {
-      if (leadSent()) return;
+      if (manuallyOpened.current || leadSent() || document.querySelector("#pop.is-open")) return;
       if (blocked()) {
         timer = window.setTimeout(tryOpen, 1000);
         return;
@@ -80,17 +101,21 @@ export function Popup() {
 
   useEffect(() => {
     if (!open) return;
+    if (!history.state?.npConsultation) history.pushState({ ...history.state, npConsultation: true }, "");
+    const onBack = () => setOpen(false);
+    window.addEventListener("popstate", onBack);
     lockScroll(true);
     closeRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") { if (history.state?.npConsultation) history.back(); else setOpen(false); }
       else trapTab(e, panelRef.current, '#popForm:not([hidden]) :is(a[href],button:not([disabled]),input:not([type="hidden"]):not([tabindex="-1"]),select), .pop-info a[href], .pop-close');
     };
     document.addEventListener("keydown", onKey);
     return () => {
       document.removeEventListener("keydown", onKey);
+      window.removeEventListener("popstate", onBack);
       lockScroll(false);
-      lastFocus.current?.focus?.();
+      lastFocus.current?.focus?.({ preventScroll: true });
     };
   }, [open]);
 
@@ -100,17 +125,17 @@ export function Popup() {
     const next = { name: name.trim().length < 2, phone: !validLeadPhone(phone), consent: !consent };
     setErrs(next);
     if (next.name || next.phone || next.consent) return;
-    const accepted = await submission.send({ name, phone, email, unit, consent, website: hp, language: lang, source: "popup" });
+    const accepted = await submission.send({ name, phone, email, unit, consent, website: hp, language: lang, source });
     if (!accepted) return;
-    push("generate_lead", { form_position: "popup", language: lang, unit_interest: unit });
+    push("generate_lead", { form_position: source, language: lang, unit_interest: unit });
     markLeadSent();
     setSent(true);
   };
 
-  const close = () => setOpen(false);
+  const close = () => { if (history.state?.npConsultation) history.back(); else setOpen(false); };
 
   return (
-    <div className={open ? "pop is-open" : "pop"} id="pop">
+    <div className={open ? "pop is-open" : "pop"} id="pop" inert={!open} aria-hidden={!open}>
       <div className="pop-backdrop" data-pop-close="" aria-hidden="true" onClick={close}></div>
       <div ref={panelRef} className="pop-panel" role="dialog" aria-modal="true" aria-labelledby="popSub">
         <div className="pop-form">
@@ -126,6 +151,7 @@ export function Popup() {
                   name="fullname"
                   autoComplete="name"
                   placeholder={t("pop.name")}
+                  aria-label={t("pop.name")}
                   aria-describedby="err-pName"
                   aria-invalid={errs.name || undefined}
                   value={name}
@@ -144,6 +170,7 @@ export function Popup() {
                   autoComplete="tel"
                   inputMode="tel"
                   placeholder={t("pop.phone")}
+                  aria-label={t("pop.phone")}
                   aria-describedby="err-pPhone"
                   aria-invalid={errs.phone || undefined}
                   value={phone}
@@ -155,10 +182,10 @@ export function Popup() {
               </div>
             </div>
             <div className="field">
-              <input type="email" maxLength={254} id="pEmail" name="email" autoComplete="email" placeholder={t("pop.email")} value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input type="email" maxLength={254} id="pEmail" name="email" autoComplete="email" aria-label={t("pop.email")} placeholder={t("pop.email")} value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="field">
-              <select id="pUnit" name="unit_interest" value={unit} onChange={(e) => setUnit(e.target.value)}>
+              <select id="pUnit" name="unit_interest" aria-label={t("pop.unit")} value={unit} onChange={(e) => setUnit(e.target.value)}>
                 <option value="">{t("pop.unit")}</option>
                 <optgroup label={t("facts.c1")}>
                   {UNITS_STD.map(([v, k]) => (
@@ -196,7 +223,7 @@ export function Popup() {
               <input type="text" id="pWebsite" name="website" tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} />
             </div>
             <input type="hidden" name="page_variant" value="norton_park_lead_a" />
-            <input type="hidden" name="form_position" value="popup" />
+            <input type="hidden" name="form_position" value={source} />
             {submission.error && <p className="err" role="alert">{t("lead." + submission.error)}</p>}
             <button type="submit" className="cta cta--wide" disabled={submission.pending} aria-busy={submission.pending}>
               {submission.pending ? <span>{t("lead.sending")}</span> : <span {...html("pop.cta")} />}
@@ -235,7 +262,7 @@ export function Popup() {
             </div>
             <div>
               <span className="info-k" {...html("ct.addr")} />
-              <a className="info-v" href={MAPS_URL} target="_blank" rel="noopener" data-cta="map_popup" {...html("ct.addrv")} />
+              <a className="info-v" href={MAPS_URL} target="_blank" rel="noopener noreferrer" data-cta="map_popup" {...html("ct.addrv")} />
             </div>
           </div>
         </div>

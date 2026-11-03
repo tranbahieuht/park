@@ -36,3 +36,27 @@ body:has(.pop.is-open,.drawer.is-open,.ldoc.is-open,.lb.is-open,#register:focus-
   .nav-in{grid-template-columns:auto minmax(0,1fr) auto;gap:3px}
   .nav .lang{gap:2px}
 }
+
+/* Savills feedback, 03/11/2026: typography and shared contact controls. */
+button,input,select,textarea{font-family:var(--font-body)}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-display)}
+.drawer-nav a{font-family:var(--font-body);line-height:1.45}
+.whatsapp-icon{display:block;flex:0 0 auto;width:24px;height:24px;object-fit:contain}
+.fab .fab-whatsapp{background:var(--dark-pine);border:0;color:#fff;cursor:pointer}
+.fab-whatsapp .whatsapp-icon{filter:brightness(0) invert(1)}
+.fab .fab-whatsapp:hover{background:#4C5041}
+.drawer-act{overflow-wrap:anywhere}
+.drawer-act .whatsapp-icon{width:18px;height:18px}
+.drawer-act:disabled,.fab-whatsapp:disabled,.np-quick-act-btn:disabled{cursor:not-allowed;opacity:.65}
+.np-quick-act-btn .whatsapp-icon{width:16px;height:16px}
+.pop-sub,.d1,.d2,.d3{overflow-wrap:break-word}
+@media(max-width:640px){
+  .reg .field label,.step-label,.q,.ch-k,.info-k,.f-k,.f-h,.ct-c,.pop .consent,.reg .consent{font-size:max(12px,.75rem);line-height:1.5;letter-spacing:.04em}
+  .drawer-act{font-size:.75rem;letter-spacing:.04em;line-height:1.4}
+  .pop .field input,.pop .field select,.reg .field input{font-size:16px}
+  .nav .nav-cta{font-size:11px;padding-inline:7px;letter-spacing:0}
+  .nav .lang{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}

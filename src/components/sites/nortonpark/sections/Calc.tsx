@@ -1,11 +1,10 @@
 "use client";
 
 import { Icon } from "../Icons";
-import { asset, calcHref } from "../lib/dom";
+import { asset } from "../lib/dom";
 import { useLang } from "../lib/i18n";
 
-/* Teaser for the separate price-calculator page (/calculator/ on the source).
-   Areas and layout counts come from the source's layout data. */
+/* Pricing enquiries reuse the existing local consultation dialog. */
 const TYPES: Array<{ hash: string; name: string; area: string; from: boolean; count: number; ltd?: boolean }> = [
   { hash: "#type=studio", name: "form.u1", area: "42,12 m²", from: true, count: 3 },
   { hash: "#type=1pn_plus", name: "calc.t2", area: "50,45 m²", from: true, count: 8 },
@@ -19,7 +18,8 @@ const TYPES: Array<{ hash: string; name: string; area: string; from: boolean; co
 ];
 
 export function Calc() {
-  const { lang, html } = useLang();
+  const { html } = useLang();
+  const units = ["Studio", "1 phòng ngủ+", "2 phòng ngủ", "2 phòng ngủ+", "3 phòng ngủ", "Căn hộ sân vườn", "Duplex", "Duplex sân vườn", "Podium Shop"];
   return (
     <section className="calc bay" id="calc">
       <div className="wrap calc-in">
@@ -28,14 +28,14 @@ export function Calc() {
           <span className="eyebrow" data-mo="t" {...html("calc.eyebrow")} />
           <h2 className="d2" data-mo="t" {...html("calc.title")} />
           <p className="calc-sub" data-mo="t" {...html("calc.sub")} />
-          <a className="cta" data-calc="" href={calcHref("", lang)} data-cta="calc_open" data-mo="t">
+          <a className="cta" data-calc="" href="#register" data-cta="calc_open" data-mo="t">
             <span {...html("calc.cta")} />
             <Icon name="arrow" small />
           </a>
         </div>
         <div className="calc-types">
-          {TYPES.map((ct) => (
-            <a key={ct.hash} className={ct.ltd ? "ct ct--ltd" : "ct"} data-calc={ct.hash} href={calcHref(ct.hash, lang)} data-cta="calc_type" data-mo="card">
+          {TYPES.map((ct, index) => (
+            <a key={ct.hash} className={ct.ltd ? "ct ct--ltd" : "ct"} data-calc="" data-unit={units[index]} href="#register" data-cta="calc_type" data-mo="card">
               <span className="ct-n" {...html(ct.name)} />
               <span className="ct-a">
                 {ct.from ? (

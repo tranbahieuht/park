@@ -9,8 +9,8 @@ export const SAVILLS_CONTACT = {
   fanpageName: "Savills Vietnam Residential",
   fanpageUrl: "https://www.facebook.com/savillsresidentialsales",
   privacyPolicy: "https://savills-hub.com.vn/privacy-policy/",
-  // Confirmed in the client's [LP] Norton Park document, updated 28/10/2026.
-  zaloUrl: "https://zalo.me/1092029419951822931",
+  // Official Resi WhatsApp URL supplied by the project owner.
+  whatsappUrl: "https://wa.me/qr/ZTIBEMDEW7LZE1" as string,
   website: "https://sav.li/resi",
   address: {
     vi: "81-83-83B-85, đường Hàm Nghi, TP. Hồ Chí Minh",

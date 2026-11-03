@@ -13,6 +13,7 @@ interface UIValue {
   closeChat: () => void;
   chatReturnFocus: React.RefObject<HTMLElement | null>;
   resiIndex: number;
+  resiSelected: boolean;
   setResiIndex: (i: number) => void;
 }
 
@@ -21,7 +22,9 @@ const UIContext = createContext<UIValue | null>(null);
 export function UIProvider({ children }: { children: ReactNode }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
-  const [resiIndex, setResiIndex] = useState(0);
+  const [resiIndex, updateResiIndex] = useState(0);
+  const [resiSelected, setResiSelected] = useState(false);
+  const setResiIndex = useCallback((index: number) => { updateResiIndex(index); setResiSelected(true); }, []);
   const chatReturnFocus = useRef<HTMLElement | null>(null);
 
   const openDrawer = useCallback(() => setDrawerOpen(true), []);
@@ -41,8 +44,8 @@ export function UIProvider({ children }: { children: ReactNode }) {
   const closeChat = useCallback(() => setChatOpen(false), []);
 
   const value = useMemo(
-    () => ({ drawerOpen, openDrawer, closeDrawer, chatOpen, openChat, closeChat, chatReturnFocus, resiIndex, setResiIndex }),
-    [drawerOpen, openDrawer, closeDrawer, chatOpen, openChat, closeChat, resiIndex],
+    () => ({ drawerOpen, openDrawer, closeDrawer, chatOpen, openChat, closeChat, chatReturnFocus, resiIndex, resiSelected, setResiIndex }),
+    [drawerOpen, openDrawer, closeDrawer, chatOpen, openChat, closeChat, resiIndex, resiSelected, setResiIndex],
   );
   return <UIContext.Provider value={value}>{children}</UIContext.Provider>;
 }

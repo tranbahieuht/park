@@ -1,10 +1,12 @@
+export const LEAD_SOURCES = ["hero_consultation", "sidebar_consultation", "contact_form", "pricing_calculator", "mobile_consultation", "popup", "residence_consultation", "header_consultation"] as const;
+
 export interface LeadInput {
   name: string;
   phone: string;
   email: string;
   unit: string;
   language: "vi" | "en";
-  source: "popup" | "landing";
+  source: typeof LEAD_SOURCES[number];
   consent: true;
   website: string;
   registeredAt: string;
@@ -21,7 +23,7 @@ export function validateLead(value: unknown): LeadInput | null {
   if (!clean(v.name, 120) || (v.name as string).trim().length < 2 || !clean(v.phone, 32) || !validLeadPhone(v.phone as string)
     || !clean(v.email, 254) || (v.email !== "" && !validLeadEmail(v.email as string)) || !clean(v.unit, 100)
     || !clean(v.website, 200) || v.website !== "" || v.consent !== true
-    || !["vi", "en"].includes(v.language as string) || !["popup", "landing"].includes(v.source as string)
+    || !["vi", "en"].includes(v.language as string) || !LEAD_SOURCES.includes(v.source as LeadInput["source"])
     || !clean(v.registeredAt, 40) || !/^\d{4}-\d{2}-\d{2}T/.test(v.registeredAt as string) || !Number.isFinite(Date.parse(v.registeredAt as string))) return null;
   return { name: (v.name as string).trim(), phone: (v.phone as string).trim(), email: (v.email as string).trim(),
     unit: (v.unit as string).trim(), language: v.language as LeadInput["language"], source: v.source as LeadInput["source"],

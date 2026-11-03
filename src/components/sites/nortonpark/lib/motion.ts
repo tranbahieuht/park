@@ -3,16 +3,9 @@
 import { useEffect } from "react";
 import { LOCK_MQ } from "./dom";
 
-/* Page-wide entrance motion (source page.js section 16). Text fades and drifts
-   up, rules draw from the left, cards rise, backgrounds zoom out. It runs only
-   the first time a section is reached.
-   - Desktop Screen Lock: a section that is >= 20% visible (or whose top is in
-     the upper 80% of the viewport) gets .mo-in and its whole group plays.
-   - Narrow / free-scroll: each element gets .in once its box enters the
-     bottom 10% of the viewport.
-   Kinds (data-mo): t, rule, card, fade, bg, mask. The markup carries data-mo
-   statically so html.mo hides it before hydration; this hook assigns the
-   stagger index (--mo-i) exactly like the source. */
+/* One-shot section/element entrances. IntersectionObserver queues only entries
+   entering the viewport: no scroll-time DOM sweeps or layout measurements.
+   Desktop keeps section snap; smaller viewports keep the original free scroll. */
 type Kind = "t" | "rule" | "card" | "fade" | "bg" | "mask";
 const MO_CFG: Record<string, Array<[Kind, string]>> = {
   hero: [["bg", ".hero-media img"], ["t", ".hero-in .eyebrow"], ["t", ".hero-in h1"], ["t", ".hero-cta .cta"]],
@@ -42,7 +35,6 @@ const MO_CFG: Record<string, Array<[Kind, string]>> = {
 
 const $$ = <T extends Element = HTMLElement>(s: string, c: ParentNode = document) => Array.from(c.querySelectorAll<T & HTMLElement>(s));
 const moSec = (key: string) => (key === "hero" ? document.querySelector<HTMLElement>(".hero") : document.getElementById(key));
-const moVisible = (el: HTMLElement) => el.offsetParent !== null || getComputedStyle(el).position === "fixed";
 
 /** Tag a section's elements with data-mo and --mo-i (re-run just before playing to catch late content). */
 function moTag(sec: HTMLElement, key: string) {
@@ -57,7 +49,6 @@ function moTag(sec: HTMLElement, key: string) {
         el.style.setProperty("--mo-i", "0");
         return;
       }
-      if (!moVisible(el)) return;
       el.style.setProperty("--mo-i", String(Math.min(k++, 6)));
     });
   });
@@ -66,90 +57,62 @@ function moTag(sec: HTMLElement, key: string) {
 export function useMotion() {
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.add("mo-ready");
-    if (!root.classList.contains("mo") || !window.requestAnimationFrame) {
-      root.classList.remove("mo");
-      root.classList.add("mo-ok");
-      return;
-    }
-    const lock = window.matchMedia(LOCK_MQ);
-    const secs: HTMLElement[] = [];
-    Object.keys(MO_CFG).forEach((key) => {
-      const sec = moSec(key);
-      if (!sec) return;
-      moTag(sec, key);
-      sec.setAttribute("data-mo-sec", key);
-      secs.push(sec);
+    const lock = matchMedia(LOCK_MQ);
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+    const sections: HTMLElement[] = [];
+    Object.keys(MO_CFG).forEach(key => {
+      const section = moSec(key);
+      if (!section) return;
+      moTag(section, key);
+      sections.push(section);
     });
-
-    /* Measure on the parent for kinds whose own box is clipped/scaled to zero. */
-    const moBox = (el: HTMLElement) => {
-      const k = el.getAttribute("data-mo");
-      return k === "mask" || k === "rule" || k === "bg" ? el.parentElement || el : el;
-    };
-    const moFire = (el: HTMLElement) => {
-      const parent = el.parentNode;
-      const sib = parent ? Array.prototype.indexOf.call(parent.children, el) : 0;
-      el.style.setProperty("--mo-i", String(el.getAttribute("data-mo") === "card" ? Math.min(sib, 3) : 0));
-      el.classList.add("in");
-    };
-    const moSecIn = (sec: HTMLElement) => {
-      moTag(sec, sec.getAttribute("data-mo-sec") || "");
-      sec.classList.add("mo-in");
-    };
-
-    let tick = 0;
-    let done = false;
-    const sweep = () => {
-      tick = 0;
-      const h = window.innerHeight || document.documentElement.clientHeight;
-      let left = 0;
-      secs.forEach((sec) => {
-        if (sec.classList.contains("mo-in")) return;
-        const r = sec.getBoundingClientRect();
-        if (!r.height) {
-          left++;
-          return;
-        }
-        if (lock.matches) {
-          const vis = Math.min(r.bottom, h) - Math.max(r.top, 0);
-          if (r.top < h * 0.8 || vis >= Math.min(r.height, h) * 0.2) moSecIn(sec);
-          else left++;
-          return;
-        }
-        let wait = 0;
-        $$("[data-mo]", sec).forEach((el) => {
-          if (el.classList.contains("in")) return;
-          if (moBox(el).getBoundingClientRect().top < h * 0.9) moFire(el);
-          else wait++;
+    root.classList.add("mo-ready", "mo-ok");
+    let observer: IntersectionObserver | null = null;
+    const connect = () => {
+      observer?.disconnect();
+      if (reduced.matches || !("IntersectionObserver" in window)) {
+        root.classList.remove("mo");
+        return;
+      }
+      root.classList.add("mo");
+      if (lock.matches) {
+        observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("mo-in");
+            observer?.unobserve(entry.target);
+          });
+        }, { rootMargin: "0px 0px -12% 0px", threshold: 0.12 });
+        sections.filter(section => !section.classList.contains("mo-in")).forEach(section => observer!.observe(section));
+      } else {
+        const targets = new Map<Element, HTMLElement[]>();
+        sections.filter(section => !section.classList.contains("mo-in")).forEach(section => {
+          $$("[data-mo]:not(.in)", section).forEach(element => {
+            const kind = element.dataset.mo;
+            const box = ["rule", "mask", "bg"].includes(kind || "") ? element.parentElement || element : element;
+            targets.set(box, [...(targets.get(box) || []), element]);
+          });
         });
-        if (wait) left++;
-      });
-      if (!left) {
-        done = true;
-        detach();
+        observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            targets.get(entry.target)?.forEach(element => {
+              element.style.setProperty("--mo-i", "0");
+              element.classList.add("in");
+            });
+            observer?.unobserve(entry.target);
+          });
+        }, { rootMargin: "0px 0px -8% 0px", threshold: 0 });
+        targets.forEach((_, box) => observer!.observe(box));
       }
     };
-    const queue = () => {
-      if (!tick && !done) tick = requestAnimationFrame(sweep);
-    };
-    const detach = () => {
-      window.removeEventListener("scroll", queue);
-      window.removeEventListener("resize", queue);
-      window.removeEventListener("load", queue);
-      window.removeEventListener("pageshow", queue);
-    };
-    window.addEventListener("scroll", queue, { passive: true });
-    window.addEventListener("resize", queue);
-    window.addEventListener("load", queue);
-    window.addEventListener("pageshow", queue);
-    const timers = [0, 250, 800, 1600].map((t) => window.setTimeout(queue, t));
-    root.classList.add("mo-ok");
-
+    connect();
+    lock.addEventListener("change", connect);
+    reduced.addEventListener("change", connect);
     return () => {
-      detach();
-      timers.forEach(clearTimeout);
-      if (tick) cancelAnimationFrame(tick);
+      observer?.disconnect();
+      lock.removeEventListener("change", connect);
+      reduced.removeEventListener("change", connect);
     };
   }, []);
 }

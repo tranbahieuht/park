@@ -4,8 +4,9 @@ import { SAVILLS_CONTACT } from "../data/contact";
 
 import { Icon } from "../Icons";
 import { useLang } from "../lib/i18n";
+import { WhatsAppLink } from "../WhatsAppLink";
 
-/* The client's floating contact group: phone and confirmed Savills Zalo only. */
+/* Phone and the shared WhatsApp contact. */
 export function Fab() {
   const { t } = useLang();
 
@@ -14,9 +15,7 @@ export function Fab() {
       <a className="fab-call" href={SAVILLS_CONTACT.phoneHref} data-cta="call" aria-label={t("dr.call")}>
         <Icon name="phone" />
       </a>
-      <a className="fab-zl" href={SAVILLS_CONTACT.zaloUrl} target="_blank" rel="noopener noreferrer" data-cta="zalo" aria-label={t("dr.zalo")}>
-        <Icon name="zalo" />
-      </a>
+      <WhatsAppLink className="fab-whatsapp" cta="whatsapp_floating" />
     </div>
   );
 }

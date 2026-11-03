@@ -38,7 +38,7 @@
 .nav:not(.is-solid) .btn-vr:hover, .nav.is-solid .btn-vr:hover {
   background: var(--bg-0); color: var(--brand-navy); border-color: var(--brand-navy); box-shadow: none;
 }
-/* One olive material unifies call, Zalo, chat, calculator and back-to-top. */
+/* One olive material unifies call, WhatsApp, chat, calculator and back-to-top. */
 .fab :is(a, button) { background: var(--dark-pine); color: var(--tx-on-dark); }
 .fab :is(a, button):hover {
   background: var(--bg-0); color: var(--brand-navy); box-shadow: inset 0 -2px var(--brand-yellow);
@@ -71,10 +71,10 @@
 .choice input:checked + span { background: var(--bg-0); border-color: var(--brand-navy); color: var(--brand-navy); }
 .reg .field input:focus { border-color: var(--brand-yellow); box-shadow: 0 0 0 1px var(--brand-yellow); }
 /* Chat header stays olive. Quick replies/secondary contact actions are outlined. */
-.np-chip, .np-quick-act-btn, .np-quick-act-btn--zalo, .np-quick-act-btn--call {
+.np-chip, .np-quick-act-btn, .np-quick-act-btn--whatsapp, .np-quick-act-btn--call {
   background: transparent; color: var(--brand-navy); border-color: var(--brand-border);
 }
-.np-chip:hover, .np-quick-act-btn:hover, .np-quick-act-btn--zalo:hover, .np-quick-act-btn--call:hover {
+.np-chip:hover, .np-quick-act-btn:hover, .np-quick-act-btn--whatsapp:hover, .np-quick-act-btn--call:hover {
   background: var(--brand-soft); color: var(--brand-navy); border-color: var(--brand-navy);
 }
 .np-chat-header-close:hover, .np-chat-reset:hover { color: var(--brand-yellow); background: transparent; }

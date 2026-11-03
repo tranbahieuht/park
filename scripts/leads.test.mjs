@@ -33,6 +33,46 @@ const input = { name: "QA Test", phone: "0901234567", email: "qa@example.test", 
 const load = loader();
 const { validateLead, validLeadEmail } = load("src/lib/leads/validation.ts");
 
+test("every consultation source validates without allowing arbitrary metadata", () => {
+  const { LEAD_SOURCES } = load("src/lib/leads/validation.ts");
+  for (const source of LEAD_SOURCES) assert.equal(validateLead({ ...input, source }).source, source);
+});
+
+test("SMTP transport fixes recipient, uses configured sender, validates Reply-To and reports actual acceptance", async () => {
+  const env = { ...process.env };
+  Object.assign(process.env, { SMTP_HOST: "smtp.example.test", SMTP_PORT: "465", SMTP_SECURE: "true",
+    SMTP_USER: "sender@example.test", SMTP_PASSWORD: "synthetic-test-only", SMTP_FROM: "sender@example.test",
+    LEAD_RECEIVER_EMAIL: "attacker@example.test" });
+  let mail, options, closed = 0, outcome = "accepted";
+  const { sendLead, smtpConfig } = loader({ nodemailer: { createTransport(config) {
+    options = config;
+    return { async sendMail(message) {
+      mail = message;
+      if (outcome === "auth") throw Object.assign(Error("private provider detail"), { code: "EAUTH" });
+      if (outcome === "timeout") throw Object.assign(Error("private provider detail"), { code: "ETIMEDOUT" });
+      return outcome === "accepted" ? { accepted: ["sales@savills.com.vn"], rejected: [] } : { accepted: [], rejected: ["sales@savills.com.vn"] };
+    }, close() { closed++; } };
+  } } })("src/lib/leads/mail.ts");
+  try {
+    await sendLead({ ...input, source: "pricing_calculator", unit: "Duplex" });
+    assert.equal(mail.to.address, "sales@savills.com.vn");
+    assert.equal(mail.from.address, "sender@example.test");
+    assert.equal(mail.replyTo.address, "qa@example.test");
+    assert.ok(mail.text.includes("pricing_calculator")); assert.ok(mail.text.includes("Duplex"));
+    assert.ok(mail.subject.includes("Norton Park"));
+    assert.equal(options.logger, false); assert.equal(options.debug, false);
+    await sendLead({ ...input, email: "" }); assert.equal(mail.replyTo, undefined);
+    for (outcome of ["auth", "timeout", "rejected"]) await assert.rejects(sendLead(input));
+    assert.equal(closed, 5);
+    process.env.SMTP_FROM = "sales@savills.com.vn"; assert.throws(smtpConfig, /unavailable/);
+    process.env.SMTP_FROM = "sender@example.test";
+    delete process.env.SMTP_PASSWORD; assert.throws(smtpConfig, /unavailable/);
+  } finally {
+    for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key];
+    Object.assign(process.env, env);
+  }
+});
+
 test("server validation rejects forged consent, invalid phone/email, controls, oversized fields and honeypot", () => {
   assert.ok(validateLead(input));
   const withoutEmail = { ...input }; delete withoutEmail.email;
@@ -57,7 +97,7 @@ test("API validation, SMTP rejection, retry, deduplication and throttling", asyn
     const failure = await route.POST(request(input)); assert.equal(failure.status, 503); assert.deepEqual(await failure.json(), { ok: false, code: "UNAVAILABLE" });
     fail = false;
     assert.equal((await route.POST(request({ ...input, to: "attacker@example.test", from: "attacker@example.test" }))).status, 200);
-    assert.equal((await route.POST(request({ ...input, source: "landing" }))).status, 200); assert.equal(attempts, 2);
+    assert.equal((await route.POST(request({ ...input, source: "contact_form" }))).status, 200); assert.equal(attempts, 2);
     assert.equal((await route.POST(request({ ...input, unit: "x".repeat(9000) }))).status, 413);
     assert.equal((await route.POST(request(input))).status, 429);
   } finally { if (previous === undefined) delete process.env.NODE_ENV; else process.env.NODE_ENV = previous; }

@@ -77,21 +77,16 @@
    BẢN ĐỒ VỊ TRÍ NORTON PARK — artwork "LOCATION MAPS" đối tác duyệt 27/09/2026
    Một giao diện sáng duy nhất (artwork nền kem của đối tác) — cố ý không có bản tối.
    ============================================================ */
-@font-face{font-family:'The Seasons';font-weight:300;font-display:swap;src:url('assets/fonts/SVN-TheSeasons/OTF/SVN-TheSeasons-Light.otf') format('opentype')}
-@font-face{font-family:'The Seasons';font-weight:400;font-display:swap;src:url('assets/fonts/SVN-TheSeasons/OTF/SVN-TheSeasons-Regular.otf') format('opentype')}
-@font-face{font-family:'Futura Norton';font-weight:400;font-display:swap;src:url('assets/fonts/SFUFutura/SFUFuturaBook.TTF') format('truetype')}
-@font-face{font-family:'Futura Norton';font-weight:700;font-display:swap;src:url('assets/fonts/SFUFutura/SFUFuturaHeavy.TTF') format('truetype')}
-@font-face{font-family:'Gotham Norton';font-weight:400;font-display:swap;src:url('assets/fonts/SVN-Gotham/SVN-Gotham-Book.otf') format('opentype')}
-@font-face{font-family:'Gotham Norton';font-weight:700;font-display:swap;src:url('assets/fonts/SVN-Gotham/SVN-Gotham-Bold.otf') format('opentype')}
+@import url("/sites/nortonpark/typography.css");
 :root{
   --paper:#FFF8F2; --ground:#FBF6EC; --card:#FFFDF8; --card-2:#FFFAF4;
   --ink:#243C34; --olive:#5F6635; --road:#7F855D; --bronze:#A47C5D; --bronze-d:#8A6647; --tan:#996633;
   --gold:#F1B85D; --metro:#6699FF; --char:#333333; --muted:rgba(36,60,52,.58);
   --line:rgba(36,60,52,.13); --line-2:rgba(164,124,93,.34);
   --shadow:0 16px 42px rgba(36,60,52,.16); --shadow-s:0 6px 18px rgba(36,60,52,.14);
-  --f-disp:'The Seasons',Georgia,'Times New Roman',serif;
-  --f-sub:'Futura Norton','Century Gothic','Avenir Next','Segoe UI',system-ui,sans-serif;
-  --f-body:'Gotham Norton','Segoe UI',system-ui,-apple-system,'Helvetica Neue',sans-serif;
+  --f-disp:var(--font-display);
+  --f-sub:var(--font-body);
+  --f-body:var(--font-body);
   --top:64px;          /* chừa hàng tab "Tổng quan | Bản đồ thực tế" của khung ngoài */
   --gap:14px; --bw:clamp(300px,27vw,368px); --peek:74px;
   color-scheme:light;
@@ -222,12 +217,6 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--bronze);ou
 .lg.on .tick{background:var(--bronze);border-color:var(--bronze)}
 .lg.on .tick svg{opacity:1;transform:none}
 .lg:not(.on){opacity:.55}
-.cats{display:flex;flex-wrap:wrap;gap:6px;padding:10px 0 2px 50px}
-.cats button{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:99px;border:1px solid var(--line);
-  font:400 11.5px/1 var(--f-body);color:var(--char);transition:.2s}
-.cats button i{width:8px;height:8px;border-radius:99px;background:var(--c)}
-.cats button:not(.on){opacity:.5}
-.cats button.on{border-color:rgba(164,124,93,.45);background:rgba(164,124,93,.08)}
 .foot{margin-top:14px;padding:12px 0 2px;border-top:1px solid var(--line);font:400 11px/1.55 var(--f-body);color:var(--muted)}
 
 /* nút mở lại bảng khi thu gọn */
@@ -306,8 +295,6 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--bronze);ou
   .band li{font-size:13px;padding-top:4px;padding-bottom:4px}
   .band li:before{top:11px}
   .lg{padding:10px 6px;font-size:13.5px}
-  .cats{padding-left:0}
-  .cats button{padding:9px 12px;font-size:12.5px}
   .presets button{padding:12px 6px}
   #ctl{right:12px;bottom:calc(var(--peek) + 12px)}
   #lm.sheet-up #ctl{opacity:0;pointer-events:none}
@@ -433,7 +420,6 @@ const D = window.LM_DATA;
 let localeCopy = {};
 const tr = (key, fallback) => localeCopy[key] == null ? fallback : localeCopy[key];
 const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
-const label = (key, fallback) => '<span data-lm-i18n="' + key + '">' + esc(tr(key, fallback)) + '</span>';
 const $ = s => document.querySelector(s), $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
 const NS = 'http://www.w3.org/2000/svg';
 const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -559,9 +545,21 @@ function setLive(v) {
 }
 document.documentElement.addEventListener('mouseleave', () => setLive(false));
 addEventListener('blur', () => setLive(false));
+let asleep = false;
+function setActivity(sleep) {
+  asleep = sleep;
+  lm.classList.toggle('asleep', sleep);
+  if (sleep) { setLive(false); svg.pauseAnimations(); }
+  else svg.unpauseAnimations();
+  document.getAnimations().forEach(animation => {
+    if (sleep) animation.pause();
+    else if (animation.playState === 'paused') animation.play();
+  });
+}
 addEventListener('message', e => {
   if (e.source !== parent || e.origin !== location.origin || !e.data || e.data.np !== 'locmap-cmd') return;
-  if (e.data.cmd === 'sleep') setLive(false);
+  if (e.data.cmd === 'sleep') setActivity(true);
+  if (e.data.cmd === 'wake') setActivity(false);
   if (e.data.cmd === 'locale' && (e.data.lang === 'vi' || e.data.lang === 'en') && e.data.copy && typeof e.data.copy === 'object') {
     applyLocale(e.data.lang, e.data.copy);
   }
@@ -760,15 +758,13 @@ function buildBoard() {
 }
 
 /* ---------- bộ lọc ---------- */
-const state = {}, catState = {};
+const state = {};
 function applyFilter() {
   D.legend.forEach(L => svg.classList.toggle('off-' + L.id, state[L.id] === false));
-  Object.keys(CAT).forEach(c => svg.classList.toggle('offcat-' + c, catState[c] === false));
   $$('.lg').forEach(r => r.classList.toggle('on', state[r.dataset.id] !== false));
-  $$('.cats button').forEach(b => b.classList.toggle('on', catState[b.dataset.cat] !== false));
   $$('.presets button').forEach(b => {
     const P = D.presets.find(p => p.id === b.dataset.id);
-    b.classList.toggle('on', D.legend.every(L => (state[L.id] !== false) === P.on.includes(L.id)) && Object.keys(CAT).every(c => catState[c] !== false));
+    b.classList.toggle('on', D.legend.every(L => (state[L.id] !== false) === P.on.includes(L.id)));
   });
   syncComets();
 }
@@ -777,8 +773,7 @@ function buildFilter() {
   /* ẩn bằng fill-/stroke-opacity (xem page.css "làm nổi": opacity trên hàng trăm phần tử làm Chrome cắt SVG thành nhiều
      lớp GPU); !important để thắng luật làm mờ của chế độ nổi bật — chuyển tiếp CSS vẫn chạy (transition đứng trên !important) */
   const HIDE = '{fill-opacity:0!important;stroke-opacity:0!important;pointer-events:none}';
-  const css = D.legend.map(L => L.g.map(g => '#art.off-' + L.id + ' [data-g="' + g + '"]').join(',') + HIDE).join('\n') +
-    Object.keys(CAT).map(c => '\n#art.offcat-' + c + ' [data-g="poi"][data-cat="' + c + '"]' + HIDE).join('');
+  const css = D.legend.map(L => L.g.map(g => '#art.off-' + L.id + ' [data-g="' + g + '"]').join(',') + HIDE).join('\n');
   const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
   const pr = $('#secFilter .presets');
   D.presets.forEach(P => {
@@ -786,7 +781,6 @@ function buildFilter() {
     b.dataset.id = P.id; b.textContent = P.name; b.dataset.lmI18n = 'map.preset.' + P.id;
     b.onclick = () => {
       D.legend.forEach(L => { state[L.id] = P.on.includes(L.id); });
-      Object.keys(CAT).forEach(c => { catState[c] = true; });
       clearHL(); applyFilter(); TRK('preset', P.name);
     };
     pr.appendChild(b);
@@ -798,17 +792,7 @@ function buildFilter() {
     r.innerHTML = '<span class="sw">' + L.sw + '</span><i data-lm-i18n="map.legend.' + L.id + '">' + L.name + '</i><span class="tick">' + TICK + '</span>';
     r.onclick = () => { state[L.id] = state[L.id] === false; applyFilter(); TRK('filter', L.name + (state[L.id] ? ' on' : ' off')); };
     box.appendChild(r);
-    if (L.id === 'poi') {
-      const cats = document.createElement('div'); cats.className = 'cats';
-      Object.keys(CAT).forEach(c => {
-        const b = document.createElement('button');
-        b.dataset.cat = c; b.style.setProperty('--c', CAT[c].color);
-        b.innerHTML = '<i></i>' + label('map.cat.' + c, CAT[c].name);
-        b.onclick = () => { catState[c] = catState[c] === false; if (catState[c]) state.poi = true; applyFilter(); TRK('cat', CAT[c].name); };
-        cats.appendChild(b);
-      });
-      box.appendChild(cats);
-    }
+
   });
   applyFilter();
 }
@@ -1034,6 +1018,7 @@ function startAmbient() {
     { duration: 2600, delay: i * 700, iterations: Infinity, direction: 'alternate', easing: 'ease-in-out' })));
   buildEffects();
   syncComets();
+  if (asleep) setActivity(true);
 }
 function stopAmbient() {
   ambient.forEach(a => { try { a.cancel(); } catch (x) {} }); ambient = []; comets.innerHTML = '';

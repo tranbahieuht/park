@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { validateLead, type LeadInput } from "@/lib/leads/validation";
 
 export function useLeadSubmission() {
   const busy = useRef(false), complete = useRef(false);
   const [pending, setPending] = useState(false);
-  const [error, setError] = useState<"invalid" | "failed" | "rate" | "busy" | null>(null);
+  const [error, setError] = useState<"invalid" | "failed" | "rate" | "busy" | "timeout" | null>(null);
   async function send(input: Omit<LeadInput, "consent" | "registeredAt"> & { consent: boolean }) {
     if (busy.current || complete.current) return false;
     setError(null);
@@ -23,8 +23,14 @@ export function useLeadSubmission() {
       }
       complete.current = true;
       return true;
-    } catch { setError("failed"); return false; }
+    } catch (cause) { setError(cause instanceof Error && ["TimeoutError", "AbortError"].includes(cause.name) ? "timeout" : "failed"); return false; }
     finally { busy.current = false; setPending(false); }
   }
-  return { send, pending, error };
+  const reset = useCallback(() => {
+    if (busy.current) return false;
+    complete.current = false;
+    setError(null);
+    return true;
+  }, []);
+  return { send, pending, error, reset };
 }

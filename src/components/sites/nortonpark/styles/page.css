@@ -1241,8 +1241,8 @@ a.f-v:hover{color:var(--beige-sand)}
 .fab a:active,.fab button:active{transform:translateY(0)}
 .fab-call{background:var(--hoadau-brown)}
 .fab-call:hover{background:#4A3E37}
-.fab-zalo{background:var(--dark-pine)}
-.fab-zalo:hover{background:#4C5041}
+.fab-whatsapp{background:var(--dark-pine)}
+.fab-whatsapp:hover{background:#4C5041}
 .fab-calc{background:var(--accent)}
 .fab-calc:hover{background:var(--accent-deep)}
 .fab-top{background:var(--hoadau-brown);opacity:0;visibility:hidden;
@@ -1986,7 +1986,7 @@ button.drawer-act{-webkit-appearance:none;appearance:none;background:transparent
    108 -> 100%. The: mo dan + troi 32px, anh trong the zoom 106 -> 100%.
    Chi chay LAN DAU section vao man. Chi dung opacity/transform/clip-path.
    ========================================================================== */
-:root{--mo-ease:cubic-bezier(.22,.61,.36,1);--mo-t:.9s;--mo-c:1.2s;--mo-bg:2.4s;--mo-gap:90ms;--mo-y:24px;--mo-yc:32px}
+:root{--mo-ease:cubic-bezier(.22,.61,.36,1);--mo-t:.48s;--mo-c:.58s;--mo-bg:.9s;--mo-gap:40ms;--mo-y:14px;--mo-yc:18px}
 @media (max-width:1040px){:root{--mo-y:16px;--mo-yc:22px}}
 .hero-media img{animation:none;transform:none}
 .dstory-media,.lstory-media,.reg-bg,.hero-media{overflow:hidden}
@@ -1995,7 +1995,7 @@ button.drawer-act{-webkit-appearance:none;appearance:none;background:transparent
    sau khi chay xong moi style goc (ke ca hover) duoc tra lai nguyen ven. */
 html.mo section:not(.mo-in) [data-mo]:not(.in){opacity:0}
 html.mo section:not(.mo-in) [data-mo="bg"]:not(.in){opacity:1;transform:scale(1.08)}
-html.mo section:not(.mo-in) [data-mo="mask"]:not(.in){opacity:1;clip-path:inset(0 100% 0 0)}
+html.mo section:not(.mo-in) [data-mo="mask"]:not(.in){opacity:1;transform:translateY(14px)}
 html.mo section:not(.mo-in) [data-mo="mask"]:not(.in) img{transform:scale(1.08)}
 html.mo section:not(.mo-in) [data-mo="rule"]:not(.in){opacity:1;transform:scaleX(0);transform-origin:left center}
 html.mo section:not(.mo-in) .tram[data-mo]:not(.in) .tram-fig img,html.mo section:not(.mo-in) .blk[data-mo]:not(.in) .blk-fig img,
@@ -2009,13 +2009,13 @@ html.mo .mo-in [data-mo="fade"],html.mo [data-mo="fade"].in{animation-name:moFad
 html.mo .mo-in [data-mo="rule"],html.mo [data-mo="rule"].in{animation-name:moRule;animation-duration:var(--mo-c)}
 html.mo .mo-in [data-mo="card"],html.mo [data-mo="card"].in{animation-name:moCard;animation-duration:var(--mo-c)}
 html.mo .mo-in [data-mo="bg"],html.mo [data-mo="bg"].in{animation-name:moBg;animation-duration:var(--mo-bg);animation-delay:0s}
-html.mo .mo-in [data-mo="mask"],html.mo [data-mo="mask"].in{animation-name:moMask;animation-duration:1.4s}
+html.mo .mo-in [data-mo="mask"],html.mo [data-mo="mask"].in{animation-name:moMask;animation-duration:.58s}
 html.mo .mo-in [data-mo="mask"] img,html.mo [data-mo="mask"].in img{animation:moBg var(--mo-bg) var(--mo-ease) backwards}
 html.mo .mo-in .tram[data-mo] .tram-fig img,html.mo .tram[data-mo].in .tram-fig img,
 html.mo .mo-in .blk[data-mo] .blk-fig img,html.mo .blk[data-mo].in .blk-fig img,
 html.mo .mo-in .ncard[data-mo] .ncard-fig img,html.mo .ncard[data-mo].in .ncard-fig img,
 html.mo .mo-in .life-stage[data-mo] .life-slide.on img,html.mo .life-stage[data-mo].in .life-slide.on img{
-  animation:moZoom 1.8s var(--mo-ease) backwards;animation-delay:calc(var(--mo-i,0) * var(--mo-gap))}
+  animation:moZoom .9s var(--mo-ease) backwards;animation-delay:calc(var(--mo-i,0) * var(--mo-gap))}
 
 @keyframes moUp{from{opacity:0;transform:translateY(var(--mo-y))}to{opacity:1;transform:none}}
 @keyframes moCard{from{opacity:0;transform:translateY(var(--mo-yc))}to{opacity:1;transform:none}}
@@ -2023,7 +2023,7 @@ html.mo .mo-in .life-stage[data-mo] .life-slide.on img,html.mo .life-stage[data-
 @keyframes moRule{from{transform:scaleX(0);transform-origin:left center}to{transform:scaleX(1);transform-origin:left center}}
 @keyframes moBg{from{transform:scale(1.08)}to{transform:scale(1)}}
 @keyframes moZoom{from{transform:scale(1.06)}to{transform:scale(1)}}
-@keyframes moMask{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+@keyframes moMask{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){html.mo [data-mo]{opacity:1!important;transform:none!important;clip-path:none!important}}
 
 /* ==========================================================================
@@ -2051,14 +2051,14 @@ html.mo .mo-in .life-stage[data-mo] .life-slide.on img,html.mo .life-stage[data-
   .rt-row{min-width:0;max-width:100%}
 }
 
-/* R8 (06/10/2026): nut Zalo trong cum nut noi (mau Accent Deep, giua nut Goi
-   va nut Bot chat). Icon mot mau, khong dung mau xanh thuong hieu Zalo. */
-.fab-zl{background:var(--accent-deep,#8E6A4E)}
-.fab-zl:hover{background:#7A5A41}
+/* R8 (06/10/2026): nut WhatsApp trong cum nut noi (mau Accent Deep, giua nut Goi
+   va nut Bot chat). Icon mot mau, khong dung mau xanh thuong hieu WhatsApp. */
+.fab-whatsapp{background:var(--accent-deep,#8E6A4E)}
+.fab-whatsapp:hover{background:#7A5A41}
 /* R8: Bo suu tap dac tuyen co 4 dong (them Shophouse): chia lai be ngang 2 hop
    de ten dong san pham khong bi be doi (desktop). <=1040px van xep doc. */
 @media (min-width:1041px){.facts-cat{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
-/* R8: drawer co 5 nut (them Chat Zalo). Man thap: nut gon hon, xep 2 cot,
+/* R8: drawer co 5 nut (them Chat WhatsApp). Man thap: nut gon hon, xep 2 cot,
    nut bot chat (chu dai) trai het hang. */
 @media (max-height:780px){
   .drawer-foot{grid-template-columns:1fr 1fr;gap:8px}

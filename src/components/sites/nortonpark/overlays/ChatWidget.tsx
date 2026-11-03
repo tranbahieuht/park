@@ -1,5 +1,6 @@
 "use client";
 
+import { WhatsAppLink } from "../WhatsAppLink";
 import { SAVILLS_CONTACT } from "../data/contact";
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -9,7 +10,7 @@ import { useLang } from "../lib/i18n";
 import { useUI } from "../lib/ui";
 
 const MAX_INPUT_CHARS = 500;
-const OA_URL = SAVILLS_CONTACT.zaloUrl;
+
 
 /* Greeting served by the source's /api/public-config. */
 const GREETING = {
@@ -22,7 +23,7 @@ interface Msg {
   role: "bot" | "user";
   text: string;
   time: string;
-  /** Offer Zalo OA / hotline links under this bubble. */
+  /** Offer WhatsApp / hotline links under this bubble. */
   contact?: boolean;
 }
 
@@ -34,7 +35,7 @@ const now = () => {
 /* Chat panel UI from the source widget. The assistant itself runs on the
    source's server (/api/chat), which this clone does not call: the panel shows
    the greeting and quick questions, and a sent question gets the widget's own
-   "could not complete the request" reply plus the Zalo / hotline links. */
+   "could not complete the request" reply plus the WhatsApp / hotline links. */
 export function ChatWidget() {
   const { lang } = useLang();
   const { chatOpen, closeChat, chatReturnFocus } = useUI();
@@ -167,9 +168,7 @@ export function ChatWidget() {
               </div>
               {m.contact ? (
                 <div className="np-quick-actions">
-                  <a className="np-quick-act-btn np-quick-act-btn--zalo" href={OA_URL} target="_blank" rel="noopener">
-                    {copy.oa}
-                  </a>
+                  <WhatsAppLink className="np-quick-act-btn np-quick-act-btn--whatsapp" cta="whatsapp_chat" label />
                   <a className="np-quick-act-btn" href={SAVILLS_CONTACT.phoneHref}>
                     {copy.hotline}
                   </a>

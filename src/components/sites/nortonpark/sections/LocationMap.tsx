@@ -29,25 +29,29 @@ export function LocationMap() {
     const fr = frameRef.current;
     const sec = secRef.current;
     if (!fr || !sec) return;
+    let visible = false;
+    const syncActivity = () => fr.contentWindow?.postMessage(
+      { np: "locmap-cmd", cmd: visible && !document.hidden ? "wake" : "sleep" }, window.location.origin,
+    );
     const onMsg = (e: MessageEvent) => {
       const d = e.data as { np?: string; ev?: string; label?: string } | null;
       if (e.origin !== window.location.origin || e.source !== fr.contentWindow || !d || d.np !== "locmap") return;
-      if (d.ev === "ready") { syncLocale(); return; }
+      if (d.ev === "ready") { syncLocale(); syncActivity(); return; }
       push("map_interact", { action: d.ev, item: d.label });
     };
     window.addEventListener("message", onMsg);
     const o = new IntersectionObserver(
       (es) => {
-        if (es[0].isIntersecting) return;
-        try {
-          fr.contentWindow?.postMessage({ np: "locmap-cmd", cmd: "sleep" }, "*");
-        } catch {}
+        visible = es[0].isIntersecting;
+        syncActivity();
       },
       { threshold: 0 },
     );
     o.observe(sec);
+    document.addEventListener("visibilitychange", syncActivity);
     return () => {
       window.removeEventListener("message", onMsg);
+      document.removeEventListener("visibilitychange", syncActivity);
       o.disconnect();
     };
   }, [syncLocale]);

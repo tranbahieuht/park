@@ -50,7 +50,14 @@ function fmtNum(v: number, dec: number, grp: boolean, lang: Lang) {
 /* Count up from 0 (easeOutCubic, 1.4s). The unit lives in an <i> inside the
    cell and is put back verbatim, keeping the source's original spacing
    ("7,9 <i>ha</i>" vs "20<i>%</i>"). */
+const countFrames = new WeakMap<HTMLElement, number>();
+function stopCount(el: HTMLElement) {
+  const frame = countFrames.get(el);
+  if (frame) cancelAnimationFrame(frame);
+  countFrames.delete(el);
+}
 function runCount(el: HTMLElement, lang: Lang) {
+  stopCount(el);
   const target = parseFloat(el.getAttribute("data-count") || "");
   if (isNaN(target) || reduceMotion()) return;
   const dec = parseInt(el.getAttribute("data-dec") || "0", 10);
@@ -62,17 +69,19 @@ function runCount(el: HTMLElement, lang: Lang) {
     const gap = before && before.nodeType === 3 && /\s$/.test(before.nodeValue || "") ? " " : "";
     unitHTML = gap + unit.outerHTML;
   }
-  const dur = 1400;
+  const dur = 900;
+  el.innerHTML = fmtNum(0, dec, grp, lang) + unitHTML;
+  const text = el.firstChild;
   let t0: number | null = null;
   const step = (ts: number) => {
     if (t0 === null) t0 = ts;
     const p = Math.min((ts - t0) / dur, 1);
     const e = 1 - Math.pow(1 - p, 3);
-    el.innerHTML = fmtNum(target * e, dec, grp, lang) + unitHTML;
-    if (p < 1) requestAnimationFrame(step);
+    if (text) text.nodeValue = fmtNum(target * e, dec, grp, lang) + (unitHTML.startsWith(" ") ? " " : "");
+    if (p < 1) countFrames.set(el, requestAnimationFrame(step));
+    else countFrames.delete(el);
   };
-  el.innerHTML = fmtNum(0, dec, grp, lang) + unitHTML;
-  requestAnimationFrame(step);
+  countFrames.set(el, requestAnimationFrame(step));
 }
 
 export function Facts() {
@@ -101,7 +110,7 @@ export function Facts() {
       { threshold: 0.6 },
     );
     els.forEach((el) => o.observe(el));
-    return () => o.disconnect();
+    return () => { o.disconnect(); els.forEach(stopCount); };
   }, []);
 
   /* A language switch rewrites the cells; re-run the count for cells on screen. */

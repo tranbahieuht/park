@@ -1,5 +1,3 @@
-import type { Lang } from "../data/i18n";
-
 /** Public folder for this site's downloaded assets. */
 export const ASSET_ROOT = "/sites/nortonpark/";
 export const asset = (p: string) => ASSET_ROOT + p.replace(/^\/+/, "");
@@ -40,14 +38,8 @@ export function navH() {
   return h || 62;
 }
 
-/* The calculator and news pages are separate routes on the source origin and
-   are not part of this clone, so they link to the live site. */
+/* News articles remain on the source origin. */
 export const SOURCE_ORIGIN = "https://www.nortonpark.com.vn";
-export function calcHref(hash: string, lang: Lang) {
-  let h = hash;
-  if (lang === "en") h += (h ? "&" : "#") + "lang=en";
-  return SOURCE_ORIGIN + "/calculator/" + h;
-}
 
 const LEAD_KEY = "np_lead_sent";
 export function markLeadSent() {

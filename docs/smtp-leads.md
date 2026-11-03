@@ -9,9 +9,8 @@ Copy `.env.example` to `.env.local` and supply real values locally. `.gitignore`
 | `SMTP_HOST` | SMTP hostname supplied by the mail provider |
 | `SMTP_PORT` | Usually 465 for implicit TLS or 587 for STARTTLS |
 | `SMTP_SECURE` | `true` for implicit TLS; `false` requires STARTTLS, never clear-text production mail |
-| `SMTP_USER`, `SMTP_PASSWORD` | Provider SMTP credentials/app password |
-| `SMTP_FROM` | Single bare sender mailbox, verified/authorized by the provider |
-| `LEAD_RECEIVER_EMAIL` | Single bare internal sales-team mailbox |
+| `SMTP_USER`, `SMTP_PASSWORD` | Provider SMTP mailbox login and password/app password |
+| `SMTP_FROM` | Bare sender mailbox, must match `SMTP_USER` and be authorized by the provider |
 | `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | HTTPS REST endpoint and write token of a shared Redis database |
 | `LEAD_RATE_LIMIT_SECRET` | Independent random secret, at least 32 characters |
 
@@ -19,7 +18,9 @@ Generate the signing secret with `node -e "console.log(require('crypto').randomB
 
 ## Vercel
 
-In Project → Settings → Environment Variables, configure all variables above for the intended Production/Preview environments. Use a separate internal test recipient and SMTP account for Preview. Redeploy manually after changing variables; this implementation does not deploy automatically.
+In Project → Settings → Environment Variables, configure all variables above for the intended Production/Preview environments. The API always sends to `sales@savills.com.vn`; it ignores `LEAD_RECEIVER_EMAIL` and client-supplied recipient fields. Use the mock transport/browser interception or local SMTP sink for QA, never send synthetic registrations to the actual sales inbox. Redeploy manually after changing variables; this implementation does not deploy automatically.
+
+The checked-in `.env.example` previously contained a real-looking SMTP password. It has been replaced with placeholders. The account owner must revoke/rotate that password; editing the example cannot remove credentials from existing Git history. Do not reuse it or copy it into Vercel.
 
 `POST /api/leads` is an App Router Route Handler using `runtime = "nodejs"`, with `maxDuration = 60`. It awaits Nodemailer directly. The deployment must support outbound SMTP connections and the configured function duration. Configure SPF/DKIM and sender permissions with the email provider. Successful API responses mean the SMTP server accepted the recipient/message, not a guarantee of inbox delivery; inspect provider delivery/bounce reports separately.
 
@@ -37,7 +38,7 @@ The API uses Vercel's overwritten `x-forwarded-for` header only when `VERCEL=1`.
 
 ## Request and UI behavior
 
-Payload fields: `name` (2–120 chars after trimming), `phone` (9–15 digits plus supported separators), optional `email` (omitted, empty string or valid mailbox, max 254), `unit` (max 100, empty string allowed), `language` (`vi`/`en`), `source` (`popup`/`landing`), `consent` (true), `website` (empty honeypot), `registeredAt` (ISO date string). The email's receipt time comes from the server in Asia/Ho_Chi_Minh time; client time is never trusted as the receipt time. Recipient/from are always read from server configuration; client-supplied routing fields are ignored.
+Payload fields: `name` (2–120 chars after trimming), `phone` (9–15 digits plus supported separators), optional `email` (omitted, empty string or valid mailbox, max 254), `unit` (max 100, empty string allowed), `language` (`vi`/`en`), `source` (`hero_consultation`, `sidebar_consultation`, `contact_form`, `pricing_calculator`, `mobile_consultation`, `popup`, `residence_consultation`, `header_consultation`), `consent` (true), `website` (empty honeypot), `registeredAt` (ISO date string). The email's receipt time comes from the server in Asia/Ho_Chi_Minh time; client time is never trusted as the receipt time. Recipient is fixed to Savills and sender comes from server configuration; client-supplied routing fields are ignored.
 
 Forms share one submission hook and the same API. Busy state disables submit; failure preserves entries and shows VI/EN errors. Only confirmed API acceptance emits `generate_lead`, sets the existing local lead marker and opens the existing success state. Analytics contains only source/language/unit, not name/phone/email. Both frontend and server validate input. The landing form keeps its two steps. The chatbot currently has no lead-capture form and remains unchanged.
 
@@ -50,7 +51,7 @@ npm run typecheck
 npm run build
 ```
 
-The existing extracted `New folder` contains unrelated lint failures. For the application-only check, use `npm run lint -- --ignore-pattern "New folder/**"`; do not automatically rewrite the extracted websites.
+The existing extracted `New folder`, static vendor assets and local `temp` scripts contain unrelated lint failures. For the application/test check, use `npm run lint -- src scripts`; do not automatically rewrite the extracted websites.
 
 ### Safe local SMTP test (no external mail)
 
@@ -61,7 +62,7 @@ openssl req -x509 -newkey rsa:2048 -nodes -keyout key.pem -out cert.pem -days 2 
 node scripts/smtp-sandbox.mjs /absolute/path/cert.pem /absolute/path/key.pem
 ```
 
-Start `npm run dev` in another terminal with `SMTP_HOST=127.0.0.1`, `SMTP_PORT=2465`, `SMTP_SECURE=true`, `SMTP_USER=sandbox`, `SMTP_PASSWORD=sandbox-only`, `SMTP_FROM=website@example.test`, `LEAD_RECEIVER_EMAIL=sink@example.test`. Set `NODE_EXTRA_CA_CERTS` to the certificate's absolute path **before** launching Node. Omit Redis URL/token only for this local development test. Never disable TLS verification to make a production SMTP connection work.
+Start `npm run dev` in another terminal with `SMTP_HOST=127.0.0.1`, `SMTP_PORT=2465`, `SMTP_SECURE=true`, `SMTP_USER=website@example.test`, `SMTP_PASSWORD=sandbox-only`, `SMTP_FROM=website@example.test`. The fixed Savills recipient is accepted only by the local sink; nothing is forwarded. Set `NODE_EXTRA_CA_CERTS` to the certificate's absolute path **before** launching Node. Omit Redis URL/token only for this local development test. Never disable TLS verification to make a production SMTP connection work.
 
 The sandbox binds only loopback, never forwards mail, and exposes in-memory synthetic messages at `http://127.0.0.1:3102`. Use synthetic names/contact details only. POST `{"reject":true,"delay":1500}` to that loopback endpoint to simulate SMTP 451 failures and a visible pending state; POST `{"reject":false,"delay":1500}` to allow acceptance. The development API rate limit still applies; restart the development process to reset its local counters during repeated QA.
 

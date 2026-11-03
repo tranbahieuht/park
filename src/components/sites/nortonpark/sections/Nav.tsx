@@ -22,9 +22,9 @@ export function Nav() {
       nav.classList.add("is-solid");
       return;
     }
-    let ticking = false;
+    let frame = 0;
     const sync = () => {
-      ticking = false;
+      frame = 0;
       const y = navH() / 2;
       const dark = darkSecs.some((s) => {
         const r = s.getBoundingClientRect();
@@ -33,10 +33,7 @@ export function Nav() {
       nav.classList.toggle("is-solid", !dark);
     };
     const req = () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(sync);
-      }
+      if (!frame) frame = requestAnimationFrame(sync);
     };
     window.addEventListener("scroll", req, { passive: true });
     window.addEventListener("resize", req);
@@ -44,6 +41,7 @@ export function Nav() {
     return () => {
       window.removeEventListener("scroll", req);
       window.removeEventListener("resize", req);
+      if (frame) cancelAnimationFrame(frame);
     };
   }, []);
 
@@ -63,7 +61,7 @@ export function Nav() {
           <BrandLogo variant="cobrand" tone="auto" />
         </a>
         <div className="nav-actions">
-          <a className="btn-vr btn-eye" href="https://360.nortonpark.com.vn/" target="_blank" rel="noopener" data-cta="vr_nav">
+          <a className="btn-vr btn-eye" href="https://360.nortonpark.com.vn/" target="_blank" rel="noopener noreferrer" data-cta="vr_nav">
             <Icon name="360" small />
             <span className="btn-vr-t" {...html("nav.vr")} />
           </a>

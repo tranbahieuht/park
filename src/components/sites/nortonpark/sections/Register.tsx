@@ -60,9 +60,9 @@ export function Register() {
     const nextErrs = { name: name.trim().length < 2, phone: !validLeadPhone(phone), consent: !consent };
     setErrs(nextErrs);
     if (nextErrs.name || nextErrs.phone || nextErrs.consent) return;
-    const accepted = await submission.send({ name, phone, email, unit, consent, website: hp, language: lang, source: "landing" });
+    const accepted = await submission.send({ name, phone, email, unit, consent, website: hp, language: lang, source: "contact_form" });
     if (!accepted) return;
-    push("generate_lead", { form_position: "landing", language: lang, unit_interest: unit });
+    push("generate_lead", { form_position: "contact_form", language: lang, unit_interest: unit });
     markLeadSent();
     setSent(true);
     requestAnimationFrame(() => okRef.current?.focus());
@@ -188,11 +188,11 @@ export function Register() {
                 <input key={k} type="hidden" name={k} defaultValue="" />
               ))}
               <input type="hidden" name="page_variant" value="norton_park_lead_a" />
-              <input type="hidden" name="form_position" value="landing" />
+              <input type="hidden" name="form_position" value="contact_form" />
               <p className="privacy" {...html("form.privacy")} />
             </form>
 
-            <div className={sent ? "ok on" : "ok"} id="success" role="status" ref={okRef}>
+            <div className={sent ? "ok on" : "ok"} id="success" role="status" tabIndex={-1} ref={okRef}>
               <Icon name="check" />
               <h3 className="d3" {...html("form.okt")} />
               <p {...html("form.okb")} />
@@ -209,7 +209,7 @@ export function Register() {
                   className="info-v"
                   href="https://www.google.com/maps/place/Norton+Park+Gamuda+Land/@10.9311995,106.712967,19z/data=!4m6!3m5!1s0x3174d711342cd6b1:0x1c66dbf89b9b27df!8m2!3d10.9311995!4d106.712967!16s%2Fg%2F11p1_4vk9l"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   data-cta="map_contact"
                   {...html("ct.addrv")}
                 />

@@ -11,7 +11,6 @@ export function IconSprite() {
         <symbol id="i-prev" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" /></symbol>
         <symbol id="i-next" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" /></symbol>
         <symbol id="i-phone" viewBox="0 0 24 24"><path d="M15.7 21C7.6 21 3 16.4 3 8.3 3 6.5 4.5 5 6.3 5h1.2c.6 0 1.1.4 1.2 1l.7 2.8c.1.5-.1 1-.5 1.3l-1 .7a10.7 10.7 0 0 0 4.3 4.3l.7-1c.3-.4.8-.6 1.3-.5l2.8.7c.6.1 1 .6 1 1.2v1.2c0 1.8-1.5 3.3-3.3 3.3Z" /></symbol>
-        <symbol id="i-zalo" viewBox="0 0 24 24"><path d="M20 11.3c0 3.9-3.6 7.1-8 7.1-.9 0-1.8-.1-2.6-.4L5 19.5l1.1-3A6.7 6.7 0 0 1 4 11.3C4 7.4 7.6 4.2 12 4.2s8 3.2 8 7.1Z" /><path d="M9.6 9.4h4l-4 5.1h4.2" /></symbol>
         <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 7l9 6 9-6" /></symbol>
         <symbol id="i-bot" viewBox="0 0 24 24"><rect x="4.6" y="8.2" width="14.8" height="10.8" rx="3.6" /><path d="M12 8.2V5.4" /><circle cx="12" cy="4.3" r="1.1" /><path d="M2.6 12.4v3.2M21.4 12.4v3.2" /><circle cx="9.3" cy="13.1" r="1.15" fill="currentColor" stroke="none" /><circle cx="14.7" cy="13.1" r="1.15" fill="currentColor" stroke="none" /><path d="M10 16.3h4" /></symbol>
         <symbol id="i-fb" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" /><path d="M15.6 8.2h-1.5c-1.2 0-1.9.7-1.9 1.9V20.5M10 12.7h5" /></symbol>
@@ -35,7 +34,7 @@ export function IconSprite() {
 }
 
 export type IconName =
-  | "arrow" | "up" | "down" | "prev" | "next" | "phone" | "zalo" | "mail" | "bot" | "fb" | "close"
+  | "arrow" | "up" | "down" | "prev" | "next" | "phone" | "mail" | "bot" | "fb" | "close"
   | "expand" | "tower" | "leaf" | "plan" | "water" | "desk" | "park" | "pin" | "mall" | "check"
   | "chat" | "360" | "calc";
 

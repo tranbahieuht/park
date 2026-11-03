@@ -52,8 +52,8 @@ export default function RootLayout({
     <html lang="vi" suppressHydrationWarning>
       <head>
         <InlineScript html={MOTION_BOOT} />
-        <link rel="preload" href="/sites/nortonpark/fonts/seasons-400.woff2" as="font" type="font/woff2" crossOrigin="" />
-        <link rel="preload" href="/sites/nortonpark/fonts/gotham-400.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/sites/nortonpark/fonts/playfair-display.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/sites/nortonpark/fonts/montserrat.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link
           rel="preload"
           href="/sites/nortonpark/assets/images/cgi/design-story-facade.jpg"
