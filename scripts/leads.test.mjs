@@ -33,9 +33,92 @@ const input = { name: "QA Test", phone: "0901234567", email: "qa@example.test", 
 const load = loader();
 const { validateLead, validLeadEmail } = load("src/lib/leads/validation.ts");
 
+test("frontend field validation and backend agree on optional email/unit, trimming and required fields", () => {
+  const { leadFieldErrors } = load("src/lib/leads/validation.ts");
+  for (const patch of [{ email: "", unit: "" }, { email: "   " }, { email: " qa@example.test " }, { unit: "Duplex" }]) {
+    const value = { ...input, ...patch };
+    assert.ok(Object.values(leadFieldErrors(value)).every(error => !error));
+    assert.ok(validateLead(value));
+  }
+  const optional = { ...input }; delete optional.email; delete optional.unit;
+  assert.equal(validateLead(optional).email, ""); assert.equal(validateLead(optional).unit, "");
+  for (const [field, value] of [["name", "a"], ["phone", "123"], ["email", "invalid"], ["consent", false]]) {
+    assert.equal(leadFieldErrors({ ...input, [field]: value })[field], true);
+    assert.equal(validateLead({ ...input, [field]: value }), null);
+  }
+});
+
+test("API categorizes SMTP failures without leaking provider detail; timeout holds the processing lock", async () => {
+  const env = { ...process.env }, oldLog = console.error, logs = [];
+  process.env.NODE_ENV = "test"; delete process.env.VERCEL;
+  delete process.env.UPSTASH_REDIS_REST_URL; delete process.env.UPSTASH_REDIS_REST_TOKEN;
+  console.error = line => logs.push(JSON.parse(line));
+  try {
+    for (const [code, expected, reason] of [["EAUTH", "SERVICE_UNAVAILABLE", "SMTP_AUTH"], ["ETIMEDOUT", "DELIVERY_UNCONFIRMED", "SMTP_TIMEOUT"], ["ECONNREFUSED", "DELIVERY_FAILED", "SMTP_UNAVAILABLE"]]) {
+      let attempts = 0;
+      const route = loader({ "@/lib/leads/mail": { sendLead: async () => { attempts++; throw Object.assign(Error("credential customer@example.test SECRET"), { code }); } } })("src/app/api/leads/route.ts");
+      const request = () => new Request("http://localhost/api/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input) });
+      const result = await route.POST(request());
+      assert.equal(result.status, 503); assert.equal((await result.json()).code, expected);
+      assert.equal(logs.at(-1).reason, reason);
+      assert.equal(logs.at(-1).requestId, result.headers.get("X-Request-Id"));
+      const retry = await route.POST(request());
+      assert.equal(retry.status, code === "ETIMEDOUT" ? 409 : 503);
+      assert.equal(attempts, code === "ETIMEDOUT" ? 1 : 2);
+    }
+    const text = JSON.stringify(logs);
+    for (const privateValue of [input.name, input.phone, input.email, "SECRET", "credential"]) assert.ok(!text.includes(privateValue));
+    assert.ok(logs.every(log => Object.keys(log).sort().join(',') === 'event,reason,requestId'));
+  } finally {
+    console.error = oldLog;
+    for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key];
+    Object.assign(process.env, env);
+  }
+});
+
+test("production API fails safely for missing signing/Redis configuration before attempting SMTP", async () => {
+  const env = { ...process.env }, oldLog = console.error, logs = [];
+  process.env.NODE_ENV = "production"; delete process.env.LEAD_RATE_LIMIT_SECRET;
+  delete process.env.UPSTASH_REDIS_REST_URL; delete process.env.UPSTASH_REDIS_REST_TOKEN;
+  console.error = line => logs.push(JSON.parse(line));
+  let attempts = 0;
+  try {
+    const route = loader({ "@/lib/leads/mail": { sendLead: async () => { attempts++; } } })("src/app/api/leads/route.ts");
+    const request = () => new Request("http://localhost/api/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input) });
+    assert.deepEqual(await (await route.POST(request())).json(), { ok: false, code: "SERVICE_UNAVAILABLE" });
+    assert.equal(logs.at(-1).reason, "RATE_SECRET_MISSING");
+    process.env.LEAD_RATE_LIMIT_SECRET = "x".repeat(32);
+    assert.equal((await route.POST(request())).status, 503);
+    assert.equal(logs.at(-1).reason, "REDIS_CONFIGURATION");
+    assert.equal(attempts, 0);
+  } finally {
+    console.error = oldLog;
+    for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key];
+    Object.assign(process.env, env);
+  }
+});
+
 test("every consultation source validates without allowing arbitrary metadata", () => {
   const { LEAD_SOURCES } = load("src/lib/leads/validation.ts");
   for (const source of LEAD_SOURCES) assert.equal(validateLead({ ...input, source }).source, source);
+});
+
+test("same-origin browser requests survive Next URL canonicalization without trusting foreign origins or non-Vercel forwarding headers", async () => {
+  const env = { ...process.env };
+  process.env.NODE_ENV = "test"; delete process.env.VERCEL;
+  const route = loader({ "@/lib/leads/abuse": { limitRequest: async () => {} } })("src/app/api/leads/route.ts");
+  const request = headers => new Request("http://localhost:3103/api/leads", { method: "POST", headers: { "Content-Type": "application/json", Host: "127.0.0.1:3103", ...headers }, body: "{}" });
+  try {
+    assert.equal((await route.POST(request({ Origin: "http://127.0.0.1:3103" }))).status, 400);
+    for (const headers of [{ Origin: "https://evil.test" }, { Origin: "null" }, { Origin: "http://127.0.0.1:3103", "sec-fetch-site": "cross-site" }, { Origin: "https://127.0.0.1:3103", "x-forwarded-proto": "https" }]) {
+      const response = await route.POST(request(headers)); assert.equal(response.status, 403); assert.equal((await response.json()).code, "FORBIDDEN");
+    }
+    process.env.VERCEL = "1";
+    assert.equal((await route.POST(request({ Origin: "https://127.0.0.1:3103", "x-forwarded-proto": "https" }))).status, 400);
+  } finally {
+    for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key];
+    Object.assign(process.env, env);
+  }
 });
 
 test("SMTP transport fixes recipient, uses configured sender, validates Reply-To and reports actual acceptance", async () => {
@@ -50,7 +133,7 @@ test("SMTP transport fixes recipient, uses configured sender, validates Reply-To
       mail = message;
       if (outcome === "auth") throw Object.assign(Error("private provider detail"), { code: "EAUTH" });
       if (outcome === "timeout") throw Object.assign(Error("private provider detail"), { code: "ETIMEDOUT" });
-      return outcome === "accepted" ? { accepted: ["sales@savills.com.vn"], rejected: [] } : { accepted: [], rejected: ["sales@savills.com.vn"] };
+      return outcome === "accepted" ? { accepted: ["sales@savills.com.vn"], rejected: [] } : outcome === "wrong-recipient" ? { accepted: ["other@example.test"], rejected: [] } : { accepted: [], rejected: ["sales@savills.com.vn"] };
     }, close() { closed++; } };
   } } })("src/lib/leads/mail.ts");
   try {
@@ -62,11 +145,14 @@ test("SMTP transport fixes recipient, uses configured sender, validates Reply-To
     assert.ok(mail.subject.includes("Norton Park"));
     assert.equal(options.logger, false); assert.equal(options.debug, false);
     await sendLead({ ...input, email: "" }); assert.equal(mail.replyTo, undefined);
-    for (outcome of ["auth", "timeout", "rejected"]) await assert.rejects(sendLead(input));
-    assert.equal(closed, 5);
-    process.env.SMTP_FROM = "sales@savills.com.vn"; assert.throws(smtpConfig, /unavailable/);
+    for (const [mode, reason] of [["auth", "SMTP_AUTH"], ["timeout", "SMTP_TIMEOUT"], ["rejected", "SMTP_REJECTED"], ["wrong-recipient", "SMTP_REJECTED"]]) {
+      outcome = mode;
+      await assert.rejects(sendLead(input), error => error.reason === reason && !error.message.includes("private"));
+    }
+    assert.equal(closed, 6);
+    process.env.SMTP_FROM = "sales@savills.com.vn"; assert.throws(smtpConfig, /SMTP_CONFIGURATION/);
     process.env.SMTP_FROM = "sender@example.test";
-    delete process.env.SMTP_PASSWORD; assert.throws(smtpConfig, /unavailable/);
+    delete process.env.SMTP_PASSWORD; assert.throws(smtpConfig, /SMTP_CONFIGURATION/);
   } finally {
     for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key];
     Object.assign(process.env, env);
@@ -94,7 +180,7 @@ test("API validation, SMTP rejection, retry, deduplication and throttling", asyn
   try {
     assert.equal((await route.POST(request(input, { Origin: "https://evil.test" }))).status, 403);
     assert.equal((await route.POST(request({ ...input, consent: false }))).status, 400);
-    const failure = await route.POST(request(input)); assert.equal(failure.status, 503); assert.deepEqual(await failure.json(), { ok: false, code: "UNAVAILABLE" });
+    const failure = await route.POST(request(input)); assert.equal(failure.status, 503); assert.deepEqual(await failure.json(), { ok: false, code: "DELIVERY_FAILED" });
     fail = false;
     assert.equal((await route.POST(request({ ...input, to: "attacker@example.test", from: "attacker@example.test" }))).status, 200);
     assert.equal((await route.POST(request({ ...input, source: "contact_form" }))).status, 200); assert.equal(attempts, 2);

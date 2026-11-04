@@ -8,19 +8,19 @@ const developmentGlobal = globalThis as typeof globalThis & { npLeadCounters?: L
 const local: LocalCounters = process.env.NODE_ENV === "development"
   ? (developmentGlobal.npLeadCounters ??= new Map()) : new Map();
 export class LeadError extends Error {
-  constructor(public code: "RATE_LIMITED" | "BUSY" | "UNAVAILABLE") { super(code); }
+  constructor(public code: "RATE_LIMITED" | "BUSY" | "UNAVAILABLE", public reason: "ABUSE_UNAVAILABLE" | "RATE_SECRET_MISSING" | "REDIS_CONFIGURATION" | "REDIS_UNAVAILABLE" = "ABUSE_UNAVAILABLE") { super(code); }
 }
 
 const production = () => process.env.NODE_ENV === "production" || process.env.VERCEL === "1";
 export function digest(value: string) {
   const secret = process.env.LEAD_RATE_LIMIT_SECRET;
-  if (production() && (!secret || secret.length < 32)) throw new LeadError("UNAVAILABLE");
+  if (production() && (!secret || secret.length < 32)) throw new LeadError("UNAVAILABLE", "RATE_SECRET_MISSING");
   return createHmac("sha256", secret || "local-development-only").update(value).digest("hex");
 }
 
 async function redis(command: (string | number)[]): Promise<unknown> {
   const url = process.env.UPSTASH_REDIS_REST_URL, token = process.env.UPSTASH_REDIS_REST_TOKEN;
-  if (!url || !token || !url.startsWith("https://")) throw new LeadError("UNAVAILABLE");
+  if (!url || !token || !url.startsWith("https://")) throw new LeadError("UNAVAILABLE", "REDIS_CONFIGURATION");
   try {
     const response = await fetch(url, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
       body: JSON.stringify(command), cache: "no-store", signal: AbortSignal.timeout(4000) });
@@ -28,11 +28,11 @@ async function redis(command: (string | number)[]): Promise<unknown> {
     const result = await response.json();
     if (result.error || !("result" in result)) throw new Error();
     return result.result;
-  } catch { throw new LeadError("UNAVAILABLE"); }
+  } catch { throw new LeadError("UNAVAILABLE", "REDIS_UNAVAILABLE"); }
 }
 function shared() {
   if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) return true;
-  if (production()) throw new LeadError("UNAVAILABLE");
+  if (production()) throw new LeadError("UNAVAILABLE", "REDIS_CONFIGURATION");
   for (const [key, item] of local) if (item.expires <= Date.now()) local.delete(key);
   if (local.size > 5000) throw new LeadError("UNAVAILABLE");
   return false;

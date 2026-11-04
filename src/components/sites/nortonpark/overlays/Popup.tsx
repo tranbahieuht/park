@@ -7,7 +7,7 @@ import { Icon } from "../Icons";
 import { ERR } from "../data/i18n";
 import { asset, leadSent, lockScroll, markLeadSent, push, trapTab } from "../lib/dom";
 import { useLang } from "../lib/i18n";
-import { validLeadPhone } from "@/lib/leads/validation";
+import { leadFieldErrors, type LeadFieldErrors } from "@/lib/leads/validation";
 import { useLeadSubmission } from "../lib/useLeadSubmission";
 import { BrandLogo } from "../BrandLogo";
 import type { LeadInput } from "@/lib/leads/validation";
@@ -58,7 +58,7 @@ export function Popup() {
   const [unit, setUnit] = useState("");
   const [consent, setConsent] = useState(false);
   const [hp, setHp] = useState("");
-  const [errs, setErrs] = useState<{ name?: boolean; phone?: boolean; consent?: boolean }>({});
+  const [errs, setErrs] = useState<Partial<LeadFieldErrors>>({});
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const lastFocus = useRef<HTMLElement | null>(null);
@@ -122,9 +122,9 @@ export function Popup() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (hp || submission.pending || sent) return;
-    const next = { name: name.trim().length < 2, phone: !validLeadPhone(phone), consent: !consent };
+    const next = leadFieldErrors({ name, phone, email, consent });
     setErrs(next);
-    if (next.name || next.phone || next.consent) return;
+    if (Object.values(next).some(Boolean)) return;
     const accepted = await submission.send({ name, phone, email, unit, consent, website: hp, language: lang, source });
     if (!accepted) return;
     push("generate_lead", { form_position: source, language: lang, unit_interest: unit });
@@ -182,7 +182,8 @@ export function Popup() {
               </div>
             </div>
             <div className="field">
-              <input type="email" maxLength={254} id="pEmail" name="email" autoComplete="email" aria-label={t("pop.email")} placeholder={t("pop.email")} value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input type="email" maxLength={254} id="pEmail" name="email" autoComplete="email" aria-label={t("pop.email")} placeholder={t("pop.email")} aria-describedby="err-pEmail" aria-invalid={errs.email || undefined} value={email} onChange={(e) => setEmail(e.target.value)} />
+              <span className="err" id="err-pEmail" aria-live="polite">{errs.email ? ERR[lang].email : ""}</span>
             </div>
             <div className="field">
               <select id="pUnit" name="unit_interest" aria-label={t("pop.unit")} value={unit} onChange={(e) => setUnit(e.target.value)}>

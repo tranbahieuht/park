@@ -9,6 +9,10 @@ export const VI: Dict = {
   "lead.sending": "Đang gửi…",
   "lead.invalid": "Vui lòng kiểm tra họ tên, số điện thoại, email (nếu có) và xác nhận đồng ý. Dữ liệu đã nhập được giữ nguyên.",
   "lead.failed": "Chưa gửi được thông tin. Vui lòng thử lại sau.",
+  "lead.service": "Dịch vụ đăng ký đang tạm gián đoạn. Thông tin đã nhập được giữ nguyên; vui lòng liên hệ Savills qua số tư vấn trên trang.",
+  "lead.delivery": "Chưa gửi được thông tin đến Savills. Dữ liệu đã nhập được giữ nguyên; vui lòng thử lại sau hoặc gọi tư vấn.",
+  "lead.network": "Không kết nối được dịch vụ đăng ký. Vui lòng kiểm tra kết nối mạng; thông tin đã nhập được giữ nguyên.",
+  "lead.forbidden": "Yêu cầu chưa được chấp nhận. Vui lòng tải lại trang hoặc liên hệ Savills qua số tư vấn; thông tin chưa được xác nhận gửi.",
   "lead.rate": "Bạn đã gửi quá nhiều yêu cầu. Vui lòng thử lại sau 10 phút.",
   "lead.busy": "Thông tin này đang được xử lý. Vui lòng chờ một lát trước khi thử lại.",
   ...LOCATION_MAP_VI,
@@ -199,7 +203,7 @@ export const VI: Dict = {
   "dr.whatsapp": "CHAT WHATSAPP",
   "whatsapp.label": "Chat qua WhatsApp",
   "whatsapp.unavailable": "WhatsApp sẽ sẵn sàng khi có thông tin liên hệ chính thức.",
-  "lead.timeout": "Kết nối mất quá nhiều thời gian. Chưa xác nhận gửi thành công; vui lòng thử lại.",
+  "lead.timeout": "Kết nối mất quá nhiều thời gian. Chưa xác nhận kết quả gửi; vui lòng chờ trước khi thử lại hoặc liên hệ Savills để kiểm tra.",
   "pop.name": "Họ và tên",
   "pop.phone": "Số điện thoại",
   "pop.email": "Email",
@@ -226,6 +230,10 @@ export const EN: Dict = {
   "lead.sending": "Sending…",
   "lead.invalid": "Please check your name, phone, email (if provided) and consent. Your entries have been kept.",
   "lead.failed": "Your details could not be sent. Please try again later.",
+  "lead.service": "Registration is temporarily unavailable. Your entries have been kept; please contact Savills using the consultation number on this page.",
+  "lead.delivery": "Your details could not be sent to Savills. Your entries have been kept; please try again later or call for advice.",
+  "lead.network": "The registration service could not be reached. Please check your connection; your entries have been kept.",
+  "lead.forbidden": "The request was not accepted. Please reload the page or contact Savills using the consultation number; sending has not been confirmed.",
   "lead.rate": "Too many requests. Please try again in 10 minutes.",
   "lead.busy": "These details are being processed. Please wait a moment before trying again.",
   ...LOCATION_MAP_EN,
@@ -373,7 +381,7 @@ export const EN: Dict = {
   "dr.whatsapp": "CHAT WHATSAPP",
   "whatsapp.label": "Chat on WhatsApp",
   "whatsapp.unavailable": "WhatsApp will be available once the official contact is confirmed.",
-  "lead.timeout": "The connection timed out. Sending has not been confirmed; please try again.",
+  "lead.timeout": "The connection timed out. Sending has not been confirmed; please wait before retrying or contact Savills to check.",
   "ct.addrv": "No. 5 Binh Duong Boulevard, Thuan Giao Ward, Ho Chi Minh City",
   "dev.eyebrow": "Development Brand",
   "dev.title": "Developed by",
@@ -459,15 +467,17 @@ export const EN: Dict = {
   "by.office": "Sales Consultation Office:"
 };
 
-export const ERR: Record<Lang, { name: string; phone: string; consent: string }> = {
+export const ERR: Record<Lang, { name: string; phone: string; email: string; consent: string }> = {
   "vi": {
     "name": "Vui lòng nhập họ và tên.",
     "phone": "Vui lòng nhập số điện thoại hợp lệ.",
+    "email": "Vui lòng nhập email hợp lệ hoặc để trống.",
     "consent": "Cần xác nhận đồng ý trước khi gửi."
   },
   "en": {
     "name": "A full name is required.",
     "phone": "A valid phone number is required.",
+    "email": "Enter a valid email address or leave it blank.",
     "consent": "Consent is required before submitting."
   }
 };

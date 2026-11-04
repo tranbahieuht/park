@@ -1,6 +1,7 @@
 import "server-only";
 import nodemailer from "nodemailer";
 import { validLeadEmail, type LeadInput } from "./validation";
+import { deliveryError, LeadDeliveryError } from "./errors";
 
 export function smtpConfig() {
   const e = process.env;
@@ -11,7 +12,7 @@ export function smtpConfig() {
   if (!e.SMTP_HOST || /[\s\u0000-\u001f]/.test(e.SMTP_HOST) || !Number.isInteger(port) || port < 1 || port > 65535
     || !["true", "false"].includes(e.SMTP_SECURE || "") || !validLeadEmail(from) || !validLeadEmail(to)
     || !validLeadEmail(e.SMTP_USER || "") || from.toLowerCase() !== e.SMTP_USER?.toLowerCase()
-    || !e.SMTP_PASSWORD || (port === 465 && !secure)) throw new Error("SMTP configuration unavailable");
+    || !e.SMTP_PASSWORD || (port === 465 && !secure)) throw new LeadDeliveryError("SMTP_CONFIGURATION");
   return { host: e.SMTP_HOST, port, secure, auth: { user: e.SMTP_USER, pass: e.SMTP_PASSWORD }, from, to };
 }
 
@@ -31,11 +32,12 @@ export function leadMessage(lead: LeadInput, receivedAt = new Date()) {
 export async function sendLead(lead: LeadInput) {
   const { from, to, ...smtp } = smtpConfig();
   const transport = nodemailer.createTransport({ ...smtp, requireTLS: !smtp.secure,
-    connectionTimeout: 8000, greetingTimeout: 8000, socketTimeout: 12000,
+    dnsTimeout: 8000, connectionTimeout: 8000, greetingTimeout: 8000, socketTimeout: 12000,
     disableFileAccess: true, disableUrlAccess: true, logger: false, debug: false });
   try {
     const result = await transport.sendMail({ from: { name: "Norton Park", address: from }, to: { address: to, name: "" },
       ...(lead.email ? { replyTo: { address: lead.email, name: "" } } : {}), ...leadMessage(lead) });
-    if (!result.accepted?.length || result.rejected?.length) throw new Error("SMTP did not accept recipient");
-  } finally { transport.close(); }
+    if (!result.accepted?.some((address: string) => address.toLowerCase() === to) || result.rejected?.length) throw new LeadDeliveryError("SMTP_REJECTED");
+  } catch (error) { throw deliveryError(error); }
+  finally { transport.close(); }
 }

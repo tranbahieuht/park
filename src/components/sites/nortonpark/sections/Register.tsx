@@ -7,7 +7,7 @@ import { Icon } from "../Icons";
 import { ERR } from "../data/i18n";
 import { asset, markLeadSent, push } from "../lib/dom";
 import { useLang } from "../lib/i18n";
-import { validLeadPhone } from "@/lib/leads/validation";
+import { leadFieldErrors, type LeadFieldErrors } from "@/lib/leads/validation";
 import { useLeadSubmission } from "../lib/useLeadSubmission";
 import { UTM_KEYS } from "../lib/useUtm";
 
@@ -26,8 +26,6 @@ const LTD_UNITS: Array<[string, string]> = [
   ["Standalone Shop", "form.u10"],
 ];
 
-type ErrKey = "name" | "phone" | "consent";
-
 /* Two-step consultation form; shared server-side SMTP API confirms delivery acceptance. */
 export function Register() {
   const { lang, html, t } = useLang();
@@ -38,7 +36,7 @@ export function Register() {
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [hp, setHp] = useState("");
-  const [errs, setErrs] = useState<Partial<Record<ErrKey, boolean>>>({});
+  const [errs, setErrs] = useState<Partial<LeadFieldErrors>>({});
   const [sent, setSent] = useState(false);
   const submission = useLeadSubmission();
   const nameRef = useRef<HTMLInputElement>(null);
@@ -57,9 +55,9 @@ export function Register() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (hp || submission.pending || sent) return; /* bot trap */
-    const nextErrs = { name: name.trim().length < 2, phone: !validLeadPhone(phone), consent: !consent };
+    const nextErrs = leadFieldErrors({ name, phone, email, consent });
     setErrs(nextErrs);
-    if (nextErrs.name || nextErrs.phone || nextErrs.consent) return;
+    if (Object.values(nextErrs).some(Boolean)) return;
     const accepted = await submission.send({ name, phone, email, unit, consent, website: hp, language: lang, source: "contact_form" });
     if (!accepted) return;
     push("generate_lead", { form_position: "contact_form", language: lang, unit_interest: unit });
@@ -155,7 +153,8 @@ export function Register() {
                 </div>
                 <div className="field">
                   <label htmlFor="email" {...html("form.email")} />
-                  <input type="email" maxLength={254} id="email" name="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  <input type="email" maxLength={254} id="email" name="email" autoComplete="email" aria-describedby="err-email" aria-invalid={errs.email || undefined} value={email} onChange={(e) => setEmail(e.target.value)} />
+                  <span className="err" id="err-email" aria-live="polite">{errs.email ? ERR[lang].email : ""}</span>
                 </div>
                 <div className="consent">
                   <input

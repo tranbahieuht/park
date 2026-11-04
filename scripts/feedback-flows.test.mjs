@@ -10,11 +10,12 @@ try {
     const page = await context.newPage();
     const errors = [], submissions = [];
     page.on("pageerror", error => errors.push(error.message));
-    let status = 503;
+    let status = 503, replyCode = "", networkFailure = false;
     await page.route("**/api/leads", async route => {
       submissions.push(route.request().postDataJSON());
+      if (networkFailure) { await route.abort(); return; }
       await new Promise(resolve => setTimeout(resolve, 150));
-      await route.fulfill({ status, contentType: "application/json", body: JSON.stringify({ ok: status === 200, code: status === 200 ? "ACCEPTED" : "UNAVAILABLE" }) });
+      await route.fulfill({ status, contentType: "application/json", body: JSON.stringify({ ok: status === 200, code: replyCode || (status === 200 ? "ACCEPTED" : "UNAVAILABLE") }) });
     });
     await page.goto(base);
     await page.locator(`[data-lang="${language}"]`).click();
@@ -55,6 +56,8 @@ try {
     await page.locator("#pConsent").check();
     await page.locator('#popForm [type="submit"]').click();
     assert.equal(submissions.length, 0);
+    assert.equal(await page.locator("#pEmail").getAttribute("aria-invalid"), "true");
+    assert.match(await page.locator("#err-pEmail").innerText(), language === "vi" ? /để trống/ : /leave it blank/);
     await page.locator("#pEmail").fill("qa@example.test");
     for (status of [400, 409, 429, 503]) {
       await page.locator('#popForm [type="submit"]').click();
@@ -63,6 +66,19 @@ try {
       assert.equal(await page.locator("#popOk.on").count(), 0);
       assert.equal(await page.locator("#pPhone").inputValue(), "0901234567");
     }
+    for (const [code, vi, en] of [["SERVICE_UNAVAILABLE", /tạm gián đoạn/, /temporarily unavailable/], ["DELIVERY_FAILED", /đến Savills/, /sent to Savills/], ["DELIVERY_UNCONFIRMED", /Chưa xác nhận/, /not been confirmed/]]) {
+      replyCode = code;
+      await page.locator('#popForm [type="submit"]').click();
+      await page.locator('#popForm [role="alert"]').waitFor();
+      await page.waitForFunction(() => !document.querySelector('#popForm [type="submit"]').disabled);
+      assert.match(await page.locator('#popForm [role="alert"]').textContent(), language === "vi" ? vi : en);
+      assert.equal(await page.locator("#popOk.on").count(), 0);
+    }
+    replyCode = ""; networkFailure = true;
+    await page.locator('#popForm [type="submit"]').click();
+    await page.waitForFunction(() => !document.querySelector('#popForm [type="submit"]').disabled);
+    assert.match(await page.locator('#popForm [role="alert"]').textContent(), language === "vi" ? /kết nối mạng/ : /check your connection/);
+    networkFailure = false;
     // Exercise the real AbortSignal timeout path without waiting 45 seconds.
     await page.evaluate(() => {
       window.qaOriginalTimeout = AbortSignal.timeout;
