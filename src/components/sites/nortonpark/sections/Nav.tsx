@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Icon } from "../Icons";
 import { navH } from "../lib/dom";
 import { BrandLogo } from "../BrandLogo";
 import { useLang } from "../lib/i18n";
@@ -61,10 +60,6 @@ export function Nav() {
           <BrandLogo variant="cobrand" tone="auto" />
         </a>
         <div className="nav-actions">
-          <a className="btn-vr btn-eye" href="https://360.nortonpark.com.vn/" target="_blank" rel="noopener noreferrer" data-cta="vr_nav">
-            <Icon name="360" small />
-            <span className="btn-vr-t" {...html("nav.vr")} />
-          </a>
           <a href="#register" className="cta cta--sm nav-cta" data-cta="nav">
             <span {...html("nav.cta")} />
           </a>

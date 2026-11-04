@@ -78,10 +78,6 @@ export function Drawer() {
             <Icon name="calc" small />
             <span {...html("nav.calc")} />
           </a>
-          <a className="drawer-act" href="https://360.nortonpark.com.vn/" target="_blank" rel="noopener noreferrer" data-cta="vr_drawer">
-            <Icon name="360" small />
-            <span {...html("nav.vr")} />
-          </a>
           <a className="drawer-act" href={SAVILLS_CONTACT.phoneHref} data-cta="call_drawer">
             <Icon name="phone" small />
             <span {...html("dr.call")} />

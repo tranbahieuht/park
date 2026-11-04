@@ -45,7 +45,6 @@ export function Footer() {
               <li><a href="#position" {...html("dr.2")} /></li>
               <li><a href="#lifestyle" {...html("dr.3")} /></li>
               <li><a href="#residences" {...html("dr.4")} /></li>
-              <li><a href="https://360.nortonpark.com.vn/" target="_blank" rel="noopener noreferrer" {...html("f.vr")} /></li>
               <li><a href="#register" {...html("dr.6")} /></li>
             </ul>
           </div>
@@ -88,6 +87,9 @@ export function Footer() {
           </div>
         </div>
         <p className="f-cr f-savills-copyright" {...html("f.cr")} />
+        <p className="f-by-credit f-design-credit">
+          Designed by <a href="https://ximitech.vn" target="_blank" rel="noopener noreferrer">ximitech.vn</a>
+        </p>
       </div>
 
       {/* Visually hidden fact sheet kept from the source (SEO / AI disambiguation). */}
