@@ -9,6 +9,27 @@ on:
       - master
 
 jobs:
+  production-build:
+    name: Production build (Linux)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies from lockfile
+        run: npm ci
+      - name: Verify production files are tracked with exact casing
+        run: node scripts/check-production-paths.mjs --git
+      - name: Production build
+        run: npm run build
+      - name: Lead and map regression tests (mock SMTP)
+        run: node --test scripts/leads.test.mjs scripts/location-map-i18n.test.mjs
+
   quality:
     runs-on: ubuntu-latest
     timeout-minutes: 15

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import "@/components/sites/nortonpark/styles/fonts.css";
+// Bundle the shared stylesheet; public/ serves the same file to the map iframe.
+import "../../public/sites/nortonpark/typography.css";
 import "@/components/sites/nortonpark/styles/brand-tokens.css";
 import "@/components/sites/nortonpark/styles/page.css";
 import "@/components/sites/nortonpark/styles/legal.css";
