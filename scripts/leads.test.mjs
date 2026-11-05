@@ -6,6 +6,10 @@ import vm from "node:vm";
 import { createRequire } from "node:module";
 import ts from "typescript";
 
+// Test processes must never inherit a real service account or Vercel flags.
+for (const key of ["SMTP_HOST", "SMTP_PORT", "SMTP_SECURE", "SMTP_USER", "SMTP_PASSWORD", "SMTP_FROM", "UPSTASH_REDIS_REST_URL", "UPSTASH_REDIS_REST_TOKEN", "LEAD_RATE_LIMIT_SECRET", "VERCEL"]) delete process.env[key];
+process.env.NODE_ENV = "test";
+
 // Exercise the route and server modules without booting Next; only SMTP is
 // stubbed here. A separate local TLS SMTP fixture verifies real Nodemailer I/O.
 const root = path.resolve(import.meta.dirname, "..");
@@ -68,7 +72,7 @@ test("API categorizes SMTP failures without leaking provider detail; timeout hol
     }
     const text = JSON.stringify(logs);
     for (const privateValue of [input.name, input.phone, input.email, "SECRET", "credential"]) assert.ok(!text.includes(privateValue));
-    assert.ok(logs.every(log => Object.keys(log).sort().join(',') === 'event,reason,requestId'));
+    assert.ok(logs.every(log => Object.keys(log).sort().join(',') === 'code,event,reason,requestId,status'));
   } finally {
     console.error = oldLog;
     for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key];
@@ -215,4 +219,223 @@ test("shared rate limit uses an atomic expiring counter and never falls back aft
     globalThis.fetch = async () => { throw Error("offline"); };
     await assert.rejects(limitRequest(new Request("http://localhost")), /UNAVAILABLE/);
   } finally { globalThis.fetch = originalFetch; for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key]; Object.assign(process.env, env); }
+});
+
+test("malformed Redis results cannot bypass rate limits or authorize SMTP", async () => {
+  const env = { ...process.env }, originalFetch = globalThis.fetch;
+  Object.assign(process.env, { NODE_ENV: "production", VERCEL: "1", LEAD_RATE_LIMIT_SECRET: "a".repeat(32), UPSTASH_REDIS_REST_URL: "https://redis.example.test", UPSTASH_REDIS_REST_TOKEN: "synthetic-token" });
+  try {
+    const { limitRequest, claimSubmission } = loader()("src/lib/leads/abuse.ts");
+    for (const result of [null, false, "", [], {}, 0, -1, 1.5, "1", Number.MAX_SAFE_INTEGER + 1]) {
+      globalThis.fetch = async () => Response.json({ result });
+      await assert.rejects(limitRequest(new Request("https://site.example.test")), error => error.reason === "REDIS_UNAVAILABLE", `rate result ${JSON.stringify(result)}`);
+    }
+    for (const result of [null, false, 0, [], {}, "unexpected-marker"]) {
+      globalThis.fetch = async () => Response.json({ result });
+      await assert.rejects(claimSubmission("synthetic"), error => error.reason === "REDIS_UNAVAILABLE", `claim result ${JSON.stringify(result)}`);
+    }
+    globalThis.fetch = async () => Response.json({ result: "" });
+    const claim = await claimSubmission("synthetic");
+    globalThis.fetch = async () => Response.json({ result: 0 });
+    await assert.rejects(claim.finish(true), error => error.reason === "REDIS_UNAVAILABLE");
+  } finally {
+    globalThis.fetch = originalFetch;
+    for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key];
+    Object.assign(process.env, env);
+  }
+});
+
+test("invalid Redis configuration is rejected locally before network access", async () => {
+  const env = { ...process.env }, originalFetch = globalThis.fetch;
+  Object.assign(process.env, { NODE_ENV: "production", LEAD_RATE_LIMIT_SECRET: "a".repeat(32), UPSTASH_REDIS_REST_TOKEN: "synthetic-token" });
+  let calls = 0;
+  globalThis.fetch = async () => { calls++; return Response.json({ result: 1 }); };
+  try {
+    const { limitRequest } = loader()("src/lib/leads/abuse.ts");
+    for (const url of ["http://redis.example.test", "https://", "https://user:pass@redis.example.test", "https://redis.example.test/console", "https://redis.example.test/?token=synthetic", "https://redis.example.test/#console"]) {
+      process.env.UPSTASH_REDIS_REST_URL = url;
+      await assert.rejects(limitRequest(new Request("https://site.example.test")), error => error.reason === "REDIS_CONFIGURATION");
+    }
+    assert.equal(calls, 0);
+  } finally {
+    globalThis.fetch = originalFetch;
+    for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key];
+    Object.assign(process.env, env);
+  }
+});
+
+test("production distinguishes missing and invalid signing secrets and never reaches SMTP", async () => {
+  const env = { ...process.env }, oldLog = console.error, logs = [];
+  Object.assign(process.env, { NODE_ENV: "production", UPSTASH_REDIS_REST_URL: "https://redis.example.test", UPSTASH_REDIS_REST_TOKEN: "synthetic-token" });
+  console.error = line => logs.push(JSON.parse(line));
+  let attempts = 0;
+  try {
+    const route = loader({ "@/lib/leads/mail": { sendLead: async () => { attempts++; } } })("src/app/api/leads/route.ts");
+    for (const secret of [undefined, "short", " ".repeat(32)]) {
+      if (secret === undefined) delete process.env.LEAD_RATE_LIMIT_SECRET; else process.env.LEAD_RATE_LIMIT_SECRET = secret;
+      const result = await route.POST(new Request("https://site.example.test/api/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input) }));
+      assert.equal(result.status, 503);
+      assert.equal((await result.json()).code, "SERVICE_UNAVAILABLE");
+      assert.equal(logs.at(-1).reason, secret === undefined ? "RATE_SECRET_MISSING" : "RATE_SECRET_INVALID");
+    }
+    assert.equal(attempts, 0);
+  } finally {
+    console.error = oldLog;
+    for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key];
+    Object.assign(process.env, env);
+  }
+});
+
+test("Origin rejects malformed Host instead of silently retaining the canonical URL", async () => {
+  const route = loader({ "@/lib/leads/abuse": { limitRequest: async () => {} } })("src/app/api/leads/route.ts");
+  for (const host of ["[broken]", "localhost:999999", "localhost:bad", "localhost:"]) {
+    const result = await route.POST(new Request("http://localhost/api/leads", { method: "POST", headers: { Host: host, Origin: "http://localhost", "Content-Type": "application/json" }, body: "{}" }));
+    assert.equal(result.status, 403, host);
+  }
+});
+
+test("Redis configuration/auth/HTTP/protocol/network errors return 503 before SMTP with correlated safe diagnostics", async () => {
+  const env = { ...process.env }, originalFetch = globalThis.fetch, oldLog = console.error, logs = [];
+  Object.assign(process.env, { NODE_ENV: "production", VERCEL: "1", LEAD_RATE_LIMIT_SECRET: "a".repeat(32) });
+  console.error = line => logs.push(JSON.parse(line));
+  let sends = 0, calls = 0;
+  try {
+    const route = loader({ "@/lib/leads/mail": { sendLead: async () => { sends++; } } })("src/app/api/leads/route.ts");
+    const request = () => new Request("https://site.example.test/api/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input) });
+    globalThis.fetch = async () => { calls++; throw Error("must not connect"); };
+    for (const [url, token] of [[undefined, undefined], ["https://redis.example.test", undefined], [undefined, "synthetic"], ["https://redis.example.test", "bad token"]]) {
+      for (const [key, value] of [["UPSTASH_REDIS_REST_URL", url], ["UPSTASH_REDIS_REST_TOKEN", token]]) {
+        if (value === undefined) delete process.env[key]; else process.env[key] = value;
+      }
+      const response = await route.POST(request()); assert.equal(response.status, 503);
+      assert.equal(logs.at(-1).reason, "REDIS_CONFIGURATION");
+    }
+    assert.equal(calls, 0);
+    Object.assign(process.env, { UPSTASH_REDIS_REST_URL: "https://redis.example.test", UPSTASH_REDIS_REST_TOKEN: "synthetic" });
+    const failures = [
+      () => new Response("private", { status: 401 }), () => new Response("private", { status: 403 }),
+      () => new Response("private", { status: 500 }), () => new Response("not JSON"),
+      () => Response.json({ error: "private Redis provider error" }), () => Response.json({}),
+      () => Response.json(null), () => Response.json({ result: null }),
+      () => { throw Error("private network detail"); },
+      () => { throw new DOMException("private timeout detail", "TimeoutError"); },
+    ];
+    for (const failure of failures) {
+      globalThis.fetch = async (_, options) => {
+        assert.equal(options.redirect, "error"); assert.ok(options.signal instanceof AbortSignal);
+        return failure();
+      };
+      const response = await route.POST(request());
+      assert.equal(response.status, 503); assert.equal(response.headers.get("Cache-Control"), "no-store");
+      assert.deepEqual(await response.json(), { ok: false, code: "SERVICE_UNAVAILABLE" });
+      assert.equal(logs.at(-1).reason, "REDIS_UNAVAILABLE");
+      assert.equal(logs.at(-1).requestId, response.headers.get("X-Request-Id"));
+      assert.equal(logs.at(-1).status, 503); assert.equal(logs.at(-1).code, "SERVICE_UNAVAILABLE");
+    }
+    assert.equal(sends, 0); assert.ok(!JSON.stringify(logs).includes("private"));
+  } finally {
+    globalThis.fetch = originalFetch; console.error = oldLog;
+    for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key];
+    Object.assign(process.env, env);
+  }
+});
+
+test("SMTP rejects every missing variable and invalid port/TLS/sender without opening a transport", async () => {
+  const env = { ...process.env };
+  const valid = { SMTP_HOST: "smtp.example.test", SMTP_PORT: "465", SMTP_SECURE: "true", SMTP_USER: "sender@example.test", SMTP_PASSWORD: "synthetic", SMTP_FROM: "sender@example.test" };
+  let transports = 0;
+  const { sendLead, smtpConfig } = loader({ nodemailer: { createTransport() { transports++; throw Error("should not open transport"); } } })("src/lib/leads/mail.ts");
+  try {
+    for (const key of Object.keys(valid)) {
+      Object.assign(process.env, valid); delete process.env[key];
+      await assert.rejects(sendLead(input), error => error.reason === "SMTP_CONFIGURATION", key);
+    }
+    for (const patch of [{ SMTP_HOST: "bad host" }, { SMTP_PORT: "0" }, { SMTP_PORT: "65536" }, { SMTP_PORT: "1.5" }, { SMTP_SECURE: "yes" }, { SMTP_SECURE: "false" }, { SMTP_USER: "bad" }, { SMTP_FROM: "other@example.test" }]) {
+      Object.assign(process.env, valid, patch); assert.throws(smtpConfig, /SMTP_CONFIGURATION/);
+    }
+    Object.assign(process.env, valid, { SMTP_PORT: "587", SMTP_SECURE: "false" }); assert.equal(smtpConfig().secure, false);
+    assert.equal(transports, 0);
+  } finally {
+    for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key]; Object.assign(process.env, env);
+  }
+});
+
+test("Vercel Origin matrix rejects aliases/forwarded-host spoofing and accepts the actual HTTPS authority", async () => {
+  const env = { ...process.env }, oldLog = console.error, logs = [];
+  Object.assign(process.env, { NODE_ENV: "production", VERCEL: "1" });
+  console.error = line => logs.push(JSON.parse(line));
+  let limits = 0;
+  const route = loader({ "@/lib/leads/abuse": { limitRequest: async () => { limits++; } } })("src/app/api/leads/route.ts");
+  try {
+    const base = { Host: "norton.example.test", "Content-Type": "application/json", "x-forwarded-proto": "https" };
+    for (const [headers, status] of [
+      [{ Origin: "https://norton.example.test", "sec-fetch-site": "same-origin" }, 400],
+      [{ Origin: "https://other.example.test" }, 403],
+      [{ Origin: "https://other.example.test", "x-forwarded-host": "other.example.test" }, 403],
+      [{ Origin: "http://norton.example.test" }, 403], [{ Origin: "https://norton.example.test:444" }, 403],
+      [{ Origin: "https://norton.example.test/" }, 403], [{ Origin: "null" }, 403],
+      [{ "sec-fetch-site": "cross-site" }, 403],
+      [{ Origin: "https://norton.example.test", "sec-fetch-site": "cross-site" }, 403],
+      [{ Origin: "http://localhost:3103", Host: "localhost:3103", "x-forwarded-proto": "http" }, 400],
+      [{ Origin: "http://[::1]:3103", Host: "[::1]:3103", "x-forwarded-proto": "http" }, 400],
+    ]) {
+      const response = await route.POST(new Request("http://localhost:3103/api/leads", { method: "POST", headers: { ...base, ...headers }, body: "{}" }));
+      assert.equal(response.status, status, JSON.stringify(headers));
+      if (status === 403) {
+        assert.equal(logs.at(-1).requestId, response.headers.get("X-Request-Id"));
+        assert.equal(logs.at(-1).code, "FORBIDDEN"); assert.equal(logs.at(-1).status, 403);
+      }
+    }
+    assert.equal(limits, 3);
+  } finally {
+    console.error = oldLog;
+    for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key]; Object.assign(process.env, env);
+  }
+});
+
+test("SMTP acceptance remains truthful when Redis completion fails; bad claims cannot send", async () => {
+  const env = { ...process.env }, originalFetch = globalThis.fetch, oldLog = console.error, logs = [];
+  Object.assign(process.env, { NODE_ENV: "production", VERCEL: "1", LEAD_RATE_LIMIT_SECRET: "a".repeat(32), UPSTASH_REDIS_REST_URL: "https://redis.example.test", UPSTASH_REDIS_REST_TOKEN: "synthetic" });
+  console.error = line => logs.push(JSON.parse(line));
+  let sends = 0, claimResult = null;
+  globalThis.fetch = async (_, options) => {
+    const command = JSON.parse(options.body);
+    return Response.json({ result: command[1].includes("INCR") ? 1 : command[1].includes("~=ARGV") ? 0 : claimResult });
+  };
+  try {
+    const route = loader({ "@/lib/leads/mail": { sendLead: async () => { sends++; } } })("src/app/api/leads/route.ts");
+    const request = () => new Request("https://site.example.test/api/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input) });
+    assert.equal((await route.POST(request())).status, 503); assert.equal(sends, 0);
+    claimResult = "";
+    assert.deepEqual(await (await route.POST(request())).json(), { ok: true, code: "ACCEPTED" }); assert.equal(sends, 1);
+    assert.equal(logs.at(-1).reason, "DEDUPE_COMPLETION_FAILED"); assert.equal(logs.at(-1).status, 200);
+    claimResult = "done";
+    assert.equal((await route.POST(request())).status, 200); assert.equal(sends, 1);
+  } finally {
+    globalThis.fetch = originalFetch; console.error = oldLog;
+    for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key]; Object.assign(process.env, env);
+  }
+});
+
+test("API body/validation guards and unexpected service errors never report acceptance", async () => {
+  let sends = 0;
+  const route = loader({ "@/lib/leads/mail": { sendLead: async () => { sends++; } } })("src/app/api/leads/route.ts");
+  for (const [body, headers, status] of [
+    ["{}", { "Content-Type": "text/plain" }, 415],
+    ["{", { "Content-Type": "application/json" }, 400],
+    [JSON.stringify({ ...input, website: "bot" }), { "Content-Type": "application/json" }, 400],
+    ["{}", { "Content-Type": "application/json", "Content-Length": "9000" }, 413],
+    ["x".repeat(8193), { "Content-Type": "application/json" }, 413],
+  ]) {
+    const response = await route.POST(new Request("https://site.example.test/api/leads", { method: "POST", headers, body }));
+    assert.equal(response.status, status); assert.deepEqual(await response.json(), { ok: false, code: "INVALID" });
+  }
+  assert.equal(sends, 0);
+  const logs = [], oldLog = console.error; console.error = line => logs.push(JSON.parse(line));
+  try {
+    const unavailable = loader({ "@/lib/leads/abuse": { limitRequest: async () => { throw Error("private unexpected detail"); }, LeadError: class extends Error {} } })("src/app/api/leads/route.ts");
+    const response = await unavailable.POST(new Request("https://site.example.test/api/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input) }));
+    assert.equal(response.status, 503); assert.equal((await response.json()).code, "SERVICE_UNAVAILABLE");
+    assert.equal(logs.at(-1).reason, "UNEXPECTED_SERVICE_ERROR"); assert.ok(!JSON.stringify(logs).includes("private"));
+  } finally { console.error = oldLog; }
 });

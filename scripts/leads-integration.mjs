@@ -19,9 +19,11 @@ const envNames = ["SMTP_HOST", "SMTP_PORT", "SMTP_SECURE", "SMTP_USER", "SMTP_PA
 const cleanEnv = { ...process.env, NODE_ENV: "production" };
 for (const key of envNames) cleanEnv[key] = "";
 const store = new Map(), messages = [], sockets = new Set();
-let mode = "accept", app, logs = "";
+let mode = "accept", redisMode = "ok", app, logs = "";
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 const redis = https.createServer(credentials, async (request, response) => {
+  if (redisMode === "auth") { response.writeHead(401); response.end("local unauthorized"); return; }
+  if (redisMode === "malformed") { response.setHeader("Content-Type", "application/json"); response.end('{"result":null}'); return; }
   let body = ""; for await (const chunk of request) body += chunk;
   const command = JSON.parse(body), script = command[1], key = command[3];
   if (store.get(key)?.expires <= Date.now()) store.delete(key);
@@ -99,11 +101,23 @@ try {
   await stop();
   const redisPort = await listen(redis), smtpPort = await listen(smtp);
   await start({ ...cleanEnv, NODE_EXTRA_CA_CERTS: path.resolve(certFile), SMTP_HOST: "127.0.0.1", SMTP_PORT: String(smtpPort), SMTP_SECURE: "true", SMTP_USER: "sender@example.test", SMTP_PASSWORD: "synthetic-local-only", SMTP_FROM: "sender@example.test", UPSTASH_REDIS_REST_URL: `https://127.0.0.1:${redisPort}`, UPSTASH_REDIS_REST_TOKEN: "synthetic-local-only", LEAD_RATE_LIMIT_SECRET: "local-only-test-signing-secret-32-chars" });
+  const forbidden = await fetch(base + "/api/leads", { method: "POST", headers: { Origin: "https://foreign.example.test", "Content-Type": "application/json" }, body: JSON.stringify(input) });
+  assert.equal(forbidden.status, 403); assert.equal((await forbidden.json()).code, "FORBIDDEN");
+  assert.ok(logs.includes(forbidden.headers.get("X-Request-Id"))); assert.equal(messages.length, 0);
+  for (redisMode of ["auth", "malformed"]) {
+    const unavailable = await post(); assert.equal(unavailable.status, 503);
+    assert.equal((await unavailable.json()).code, "SERVICE_UNAVAILABLE"); assert.equal(messages.length, 0);
+    assert.ok(logs.includes("REDIS_UNAVAILABLE"));
+  }
+  redisMode = "ok";
+  console.log("PASS production-mode local HTTP: Origin 403, Redis 401 and malformed response fail closed before SMTP");
   assert.equal((await post({ ...input, consent: false })).status, 400);
   mode = "auth"; const auth = await post(); assert.equal((await auth.json()).code, "SERVICE_UNAVAILABLE"); assert.ok(logs.includes("SMTP_AUTH"));
   mode = "reject"; assert.equal((await (await post()).json()).code, "DELIVERY_FAILED");
   mode = "accept"; assert.equal((await post()).status, 200);
   assert.equal((await post()).status, 200); assert.equal(messages.length, 1);
+  const limited = await post(); assert.equal(limited.status, 429); assert.equal(limited.headers.get("Retry-After"), "600");
+  assert.equal((await limited.json()).code, "RATE_LIMITED"); assert.equal(messages.length, 1);
   assert.equal(messages[0].recipient, "<sales@savills.com.vn>"); assert.equal(messages[0].sender, "<sender@example.test>");
   assert.ok(!messages[0].message.includes("Reply-To:"));
   console.log("PASS real Nodemailer TLS/auth/rejection/retry/optional email/recipient/deduplication, local sink only");
@@ -167,7 +181,7 @@ try {
   } finally { await browser.close(); }
   const events = logs.split(/\r?\n/).filter(line => line.startsWith('{"event":"lead_service_error"')).map(line => JSON.parse(line));
   assert.ok(events.length >= 2);
-  assert.ok(events.every(e => Object.keys(e).sort().join(",") === "event,reason,requestId"));
+  assert.ok(events.every(e => Object.keys(e).sort().join(",") === "code,event,reason,requestId,status"));
   console.log("PASS diagnostics: generated request IDs and internal reasons only. No external email was sent.");
 } catch (error) {
   console.error(logs.split(/\r?\n/).filter(line => line.startsWith('{"event":"lead_service_error"')).join("\n"));

@@ -59,12 +59,13 @@ try {
     assert.equal(await page.locator("#pEmail").getAttribute("aria-invalid"), "true");
     assert.match(await page.locator("#err-pEmail").innerText(), language === "vi" ? /để trống/ : /leave it blank/);
     await page.locator("#pEmail").fill("qa@example.test");
-    for (status of [400, 409, 429, 503]) {
+    for (status of [400, 403, 409, 429, 503]) {
       await page.locator('#popForm [type="submit"]').click();
       await page.locator('#popForm [role="alert"]').waitFor();
       await page.waitForFunction(() => !document.querySelector('#popForm [type="submit"]').disabled);
       assert.equal(await page.locator("#popOk.on").count(), 0);
       assert.equal(await page.locator("#pPhone").inputValue(), "0901234567");
+      if (status === 403) assert.match(await page.locator('#popForm [role="alert"]').textContent(), language === "vi" ? /chưa được chấp nhận/ : /not accepted/);
     }
     for (const [code, vi, en] of [["SERVICE_UNAVAILABLE", /tạm gián đoạn/, /temporarily unavailable/], ["DELIVERY_FAILED", /đến Savills/, /sent to Savills/], ["DELIVERY_UNCONFIRMED", /Chưa xác nhận/, /not been confirmed/]]) {
       replyCode = code;
@@ -106,6 +107,23 @@ try {
     await page.locator("#phone").fill("0901234567");
     await page.locator("#email").fill("contact@example.test");
     await page.locator("#consent").check();
+    for (const [http, code, vi, en] of [
+      [403, "FORBIDDEN", /chưa được chấp nhận/, /not accepted/],
+      [400, "INVALID", /kiểm tra họ tên/, /check your name/],
+      [409, "BUSY", /đang được xử lý/, /being processed/],
+      [429, "RATE_LIMITED", /quá nhiều yêu cầu/, /Too many requests/],
+      [503, "SERVICE_UNAVAILABLE", /tạm gián đoạn/, /temporarily unavailable/],
+      [503, "DELIVERY_FAILED", /đến Savills/, /sent to Savills/],
+      [503, "DELIVERY_UNCONFIRMED", /Chưa xác nhận/, /not been confirmed/],
+    ]) {
+      status = http; replyCode = code;
+      await page.locator('#leadForm [type="submit"]').click();
+      await page.waitForFunction(() => !document.querySelector('#leadForm [type="submit"]').disabled);
+      assert.match(await page.locator('#leadForm [role="alert"]').textContent(), language === "vi" ? vi : en);
+      assert.equal(await page.locator("#success.on").count(), 0);
+      assert.equal(await page.locator("#fullname").inputValue(), "Synthetic Contact QA");
+    }
+    status = 200; replyCode = "";
     await page.locator('#leadForm [type="submit"]').click(); await page.locator("#success.on").waitFor();
     assert.equal(submissions.at(-1).source, "contact_form");
     assert.equal(submissions.at(-1).unit, "Duplex");

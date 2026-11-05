@@ -46,12 +46,13 @@ Optional email is normalized by trimming spaces; omitted email/unit become empty
 
 ## Safe operational diagnostics
 
-Each POST response includes a server-generated `X-Request-Id`. Service failures log only `{event:"lead_service_error", requestId, reason}`; never log request bodies, addresses, provider messages, stack traces, credentials or raw IPs. These diagnostics require deploying the new code before they appear in Vercel logs.
+Each POST response includes a server-generated `X-Request-Id`. Diagnostics contain only `event`, `requestId`, `status`, `code`, `reason`; never request bodies, addresses, provider messages, stack traces, credentials or raw IPs. `lead_service_error` records service failures; `lead_request_rejected` records Origin/cross-site, busy and rate-limit rejection; `lead_state_warning` records failure to persist a completed marker after actual SMTP acceptance. These diagnostics require deploying the updated code before they appear in Vercel logs. The application's `X-Request-Id` is distinct from Vercel's platform Request Id: search the application ID in log message text and keep both IDs when investigating.
 
 | API status/code | Meaning |
 | --- | --- |
 | 400/413 `INVALID` | Invalid/oversized payload |
 | 403 `FORBIDDEN` | Origin/cross-site check refused the request |
+| 415 `INVALID` | Content-Type must be application/json |
 | 409 `BUSY` | Matching submission is still processing |
 | 429 `RATE_LIMITED` | Rate limit; Retry-After is 600 seconds |
 | 503 `SERVICE_UNAVAILABLE` | Configuration, abuse storage, authentication or internal service unavailable |
@@ -59,7 +60,9 @@ Each POST response includes a server-generated `X-Request-Id`. Service failures 
 | 503 `DELIVERY_UNCONFIRMED` | SMTP timeout; result uncertain, retain processing lock |
 | 200 `ACCEPTED` | SMTP accepted the Savills recipient, or a completed duplicate; not proof of inbox delivery |
 
-Internal log reasons include `RATE_SECRET_MISSING`, `REDIS_CONFIGURATION`, `REDIS_UNAVAILABLE`, `SMTP_CONFIGURATION`, `SMTP_AUTH`, `SMTP_TIMEOUT`, `SMTP_REJECTED`, `SMTP_UNAVAILABLE`. Inspect the corresponding configuration/provider from Vercel, without pasting raw provider errors or credentials into public reports.
+Internal log reasons include `ORIGIN_FORBIDDEN`, `FETCH_SITE_FORBIDDEN`, `RATE_SECRET_MISSING`, `RATE_SECRET_INVALID`, `REDIS_CONFIGURATION`, `REDIS_UNAVAILABLE`, `SMTP_CONFIGURATION`, `SMTP_AUTH`, `SMTP_TIMEOUT`, `SMTP_REJECTED`, `SMTP_UNAVAILABLE`. Inspect the corresponding configuration/provider from Vercel, without pasting raw provider errors or credentials into public reports.
+
+Production (including `VERCEL=1`) without `LEAD_RATE_LIMIT_SECRET` returns 503 `SERVICE_UNAVAILABLE`, reason `RATE_SECRET_MISSING`, before contacting Redis or SMTP. A present secret with fewer than 32 characters after trimming returns `RATE_SECRET_INVALID`. No development fallback is used on Production. The Redis URL must be an HTTPS database root without credentials, command path, query or fragment; the token must be a write token without whitespace. Redirects and malformed command result types are rejected. Counters must be positive integers, claims must be an empty string, `done`, or an existing UUID processing owner; completing a claim must return 1. A lost owner/completion marker is diagnosed, while already confirmed SMTP acceptance still returns 200.
 
 Run `node scripts/check-lead-config.mjs` locally to list missing variable names and basic format issues only. It loads local environment files for production-mode inspection; it cannot read the Vercel dashboard, prove authentication, or test connectivity. Nonzero exit is expected when local credentials are absent.
 
@@ -85,7 +88,7 @@ The integration script needs Chrome plus Playwright (same setup as the existing 
 
 The script refuses to run when `.env`, `.env.local`, `.env.production` or `.env.production.local` exists, and clears service variables on its child process, so it cannot pick up a real SMTP account from Next's environment loading. Use an isolated checkout for these fixtures; do not remove or overwrite a user's environment files to run tests.
 
-Detailed browser regression with mocked API responses: `node scripts/feedback-flows.test.mjs`; set `QA_CHANNEL=msedge` for Edge. Covers all pricing cards and source metadata, field validation, 400/409/429/503 classifications, network failure, AbortSignal timeout and retry. No mail is sent.
+Detailed browser regression with mocked API responses: `node scripts/feedback-flows.test.mjs`; set `QA_CHANNEL=msedge` for Edge and `QA_BASE_URL` to a loopback test server. Covers all pricing cards and source metadata, both forms, field validation, 400/403/409/429/503 classifications, network failure, AbortSignal timeout and retry. No mail is sent.
 
 ### Safe local SMTP test (no external mail)
 

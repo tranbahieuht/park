@@ -11,9 +11,10 @@ if (e.SMTP_PORT === "465" && e.SMTP_SECURE === "false") invalid.push("SMTP_SECUR
 if (e.SMTP_HOST && /[\s\u0000-\u001f]/.test(e.SMTP_HOST)) invalid.push("SMTP_HOST");
 for (const key of ["SMTP_USER", "SMTP_FROM"]) if (e[key] && !/^[^\s<>@,;"\\]+@[^\s<>@,;"\\]+\.[^\s<>@,;"\\]+$/.test(e[key])) invalid.push(key);
 if (e.SMTP_FROM && e.SMTP_USER && e.SMTP_FROM.toLowerCase() !== e.SMTP_USER.toLowerCase()) invalid.push("SMTP_FROM");
-if (e.LEAD_RATE_LIMIT_SECRET && e.LEAD_RATE_LIMIT_SECRET.length < 32) invalid.push("LEAD_RATE_LIMIT_SECRET");
+if (e.LEAD_RATE_LIMIT_SECRET && e.LEAD_RATE_LIMIT_SECRET.trim().length < 32) invalid.push("LEAD_RATE_LIMIT_SECRET");
+if (e.UPSTASH_REDIS_REST_TOKEN && /\s/.test(e.UPSTASH_REDIS_REST_TOKEN)) invalid.push("UPSTASH_REDIS_REST_TOKEN");
 if (e.UPSTASH_REDIS_REST_URL) {
-  try { const url = new URL(e.UPSTASH_REDIS_REST_URL); if (url.protocol !== "https:" || url.username || url.password) invalid.push("UPSTASH_REDIS_REST_URL"); }
+  try { const url = new URL(e.UPSTASH_REDIS_REST_URL); if (url.protocol !== "https:" || url.username || url.password || url.pathname !== "/" || url.search || url.hash) invalid.push("UPSTASH_REDIS_REST_URL"); }
   catch { invalid.push("UPSTASH_REDIS_REST_URL"); }
 }
 console.log(JSON.stringify({ scope: "local process / local env files; not Vercel dashboard", missing, invalid: [...new Set(invalid)], connectivityTested: false }, null, 2));
