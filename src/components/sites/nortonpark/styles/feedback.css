@@ -9,7 +9,7 @@
 .f-savills-copyright{margin:0;padding:1.5rem 0;border-top:1px solid var(--footer-rule);font-size:.72rem;line-height:1.7}
 .foot .f-top{grid-template-columns:.65fr 1fr 1.4fr .85fr;align-items:start}
 @media(max-width:1040px){.foot .f-top{grid-template-columns:1fr 1fr}}
-body:has(.pop.is-open,.drawer.is-open,.ldoc.is-open,.lb.is-open,#register:focus-within) .fab{visibility:hidden;pointer-events:none}
+body:has(.pop.is-open,.drawer.is-open,.ldoc.is-open,.lb.is-open) .fab,.fab.is-hidden{visibility:hidden;pointer-events:none}
 @media(min-width:821px) and (max-width:1100px){
   .nav .btn-vr{padding:10px 14px;gap:6px;font-size:.6rem;letter-spacing:.1em}
   .nav .nav-cta{padding:10px 14px;font-size:.6rem;letter-spacing:.08em}
